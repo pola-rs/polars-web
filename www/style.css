@@ -1,0 +1,286 @@
+/*
+ * this css has been heavily modified after being forked from:
+ * https://github.com/pure-css/pure/blob/master/site/static/layouts/marketing/
+ *
+ * any class starting with "pure-" is a default style inherited from pure-css,
+ * but we decided to bend it to our preferences
+ *
+ * pure-css is a "mobile first" framework, e.g., media queries need to apply to
+ * larger screen sizes
+ *
+ * 
+ * +---------------------------------------+
+ * | logo                          buttons |   nav
+ * +---------------------------------------+
+ * |                                       |
+ * |                                       |
+ * |                 title                 |
+ * |               subtitles               |   header
+ * |                buttons                |
+ * |                                       |
+ * |                                       |
+ * +------------------^^^------------------+   
+ * |+-------------------------------------+|   main
+ * || pillar     | pillar    | pillar     ||   section
+ * |+-------------------------------------+|
+ * || ribbon                              ||   section
+ * |+-------------------------------------+|
+ * || code examples    | code examples    ||   section
+ * |+-------------------------------------+|
+ * ||                footer               ||   section
+ * |+-------------------------------------+|
+ * +---------------------------------------+
+ *
+ *
+ * notes:
+ *   - top menu is fixed and always visible
+ *   - splash gets hidden by the content when scrolling
+ *   - columnar content uses the pure-css responsive capabilities
+ *   - outer/inner wrappers to limit size on extra-large screens
+ */
+
+
+/*
+ * COLORS
+ *
+ * each theme contains:
+ *   - 4 background colors:.menu/footer, splash, content, ribbon
+ *   - 1 button background color
+ *   - 2 font colors: common and alternative
+ *   - 1 link color (common to both themes)
+ *
+ * default is a dark -dimmed- palette derived from github theme
+ *
+ * syntax highlighting is taking care of via highlight.js, check the other css
+ */
+
+:root, .theme-dimmed {
+    --background-color: #22272e;
+    --background-color-dark: #0d1117;
+    --button-color: #d73a49bb;
+    --font-color: #adbac7;
+    --link-color: #70b0ff;
+    --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dimmed.svg");
+}
+
+.theme-light {
+    --background-color: #ffffff;
+    --background-color-dark: #eff6fd;
+    --button-color: #d73a49;
+    --font-color: #24292e;
+    --link-color: #70b0ff;
+    --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dark.svg");
+}
+
+/* generic definitions and utilities */
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:focus,
+a:hover { text-decoration: underline; }
+
+body {
+    background: var(--background-color);
+    color: var(--font-color);
+    font-size: 1rem;
+    line-height: 1.75em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--font-color);
+    font-weight: normal;
+}
+
+pre {
+    border: 0.01em solid var(--background-color-dark);
+    border-radius: 5px;
+    padding: 1em;
+}
+
+.centered { text-align: center; }
+.padded { padding: 1em; }
+.padded-h { padding: 0 1em; }
+.padded-v { padding: 1em 0; }
+.smaller { font-size: 90%; }
+
+
+/* HEADER */
+
+nav > div {
+    background: var(--background-color-dark);
+    background-image: none;
+    background-origin: content-box;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: auto 2.5rem;
+    padding: 0.5em;
+    text-align: center;
+}
+
+/* 
+ * custom menu links, modified from the default pure-css styles
+ * fixed menus normally have a border at the bottom
+ * higher z-index because of the scroll-over effect
+ */
+nav .pure-menu.pure-menu-fixed {
+    border-color: var(--background-color);
+    border-style: solid;
+    border-width: 0 0 0.01em 0;
+    z-index: 4;
+}
+
+nav a.pure-menu-horizontal,
+nav a.pure-menu-link {
+    border: none;
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+nav a.pure-menu-horizontal:hover,
+nav a.pure-menu-horizontal:focus,
+nav a.pure-menu-link:hover,
+nav a.pure-menu-link:focus {
+    background: none;
+    color: var(--font-color);
+}
+
+nav .theme-switcher { cursor: pointer; }
+nav .pure-menu-item:last-of-type { padding: 0 1em; }
+
+
+/* SPLASH */
+
+header {
+    background: var(--background-color);
+    background-image: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/ice-ice-baby.svg");
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: auto 75%;
+    color: var(--font-color);
+    height: 90%;
+    left: 0;
+    overflow: hidden;
+    position: fixed !important;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+header > div {
+    bottom: 0;
+    height: 50%;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 100px;
+    width: 80%;
+}
+
+header h1 { font-size: 300%; }
+
+header h2 { letter-spacing: 0.1em; }
+
+/* custom buttons, modified from the default pure-css styles */
+
+a.pure-button-primary {
+    background: var(--button-color);
+    border-radius: 0.2em;
+    color: var(--font-color);
+    padding: 0.5em 2em;
+}
+
+a.pure-button-primary:focus,
+a.pure-button-primary:hover { text-decoration: none; }
+
+
+/* CONTENT */
+
+main {
+    background: var(--background-color);
+    border-color: var(--background-color-dark);
+    border-style: solid;
+    border-width: 0.01em 0 0 0;
+    min-height: 10%;
+    position: absolute;
+    top: 90%;
+    width: 100%;
+    z-index: 2;
+}
+
+section { padding: 0 1em; }
+
+section h1,
+section h2 { letter-spacing: 0.1em; }
+
+section h1 i,
+section h2 i,
+section h3 i,
+section h4 i,
+section h5 i,
+section h6 i { margin: 0 0.5em 0 0; }
+
+section.ribbon {
+    background: var(--background-color-dark);
+    color: var(--font-color);
+}
+
+section.ribbon h1,
+section.ribbon h2,
+section.ribbon h3,
+section.ribbon h4,
+section.ribbon h5,
+section.ribbon h6 { color: var(--font-color); }
+
+section .justified {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+/* MEDIA QUERIES */
+
+/* tablet (and larger) */
+
+@media (min-width: 48em) {
+
+    nav > div {
+        background-image: var(--polars-logo);
+        padding: 0.5em 0.5em 0.5em 1em;
+        text-align: left;
+    }
+
+    nav > div ul { float: right; }
+
+    header > div {
+        width: 50%;
+        height: 50%;
+    }
+
+    header h1 { font-size: 350%; }
+
+}
+
+/* desktop (and larger) */
+
+@media (min-width: 78em) {
+
+    header h1 { font-size: 500%; }
+
+}

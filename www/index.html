@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polars</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-code.css">
+</head>
+<body>
+
+<nav>
+    <div class="pure-menu pure-menu-horizontal pure-menu-fixed">
+
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item"><a class="pure-menu-link" href="/">Home</a></li>
+            <li class="pure-menu-item"><a class="pure-menu-link" href="/blog">Blog</a></li>
+            <li class="pure-menu-item">
+                <a class="pure-menu-horizontal" href="https://github.com/pola-rs/polars/"><i class="fab fa-github"></i></a>
+                <a class="pure-menu-horizontal" href="https://gitter.im/polars-rs/community/"><i class="fab fa-gitter"></i></a>
+                <a class="pure-menu-horizontal theme-switcher" onclick="toggleTheme()"><i class="fas fa-adjust"></i></a>
+            </li>
+        </ul>
+
+        <script>
+            function setTheme(name) {
+                localStorage.setItem("theme", name);
+                document.documentElement.className = name;
+            }
+            function toggleTheme() {
+                if (localStorage.getItem("theme") === "theme-dimmed") {
+                    setTheme("theme-light");
+                } else {
+                    setTheme("theme-dimmed");
+                }
+            }
+            if (localStorage.getItem("theme") === "theme-light") {
+                setTheme("theme-light");
+            } else {
+                setTheme("theme-dimmed");
+            }
+        </script>
+
+    </div>
+</nav>
+
+<header>
+    <div>
+        <h1>Polars</h1>
+        <h2>Lightning-fast DataFrame library for Rust and Python</h2>
+        <p>
+            <a class="pure-button pure-button-primary" href="https://github.com/pola-rs/polars/blob/master/README.md">Install</a>
+            <a class="pure-button pure-button-primary" href="https://pola-rs.github.io/polars-book/user-guide/">Cookbook</a>
+        </p>
+    </div>
+</header>
+
+<main>
+    <section class="padded-h pure-g">
+
+            <div class="justified padded pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                <div>
+                    <h3><i class="fab fa-python"></i>Familiar from the start</h3>
+                    <p>Knowing of data wrangling habits, Polars exposes a complete Python API, including the full set of features to manipulate DataFrames in eager and/or lazy ways, following a syntax similar to other popular DataFrame libaries.</p>
+                </div>
+                <div>
+                    <div class="centered padded-v">
+                        <img height="80px" src="https://raw.githubusercontent.com/pola-rs/polars-static/master/web/polars-logo-python.svg">
+                    </div>
+                    <div class="centered padded-v">
+                        <a href="https://pola-rs.github.io/polars-book/user-guide/">User Guide</a>
+                        &
+                        <a href="https://pola-rs.github.io/polars/py-polars/html/reference/">API Reference</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="justified padded pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                <div>
+                    <h3><i class="fab fa-rust"></i>DataFrames to the Rust ecosystem</h3>
+                    <p>The core goal of Polars is to create and use DataFrames in Rust, while offering a similar feature set as found in DataFrame libraries of other languages.</p>
+                </div>
+                <div>
+                    <div class="centered padded-v">
+                        <img height="80px" src="https://raw.githubusercontent.com/pola-rs/polars-static/master/web/polars-logo-rust.svg">
+                    </div>
+                    <div class="centered padded-v">
+                        <a href="https://pola-rs.github.io/polars-book/user-guide/">User Guide</a>
+                        &
+                        <a href="https://pola-rs.github.io/polars/polars/">API Reference</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="justified padded pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                <div>
+                    <h3><i class="fas fa-award"></i>On the shoulders of a giant</h3>
+                    <p>Apache Arrow is used for all the in-memory data management, enabling Polars to improve resource use and processing performance.</p>
+                </div>
+                <div>
+                    <div class="centered padded-v">
+                        <img height="80px" src="https://raw.githubusercontent.com/pola-rs/polars-static/master/web/arrow-logo.svg">
+                    </div>
+                    <div class="centered padded-v">
+                        <a href="https://arrow.apache.org/">Official website</a>
+                    </div>
+                </div>
+            </div>
+
+    </section>
+
+    <section class="padded pure-g ribbon">
+        <div class="pure-u-1 pure-u-md-1-5 pure-u-lg-1-5"></div>
+        <div class="pure-u-1 pure-u-md-3-5 pure-u-lg-3-5">
+            <h2>Welcome to fast data wrangling</h2>
+            <p>Polars aims at being a lightning fast DataFrame library utilizing all available cores on your machine. Its ideal use case lies in data too big for Pandas (for instance) but too small for Spark. If you however need to process data that does not fit in the memory of a single machine (even after filtering), Polars is not the solution to your problem.</p>
+            <p>Polars consists of an eager API that is similar to Pandas: any operation is immediately executed and produces a result. In addition, and similarly to Spark, Polars comes with a query planner (also referred as lazy API) that may -and probably will- optimize and parallelize your data processing, decreasing the time spent running the workload and reducing memory usage.</p>
+        </div>
+        <div class="pure-u-1 pure-u-md-1-5 pure-u-lg-1-5"></div>
+    </section>
+
+    <section class="padded">
+        <h2 class="centered">Quickstart</h2>
+        <div class="pure-g">
+
+            <div class="padded-h pure-u-1 pure-u-lg-1-2">
+                <h3><i class="fab fa-rust"></i>Rust</h3>
+                <p>Below a quick demonstration of loading the Iris dataset as a Rust DataFrame.</p>
+                <pre><code class="language-rust">use polars::prelude::*;
+
+fn example() -> Result<DataFrame> {
+    CsvReader::from_path("iris.csv")?
+            .infer_schema(None)
+            .has_header(true)
+            .finish()
+}</code></pre>
+            </div>
+
+            <div class="padded-h pure-u-1 pure-u-lg-1-2">
+                <h3><i class="fab fa-python"></i>Python</h3>
+                <p>Below a quick demonstration of reading, filtering, grouping and aggregating the famous Iris dataset.</p>
+                <pre><code class="language-python">import polars as pl
+
+q = (
+    pl.scan_csv("iris.csv")
+    .filter(pl.col("sepal_length") > 5)
+    .groupby("species")
+    .agg(pl.col("*").sum())
+)
+
+df = q.collect()</code></pre>                    
+                <p>See more examples in the <a href="https://pola-rs.github.io/polars-book/user-guide/howcani/">User Guide</a>.</p>
+            </div>
+
+        </div>
+        <script>hljs.highlightAll();</script>
+    </section>
+
+    <section class="centered padded ribbon smaller">
+        Visit the <a href="https://github.com/pola-rs">GitHub Organization</a>
+        &mdash;
+        Cooked up using <a href="https://purecss.io/">Pure CSS</a>
+    </section>
+
+</main>
+
+</body>
+</html>
+
+<!-- this html has been heavily modified after being forked from: https://github.com/pure-css/pure/blob/master/site/static/layouts/marketing/ -->
