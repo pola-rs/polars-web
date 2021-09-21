@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polars</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/game/style.css">
+</head>
+<body>
+
+<nav>
+    <div class="pure-menu pure-menu-horizontal pure-menu-fixed">
+
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item"><a class="pure-menu-link" href="/">Home</a></li>
+            <li class="pure-menu-item"><a class="pure-menu-link" href="/game">Blog</a></li>
+            <li class="pure-menu-item">
+                <a class="pure-menu-horizontal" href="https://github.com/pola-rs/polars/"><i class="fab fa-github"></i></a>
+                <a class="pure-menu-horizontal" href="https://gitter.im/polars-rs/community/"><i class="fab fa-gitter"></i></a>
+                <a class="pure-menu-horizontal theme-switcher" onclick="toggleTheme()"><i class="fas fa-adjust"></i></a>
+            </li>
+        </ul>
+
+        <script>
+            function setTheme(name) {
+                localStorage.setItem("theme", name);
+                document.documentElement.className = name;
+            }
+            function toggleTheme() {
+                if (localStorage.getItem("theme") === "theme-dimmed") {
+                    setTheme("theme-light");
+                } else {
+                    setTheme("theme-dimmed");
+                }
+            }
+            if (localStorage.getItem("theme") === "theme-light") {
+                setTheme("theme-light");
+            } else {
+                setTheme("theme-dimmed");
+            }
+        </script>
+
+    </div>
+</nav>
+
+<header>
+    <div class="game">
+        <div class="ground"></div>
+        <div id="sky"></div>
+        <div id="bear"></div>
+        <div id="hurdle"></div>
+        <div id="stuff1"></div>
+        <div id="stuff2"></div>
+        <div id="stuff3"></div>
+        <script src="script.js"></script>
+    </div>
+    <div class="content">
+        <p>It looks like the page you are looking for is empty, in construction or simply non-existing...</p>
+        <p>Instead, avoid the snowmen by hitting any key! And yes this is jerky, this is a pure CSS "game"...</p>
+    </div>
+</header>
+
+</body>
+</html>

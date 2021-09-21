@@ -28,15 +28,17 @@ WORKDIR /usr/src
 COPY www /usr/src
 
 RUN mkdir /usr/local/www \
- && cp index.html style.css style-code.css /usr/local/www \
- && cp -r blog /usr/local/www
+ && cp favicon.png index.html style*css /usr/local/www \
+ && cp -r blog /usr/local/www \
+ && cp -r game /usr/local/www
 
 #COPY requirements.txt /tmp/requirements.txt
 #COPY render.py render.py
 
 #RUN mkdir /usr/local/www \
 # && pip install -r /tmp/requirements.txt \
-# && python render.py *html /usr/local/www
+# && python render.py index*html /usr/local/www \
+# && cp favicon.png style*css /usr/local/www
 
 
 # run as root, but there is literally NOTHING in this container
