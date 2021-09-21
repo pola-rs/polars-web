@@ -1,24 +1,45 @@
-/* pre-load the images during the animation delay */
-
-main::after {
-  content: url("arctic-bear.png") url("arctic-igloo.png")
-    url("arctic-igloos.png") url("arctic-penguin.png")
-    url("arctic-penguins.png") url("arctic-pups.png") url("arctic-seal.png")
-    url("arctic-seals.png") url("arctic-sky.png") url("bear-ko.png")
-    url("bear-leap.png") url("bear-running-frame-0.png")
-    url("bear-running-frame-1.png") url("bear-running-frame-2.png")
-    url("bear-running-frame-3.png") url("bear-running-frame-4.png")
-    url("bear-running-frame-5.png") url("bear-running-frame-6.png")
-    url("bear-running-frame-7.png") url(hurdle-snowman.png)
-    url(hurdle-snowmen.png);
-  position: absolute;
-  height: 0%;
-  overflow: hidden;
-  width: -100%;
-  z-index: -1;
+:root,
+.theme-dimmed {
+  --bear-running-frame-0: url("bear-running-frame-0-dark.png");
+  --bear-running-frame-1: url("bear-running-frame-1-dark.png");
+  --bear-running-frame-2: url("bear-running-frame-2-dark.png");
+  --bear-running-frame-3: url("bear-running-frame-3-dark.png");
+  --bear-running-frame-4: url("bear-running-frame-4-dark.png");
+  --bear-running-frame-5: url("bear-running-frame-5-dark.png");
+  --bear-running-frame-6: url("bear-running-frame-6-dark.png");
+  --bear-running-frame-7: url("bear-running-frame-7-dark.png");
+  --bear-leaping: url("bear-leap-dark.png");
+  --default-hurdle: url("hurdle-snowman-dark.png");
+  --default-stuff1: url("arctic-igloo-dark.png");
+  --default-stuff2: url("arctic-seal-dark.png");
+  --default-stuff3: url("arctic-penguins-dark.png");
+  --ground-gradient: linear-gradient(
+    180deg,
+    rgba(112, 176, 255, 0.25) 0%,
+    rgba( 34,  39,  46, 0.25) 100%
+  );
 }
 
-/* landscape */
+.theme-light {
+  --bear-running-frame-0: url("bear-running-frame-0-light.png");
+  --bear-running-frame-1: url("bear-running-frame-1-light.png");
+  --bear-running-frame-2: url("bear-running-frame-2-light.png");
+  --bear-running-frame-3: url("bear-running-frame-3-light.png");
+  --bear-running-frame-4: url("bear-running-frame-4-light.png");
+  --bear-running-frame-5: url("bear-running-frame-5-light.png");
+  --bear-running-frame-6: url("bear-running-frame-6-light.png");
+  --bear-running-frame-7: url("bear-running-frame-7-light.png");
+  --bear-leaping: url("bear-leap-light.png");
+  --default-hurdle: url("hurdle-snowman-light.png");
+  --default-stuff1: url("arctic-igloo-light.png");
+  --default-stuff2: url("arctic-seal-light.png");
+  --default-stuff3: url("arctic-penguins-light.png");
+  --ground-gradient: linear-gradient(
+    180deg,
+    rgba(112, 176, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+}
 
 header {
   background-image: none;
@@ -37,11 +58,7 @@ header {
 }
 
 .ground {
-  background: linear-gradient(
-    180deg,
-    rgba(112, 176, 255, 0.25) 0%,
-    rgba(255, 255, 255, 0.25) 100%
-  );
+  background: var(--ground-gradient);
   border-color: #70b0ff77;
   border-style: solid;
   border-width: 1px 0 0 0;
@@ -74,34 +91,34 @@ header {
 
 @keyframes bear {
   0% {
-    background-image: url("bear-running-frame-0.png");
+    background-image: var(--bear-running-frame-0);
   }
   14% {
-    background-image: url("bear-running-frame-1.png");
+    background-image: var(--bear-running-frame-1);
   }
   29% {
-    background-image: url("bear-running-frame-2.png");
+    background-image: var(--bear-running-frame-2);
   }
   49% {
-    background-image: url("bear-running-frame-3.png");
+    background-image: var(--bear-running-frame-3);
   }
   57% {
-    background-image: url("bear-running-frame-4.png");
+    background-image: var(--bear-running-frame-4);
   }
   72% {
-    background-image: url("bear-running-frame-5.png");
+    background-image: var(--bear-running-frame-5);
   }
   86% {
-    background-image: url("bear-running-frame-6.png");
+    background-image: var(--bear-running-frame-6);
   }
   100% {
-    background-image: url("bear-running-frame-7.png");
+    background-image: var(--bear-running-frame-7);
   }
 }
 
 #bear.jump {
   animation: jump 0.8s linear;
-  background-image: url("bear-leap.png");
+  background-image: var(--bear-leaping);
   height: 50px;
 }
 
@@ -137,7 +154,7 @@ header {
 
 #hurdle {
   animation: slide 4s infinite linear;
-  background-image: url("hurdle-snowman.png");
+  background-image: var(--default-hurdle);
   background-repeat: no-repeat;
   height: 60px;
   left: 100%;
@@ -148,7 +165,7 @@ header {
 
 #stuff1 {
   animation: slide 3.8s 1.25s infinite linear;
-  background-image: url("arctic-igloo.png");
+  background-image: var(--default-stuff1);
   background-repeat: no-repeat;
   height: 60px;
   left: 100%;
@@ -159,7 +176,7 @@ header {
 
 #stuff2 {
   animation: slide 3.8s 2.5s infinite linear;
-  background-image: url("arctic-seal.png");
+  background-image: var(--default-stuff2);
   background-repeat: no-repeat;
   height: 60px;
   left: 100%;
@@ -170,7 +187,7 @@ header {
 
 #stuff3 {
   animation: slide 3.8s 3.75s infinite linear;
-  background-image: url("arctic-penguins.png");
+  background-image: var(--default-stuff3);
   background-repeat: no-repeat;
   height: 60px;
   left: 100%;

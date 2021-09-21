@@ -19,6 +19,14 @@ const stuff1 = document.getElementById("stuff1");
 const stuff2 = document.getElementById("stuff2");
 const stuff3 = document.getElementById("stuff3");
 
+function getSuffix() {
+    if (localStorage.getItem("theme") === "theme-dimmed") {
+        return "-dark";
+    } else {
+        return "-light";
+    }
+}
+
 function jump() {
   if (bear.classList != "jump" && hurdle.style.animationPlayState != "paused") {
     bear.classList.add("jump");
@@ -38,7 +46,7 @@ const runningBear = setInterval(() => {
     sky.style.animationPlayState = "paused";
 
     bear.style.animation = undefined;
-    bear.style.backgroundImage = 'url("bear-ko.png")';
+    bear.style.backgroundImage = 'url("bear-ko' + getSuffix()  + '.png")';
     bear.style.left = "150px";
     hurdle.style.animationPlayState = "paused";
 
@@ -52,7 +60,7 @@ const runningBear = setInterval(() => {
 
 function randomize(element, items, prefix = "", shift = true) {
   let item = items[Math.floor(Math.random() * items.length)];
-  element.style.backgroundImage = 'url("' + prefix + item + '.png")';
+  element.style.backgroundImage = 'url("' + prefix + item + getSuffix() + '.png")';
 
   if (shift) {
     let elementTop = parseInt(
