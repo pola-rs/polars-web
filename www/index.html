@@ -106,8 +106,8 @@
             <p>
               Knowing of data wrangling habits, Polars exposes a complete Python
               API, including the full set of features to manipulate DataFrames
-              in eager and/or lazy ways, following a syntax similar to other
-              popular DataFrame libaries.
+              in eager and/or lazy ways, using an expression language that will
+              empower you to create readable performant code.
             </p>
           </div>
           <div>
@@ -134,9 +134,10 @@
           <div>
             <h3><i class="fab fa-rust"></i>DataFrames to the Rust ecosystem</h3>
             <p>
-              The core goal of Polars is to create and use DataFrames in Rust,
-              while offering a similar feature set as found in DataFrame
-              libraries of other languages.
+              Polars is written from scratch in Rust, not compromosing in its
+              decision to provide a feature complete DataFrame API to the Rust
+              ecosystem. Use it as a DataFrame library or as query engine
+              backend for your data model.
             </p>
           </div>
           <div>
@@ -164,7 +165,8 @@
             <p>
               Apache Arrow is used for all the in-memory data management,
               enabling Polars to improve resource use and processing
-              performance.
+              performance. By using Arrow polars integrates seamlessly in with
+              other tools in the arrow landscape.
             </p>
           </div>
           <div>
@@ -186,20 +188,12 @@
         <div class="pure-u-1 pure-u-md-3-5 pure-u-lg-3-5">
           <h2>Welcome to fast data wrangling</h2>
           <p>
-            Polars aims at being a lightning fast DataFrame library utilizing
-            all available cores on your machine. Its ideal use case lies in data
-            too big for Pandas (for instance) but too small for Spark. If you
-            however need to process data that does not fit in the memory of a
-            single machine (even after filtering), Polars is not the solution to
-            your problem.
-          </p>
-          <p>
-            Polars consists of an eager API that is similar to Pandas: any
-            operation is immediately executed and produces a result. In
-            addition, and similarly to Spark, Polars comes with a query planner
-            (also referred as lazy API) that may -and probably will- optimize
-            and parallelize your data processing, decreasing the time spent
-            running the workload and reducing memory usage.
+            Polars is a lightning fast DataFrame library/ in-memory query
+            engine. Its embarrassingly parallel execution, cache efficient
+            algorithms and expressive API make it perfect for data wrangling,
+            ETL pipelines snappy API's and much more. <br />Polars is about as
+            fast as it gets, see the results in the h2oai's
+            <a href="https://h2oai.github.io/db-benchmark/">db-bechmark</a>.
           </p>
         </div>
         <div class="pure-u-1 pure-u-md-1-5 pure-u-lg-1-5"></div>
@@ -214,13 +208,37 @@
               Below a quick demonstration of loading the Iris dataset as a Rust
               DataFrame.
             </p>
-            <pre><code class="language-rust">use polars::prelude::*;
+            <pre><code class="language-rust">
+use polars::prelude::*;
 
 fn example() -> Result&ltDataFrame&gt {
-    CsvReader::from_path("iris.csv")?
-            .infer_schema(None)
-            .has_header(true)
-            .finish()
+    let df = df![
+        "A"=> [1, 2, 3, 4, 5],
+       "fruits"=> ["banana", "banana", "apple", "apple", "banana"],
+        "B"=> [5, 4, 3, 2, 1],
+        "cars"=> ["beetle", "audi", "beetle", "beetle", "beetle"]
+    ]?;
+
+    df.lazy()
+        .sort("fruits", false)
+        .select([
+            col("fruits"),
+            col("B").filter(col("cars").eq(lit("beetle"))).sum(),
+            col("A")
+                .filter(col("B").gt(lit(2)))
+                .over(vec![col("cars")])
+                .alias("sum_A_by_cars"),
+            col("A")
+                .sum()
+                .over(vec![col("cars")])
+                .alias("sum_A_by_fruits"),
+            col("A")
+                .sort_by(col("B"), false)
+                .over(vec![col("fruits")])
+                .flatten()
+                .alias("rev_A_by_fruits"),
+        ])
+        .collect()
 }</code></pre>
           </div>
 
@@ -230,16 +248,27 @@ fn example() -> Result&ltDataFrame&gt {
               Below a quick demonstration of reading, filtering, grouping and
               aggregating the famous Iris dataset.
             </p>
-            <pre><code class="language-python">import polars as pl
-
-q = (
-    pl.scan_csv("iris.csv")
-    .filter(pl.col("sepal_length") > 5)
-    .groupby("species")
-    .agg(pl.col("*").sum())
+            <pre><code class="language-python">
+import polars as pl
+df = pl.DataFrame(
+    {
+        "A": [1, 2, 3, 4, 5],
+        "fruits": ["banana", "banana", "apple", "apple", "banana"],
+        "B": [5, 4, 3, 2, 1],
+        "cars": ["beetle", "audi", "beetle", "beetle", "beetle"],
+    }
 )
 
-df = q.collect()</code></pre>
+(df
+    .sort("fruits")
+    .select([
+      "fruits",
+      col("B").filter(col("cars") == "beetle").sum(),
+      col("A").filter(col("B") > 2).sum().over("cars").alias("sum_A_by_cars"),       # groups by "cars"
+      col("A").sum().over("fruits").alias("sum_A_by_fruits"),                        # groups by "fruits"
+      col("A").sort_by("B").over("fruits").flatten().alias("sort_A_by_B_by_fruits")  # groups by "fruits"
+])
+</code></pre>
             <p>
               See more examples in the
               <a
