@@ -4,10 +4,7 @@
 const sky = document.getElementById("sky");
 const bear = document.getElementById("bear");
 
-const evilHurdles = [
-  "snowman",
-  "snowmen",
-];
+const evilHurdles = ["snowman", "snowmen"];
 const hurdle = document.getElementById("hurdle");
 
 const arcticStuff = [
@@ -106,8 +103,8 @@ setTimeout(() => {
     } else {
       randomize(stuff1, arcticStuff);
     }
-  }, 3800);  // css
-}, 1250);    // css
+  }, 3800); // css
+}, 1250); // css
 
 setTimeout(() => {
   const randomStuff2 = setInterval(() => {
@@ -116,8 +113,8 @@ setTimeout(() => {
     } else {
       randomize(stuff2, arcticStuff);
     }
-  }, 3800);  // css
-}, 2500);    // css
+  }, 3800); // css
+}, 2500); // css
 
 setTimeout(() => {
   const randomStuff3 = setInterval(() => {
@@ -126,5 +123,5 @@ setTimeout(() => {
     } else {
       randomize(stuff3, arcticStuff);
     }
-  }, 3800);  // css
-}, 3750);    // css
+  }, 3800); // css
+}, 3750); // css
