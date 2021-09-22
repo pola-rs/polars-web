@@ -107,7 +107,6 @@ header {
   left: 30px;
   position: relative;
   top: 150px;
-  transition: 0.5s;
 }
 
 @keyframes bear {

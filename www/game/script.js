@@ -54,6 +54,7 @@ const runningBear = setInterval(() => {
     sky.style.animationPlayState = "paused";
 
     bear.style.animation = undefined;
+    bear.style.transition = "0.5s";
     bear.style.backgroundImage = "var(--bear-sliding)";
     bear.style.left = "150px";
     hurdle.style.animationPlayState = "paused";
