@@ -1,34 +1,71 @@
-/* pre-load the images during the animation delay */
-
-main::after {
-  content: url("arctic-bear.png") url("arctic-igloo.png")
-    url("arctic-igloos.png") url("arctic-penguin.png")
-    url("arctic-penguins.png") url("arctic-pups.png") url("arctic-seal.png")
-    url("arctic-seals.png") url("arctic-sky.png") url("bear-ko.png")
-    url("bear-leap.png") url("bear-running-frame-0.png")
-    url("bear-running-frame-1.png") url("bear-running-frame-2.png")
-    url("bear-running-frame-3.png") url("bear-running-frame-4.png")
-    url("bear-running-frame-5.png") url("bear-running-frame-6.png")
-    url("bear-running-frame-7.png") url(hurdle-snowman.png)
-    url(hurdle-snowmen.png);
-  position: absolute;
-  height: 0%;
-  overflow: hidden;
-  width: -100%;
-  z-index: -1;
+:root,
+.theme-dimmed {
+  --bear-sliding: url("bear-sliding-dark.png");
+  --bear-leaping: url("bear-leaping-dark.png");
+  --bear-running-frame-0: url("bear-running-frame-0-dark.png");
+  --bear-running-frame-1: url("bear-running-frame-1-dark.png");
+  --bear-running-frame-2: url("bear-running-frame-2-dark.png");
+  --bear-running-frame-3: url("bear-running-frame-3-dark.png");
+  --bear-running-frame-4: url("bear-running-frame-4-dark.png");
+  --bear-running-frame-5: url("bear-running-frame-5-dark.png");
+  --bear-running-frame-6: url("bear-running-frame-6-dark.png");
+  --bear-running-frame-7: url("bear-running-frame-7-dark.png");
+  --hurdle-snowman: url("hurdle-snowman-dark.png");
+  --hurdle-snowmen: url("hurdle-snowmen-dark.png");
+  --arctic-bear: url("arctic-bear-dark.png");
+  --arctic-igloo: url("arctic-igloo-dark.png");
+  --arctic-igloos: url("arctic-igloos-dark.png");
+  --arctic-penguin: url("arctic-penguin-dark.png");
+  --arctic-penguins: url("arctic-penguins-dark.png");
+  --arctic-pups: url("arctic-pups-dark.png");
+  --arctic-seal: url("arctic-seal-dark.png");
+  --arctic-seals: url("arctic-seals-dark.png");
+  --ground-gradient: linear-gradient(
+    180deg,
+    rgba(112, 176, 255, 0.25) 0%,
+    rgba( 34,  39,  46, 0.25) 100%
+  );
 }
 
-/* landscape */
+.theme-light {
+  --bear-sliding: url("bear-sliding-light.png");
+  --bear-leaping: url("bear-leaping-light.png");
+  --bear-running-frame-0: url("bear-running-frame-0-light.png");
+  --bear-running-frame-1: url("bear-running-frame-1-light.png");
+  --bear-running-frame-2: url("bear-running-frame-2-light.png");
+  --bear-running-frame-3: url("bear-running-frame-3-light.png");
+  --bear-running-frame-4: url("bear-running-frame-4-light.png");
+  --bear-running-frame-5: url("bear-running-frame-5-light.png");
+  --bear-running-frame-6: url("bear-running-frame-6-light.png");
+  --bear-running-frame-7: url("bear-running-frame-7-light.png");
+  --hurdle-snowman: url("hurdle-snowman-light.png");
+  --hurdle-snowmen: url("hurdle-snowmen-light.png");
+  --arctic-bear: url("arctic-bear-light.png");
+  --arctic-igloo: url("arctic-igloo-light.png");
+  --arctic-igloos: url("arctic-igloos-light.png");
+  --arctic-penguin: url("arctic-penguin-light.png");
+  --arctic-penguins: url("arctic-penguins-light.png");
+  --arctic-pups: url("arctic-pups-light.png");
+  --arctic-seal: url("arctic-seal-light.png");
+  --arctic-seals: url("arctic-seals-light.png");
+  --ground-gradient: linear-gradient(
+    180deg,
+    rgba(112, 176, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+}
 
 header {
   background-image: none;
 }
 
-.content {
-  margin: 300px auto 0 auto;
+.error {
+  font-size: 5rem;
+  opacity: 0.50;
 }
 
 .game {
+  display: none;
   height: 250px;
   margin: 2em auto;
   max-width: 1500px;
@@ -36,12 +73,13 @@ header {
   position: relative;
 }
 
+.caption {
+  display: none;
+  margin: 300px auto 0 auto;
+}
+
 .ground {
-  background: linear-gradient(
-    180deg,
-    rgba(112, 176, 255, 0.25) 0%,
-    rgba(255, 255, 255, 0.25) 100%
-  );
+  background: var(--ground-gradient);
   border-color: #70b0ff77;
   border-style: solid;
   border-width: 1px 0 0 0;
@@ -69,39 +107,38 @@ header {
   left: 30px;
   position: relative;
   top: 150px;
-  transition: 0.5s;
 }
 
 @keyframes bear {
   0% {
-    background-image: url("bear-running-frame-0.png");
+    background-image: var(--bear-running-frame-0);
   }
   14% {
-    background-image: url("bear-running-frame-1.png");
+    background-image: var(--bear-running-frame-1);
   }
   29% {
-    background-image: url("bear-running-frame-2.png");
+    background-image: var(--bear-running-frame-2);
   }
   49% {
-    background-image: url("bear-running-frame-3.png");
+    background-image: var(--bear-running-frame-3);
   }
   57% {
-    background-image: url("bear-running-frame-4.png");
+    background-image: var(--bear-running-frame-4);
   }
   72% {
-    background-image: url("bear-running-frame-5.png");
+    background-image: var(--bear-running-frame-5);
   }
   86% {
-    background-image: url("bear-running-frame-6.png");
+    background-image: var(--bear-running-frame-6);
   }
   100% {
-    background-image: url("bear-running-frame-7.png");
+    background-image: var(--bear-running-frame-7);
   }
 }
 
 #bear.jump {
   animation: jump 0.8s linear;
-  background-image: url("bear-leap.png");
+  background-image: var(--bear-leaping);
   height: 50px;
 }
 
@@ -137,7 +174,7 @@ header {
 
 #hurdle {
   animation: slide 4s infinite linear;
-  background-image: url("hurdle-snowman.png");
+  background-image: var(--hurdle-snowman);
   background-repeat: no-repeat;
   height: 60px;
   left: 100%;
@@ -148,7 +185,7 @@ header {
 
 #stuff1 {
   animation: slide 3.8s 1.25s infinite linear;
-  background-image: url("arctic-igloo.png");
+  background-image: var(--arctic-igloo);
   background-repeat: no-repeat;
   height: 60px;
   left: 100%;
@@ -159,7 +196,7 @@ header {
 
 #stuff2 {
   animation: slide 3.8s 2.5s infinite linear;
-  background-image: url("arctic-seal.png");
+  background-image: var(--arctic-seal);
   background-repeat: no-repeat;
   height: 60px;
   left: 100%;
@@ -170,7 +207,7 @@ header {
 
 #stuff3 {
   animation: slide 3.8s 3.75s infinite linear;
-  background-image: url("arctic-penguins.png");
+  background-image: var(--arctic-penguins);
   background-repeat: no-repeat;
   height: 60px;
   left: 100%;
@@ -185,5 +222,34 @@ header {
   }
   100% {
     left: -100px;
+  }
+}
+
+
+/* MEDIA QUERIES */
+
+/* tablet (and larger) */
+
+@media (min-width: 48em) {
+  .error {
+    font-size: 10rem;
+    opacity: 0.25;
+  }
+}
+
+/* desktop (and larger) */
+
+@media (min-width: 78em) {
+  .error {
+    font-size: 20rem;
+    opacity: 0.10;
+  }
+
+  .game {
+    display: block;
+  }
+
+  .caption {
+    display: block;
   }
 }
