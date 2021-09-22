@@ -23,7 +23,7 @@
   --ground-gradient: linear-gradient(
     180deg,
     rgba(112, 176, 255, 0.25) 0%,
-    rgba( 34,  39,  46, 0.25) 100%
+    rgba(34, 39, 46, 0.25) 100%
   );
 }
 
@@ -61,7 +61,7 @@ header {
 
 .error {
   font-size: 5rem;
-  opacity: 0.50;
+  opacity: 0.5;
 }
 
 .game {
@@ -225,7 +225,6 @@ header {
   }
 }
 
-
 /* MEDIA QUERIES */
 
 /* tablet (and larger) */
@@ -242,7 +241,7 @@ header {
 @media (min-width: 78em) {
   .error {
     font-size: 20rem;
-    opacity: 0.10;
+    opacity: 0.1;
   }
 
   .game {
