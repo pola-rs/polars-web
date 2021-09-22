@@ -1,5 +1,7 @@
 :root,
 .theme-dimmed {
+  --bear-sliding: url("bear-sliding-dark.png");
+  --bear-leaping: url("bear-leaping-dark.png");
   --bear-running-frame-0: url("bear-running-frame-0-dark.png");
   --bear-running-frame-1: url("bear-running-frame-1-dark.png");
   --bear-running-frame-2: url("bear-running-frame-2-dark.png");
@@ -8,11 +10,16 @@
   --bear-running-frame-5: url("bear-running-frame-5-dark.png");
   --bear-running-frame-6: url("bear-running-frame-6-dark.png");
   --bear-running-frame-7: url("bear-running-frame-7-dark.png");
-  --bear-leaping: url("bear-leap-dark.png");
-  --default-hurdle: url("hurdle-snowman-dark.png");
-  --default-stuff1: url("arctic-igloo-dark.png");
-  --default-stuff2: url("arctic-seal-dark.png");
-  --default-stuff3: url("arctic-penguins-dark.png");
+  --hurdle-snowman: url("hurdle-snowman-dark.png");
+  --hurdle-snowmen: url("hurdle-snowmen-dark.png");
+  --arctic-bear: url("arctic-bear-dark.png");
+  --arctic-igloo: url("arctic-igloo-dark.png");
+  --arctic-igloos: url("arctic-igloos-dark.png");
+  --arctic-penguin: url("arctic-penguin-dark.png");
+  --arctic-penguins: url("arctic-penguins-dark.png");
+  --arctic-pups: url("arctic-pups-dark.png");
+  --arctic-seal: url("arctic-seal-dark.png");
+  --arctic-seals: url("arctic-seals-dark.png");
   --ground-gradient: linear-gradient(
     180deg,
     rgba(112, 176, 255, 0.25) 0%,
@@ -21,6 +28,8 @@
 }
 
 .theme-light {
+  --bear-sliding: url("bear-sliding-light.png");
+  --bear-leaping: url("bear-leaping-light.png");
   --bear-running-frame-0: url("bear-running-frame-0-light.png");
   --bear-running-frame-1: url("bear-running-frame-1-light.png");
   --bear-running-frame-2: url("bear-running-frame-2-light.png");
@@ -29,11 +38,16 @@
   --bear-running-frame-5: url("bear-running-frame-5-light.png");
   --bear-running-frame-6: url("bear-running-frame-6-light.png");
   --bear-running-frame-7: url("bear-running-frame-7-light.png");
-  --bear-leaping: url("bear-leap-light.png");
-  --default-hurdle: url("hurdle-snowman-light.png");
-  --default-stuff1: url("arctic-igloo-light.png");
-  --default-stuff2: url("arctic-seal-light.png");
-  --default-stuff3: url("arctic-penguins-light.png");
+  --hurdle-snowman: url("hurdle-snowman-light.png");
+  --hurdle-snowmen: url("hurdle-snowmen-light.png");
+  --arctic-bear: url("arctic-bear-light.png");
+  --arctic-igloo: url("arctic-igloo-light.png");
+  --arctic-igloos: url("arctic-igloos-light.png");
+  --arctic-penguin: url("arctic-penguin-light.png");
+  --arctic-penguins: url("arctic-penguins-light.png");
+  --arctic-pups: url("arctic-pups-light.png");
+  --arctic-seal: url("arctic-seal-light.png");
+  --arctic-seals: url("arctic-seals-light.png");
   --ground-gradient: linear-gradient(
     180deg,
     rgba(112, 176, 255, 0.25) 0%,
@@ -154,7 +168,7 @@ header {
 
 #hurdle {
   animation: slide 4s infinite linear;
-  background-image: var(--default-hurdle);
+  background-image: var(--hurdle-snowman);
   background-repeat: no-repeat;
   height: 60px;
   left: 100%;
@@ -165,7 +179,7 @@ header {
 
 #stuff1 {
   animation: slide 3.8s 1.25s infinite linear;
-  background-image: var(--default-stuff1);
+  background-image: var(--arctic-igloo);
   background-repeat: no-repeat;
   height: 60px;
   left: 100%;
@@ -176,7 +190,7 @@ header {
 
 #stuff2 {
   animation: slide 3.8s 2.5s infinite linear;
-  background-image: var(--default-stuff2);
+  background-image: var(--arctic-seal);
   background-repeat: no-repeat;
   height: 60px;
   left: 100%;
@@ -187,7 +201,7 @@ header {
 
 #stuff3 {
   animation: slide 3.8s 3.75s infinite linear;
-  background-image: var(--default-stuff3);
+  background-image: var(--arctic-penguins);
   background-repeat: no-repeat;
   height: 60px;
   left: 100%;
