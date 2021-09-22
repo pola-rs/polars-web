@@ -59,16 +59,23 @@ header {
   background-image: none;
 }
 
-.content {
-  margin: 300px auto 0 auto;
+.error {
+  font-size: 5rem;
+  opacity: 0.50;
 }
 
 .game {
+  display: none;
   height: 250px;
   margin: 2em auto;
   max-width: 1500px;
   overflow: hidden;
   position: relative;
+}
+
+.caption {
+  display: none;
+  margin: 300px auto 0 auto;
 }
 
 .ground {
@@ -216,5 +223,34 @@ header {
   }
   100% {
     left: -100px;
+  }
+}
+
+
+/* MEDIA QUERIES */
+
+/* tablet (and larger) */
+
+@media (min-width: 48em) {
+  .error {
+    font-size: 10rem;
+    opacity: 0.25;
+  }
+}
+
+/* desktop (and larger) */
+
+@media (min-width: 78em) {
+  .error {
+    font-size: 20rem;
+    opacity: 0.10;
+  }
+
+  .game {
+    display: block;
+  }
+
+  .caption {
+    display: block;
   }
 }
