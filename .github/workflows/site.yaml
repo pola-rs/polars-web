@@ -1,4 +1,4 @@
-name: deploy site
+name: Deploy Polars landing page
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    name: docs
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -20,6 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install ghp-import
+
       - name: Deploy site
         run: |
           mv www docs
