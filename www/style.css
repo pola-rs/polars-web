@@ -45,8 +45,8 @@
  * COLORS
  *
  * each theme contains:
- *   - 4 background colors:.menu/footer, splash, content, ribbon
- *   - 1 button background color
+ *   - 4 background colors: menu/footer, splash, content, ribbon
+ *   - 2 button background colors
  *   - 2 font colors: common and alternative
  *   - 1 link color (common to both themes)
  *
@@ -58,8 +58,8 @@
 :root,
 .theme-dimmed {
   --background-color: #22272e;
-  --background-color-dark: #0d1117;
-  --button-color: #d73a49bb;
+  --background-color-alt: #0d1117;
+  --button-color: #238636bb;
   --font-color: #adbac7;
   --link-color: #70b0ff;
   --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dimmed.svg");
@@ -67,8 +67,8 @@
 
 .theme-light {
   --background-color: #ffffff;
-  --background-color-dark: #eff6fd;
-  --button-color: #d73a49;
+  --background-color-alt: #ecf4ff;
+  --button-color: #70b0ff27;
   --font-color: #24292e;
   --link-color: #70b0ff;
   --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dark.svg");
@@ -110,7 +110,7 @@ h6 {
 }
 
 pre {
-  border: 0.01em solid var(--background-color-dark);
+  border: 1px solid var(--background-color-alt);
   border-radius: 5px;
   overflow: auto;
   padding: 1em;
@@ -135,7 +135,7 @@ pre {
 /* HEADER */
 
 nav > div {
-  background: var(--background-color-dark);
+  background: var(--background-color-alt);
   background-image: none;
   background-origin: content-box;
   background-position: left;
@@ -158,7 +158,7 @@ nav i {
 nav .pure-menu.pure-menu-fixed {
   border-color: var(--background-color);
   border-style: solid;
-  border-width: 0 0 0.01em 0;
+  border-width: 0 0 1px 0;
   z-index: 4;
 }
 
@@ -228,6 +228,7 @@ a.pure-button-primary {
   background: var(--button-color);
   border-radius: 0.2em;
   color: var(--font-color);
+  font-weight: bold;
   padding: 0.5em 2em;
 }
 
@@ -240,9 +241,9 @@ a.pure-button-primary:hover {
 
 main {
   background: var(--background-color);
-  border-color: var(--background-color-dark);
+  border-color: var(--background-color-alt);
   border-style: solid;
-  border-width: 0.01em 0 0 0;
+  border-width: 1px 0 0 0;
   min-height: 10%;
   position: absolute;
   top: 90%;
@@ -269,7 +270,7 @@ section h6 i {
 }
 
 section.ribbon {
-  background: var(--background-color-dark);
+  background: var(--background-color-alt);
   color: var(--font-color);
 }
 
@@ -315,7 +316,7 @@ section #contributors img {
   }
 
   header h1 {
-    font-size: 350%;
+    font-size: 400%;
   }
 }
 
@@ -323,6 +324,6 @@ section #contributors img {
 
 @media (min-width: 78em) {
   header h1 {
-    font-size: 500%;
+    font-size: 600%;
   }
 }
