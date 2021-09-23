@@ -23,6 +23,5 @@ jobs:
 
       - name: Deploy site
         run: |
-          mv www docs
-          ghp-import --no-jekyll docs
+          ghp-import --no-jekyll www
           git push -qf https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git gh-pages
