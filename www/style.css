@@ -27,6 +27,8 @@
  * |+-------------------------------------+|
  * || code examples    | code examples    ||   section
  * |+-------------------------------------+|
+ * ||   contributors   |     sponsors     ||   section
+ * |+-------------------------------------+|
  * ||                footer               ||   section
  * |+-------------------------------------+|
  * +---------------------------------------+
@@ -284,6 +286,12 @@ section .justified {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+section #contributors img {
+  border-radius: 20px;
+  margin: 0 5px;
+  width: 40px;
 }
 
 /* MEDIA QUERIES */

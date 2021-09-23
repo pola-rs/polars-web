@@ -4,8 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Polars</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link
     <link
       rel="stylesheet"
       href="https://unpkg.com/purecss@2.0.6/build/pure-min.css"
@@ -135,7 +137,7 @@
             <h3><i class="fab fa-rust"></i>DataFrames to the Rust ecosystem</h3>
             <p>
               Polars is written in Rust, uncompromising in its choices to
-              provide a feature complete DataFrame API to the Rust ecosystem.
+              provide a feature-complete DataFrame API to the Rust ecosystem.
               Use it as a DataFrame library or as query engine backend for your
               data models.
             </p>
@@ -245,6 +247,36 @@ df = q.collect()
         </div>
         <script>
           hljs.highlightAll();
+        </script>
+      </section>
+
+
+      <section class="padded">
+        <div class="pure-g">
+          <div class="centered padded-h pure-u-1 pure-u-lg-1-2">
+            <h3><i class="fas fa-user-astronaut"></i>Contributors</h3>
+            <div id="contributors"></div>
+          </div>
+          <div class="centered padded-h pure-u-1 pure-u-lg-1-2">
+            <h3><i class="fas fa-life-ring"></i>Sponsors</h3>
+            <p>
+              <a href="https://www.xomnia.com/">
+                <img
+                  src="https://raw.githubusercontent.com/pola-rs/polars-static/master/sponsors/xomnia.png"
+                  title="Xomnia"
+                />
+              </a>
+            </p>
+          </div>
+        </div>
+        <script>
+          let e = document.getElementById("contributors");
+          axios.get("https://api.github.com/repos/pola-rs/polars/contributors")
+            .then((resp) => {
+              resp.data.forEach((c) => {
+                e.innerHTML += '<a href="' + c.html_url + '" title="' + c.login + '"><img src="' + c.avatar_url + '" /></a>';
+              });
+          });
         </script>
       </section>
 
