@@ -20,6 +20,7 @@
   --arctic-pups: url("arctic-pups-dark.png");
   --arctic-seal: url("arctic-seal-dark.png");
   --arctic-seals: url("arctic-seals-dark.png");
+  --arctic-sky: url("arctic-sky-dark.png");
   --ground-gradient: linear-gradient(
     180deg,
     rgba(112, 176, 255, 0.25) 0%,
@@ -48,6 +49,7 @@
   --arctic-pups: url("arctic-pups-light.png");
   --arctic-seal: url("arctic-seal-light.png");
   --arctic-seals: url("arctic-seals-light.png");
+  --arctic-sky: url("arctic-sky-light.png");
   --ground-gradient: linear-gradient(
     180deg,
     rgba(112, 176, 255, 0.25) 0%,
@@ -91,7 +93,7 @@ header {
 
 #sky {
   animation: slide 120s infinite linear;
-  background-image: url("arctic-sky.png");
+  background-image: var(--arctic-sky);
   background-repeat: no-repeat;
   height: 65px;
   left: 90%;
