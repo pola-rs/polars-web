@@ -270,7 +270,7 @@ df = q.collect()
         </div>
         <script>
           let e = document.getElementById("contributors");
-          axios.get("https://api.github.com/repos/pola-rs/polars/contributors")
+          axios.get("https://api.github.com/repos/pola-rs/polars/contributors?per_page=1000")
             .then((resp) => {
               resp.data.forEach((c) => {
                 e.innerHTML += '<a href="' + c.html_url + '" title="' + c.login + '"><img src="' + c.avatar_url + '" /></a>';
