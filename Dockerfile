@@ -29,8 +29,8 @@ COPY www /usr/src
 
 RUN mkdir /usr/local/www \
  && cp favicon.png index.html style*css /usr/local/www \
- && cp -r blog /usr/local/www \
- && cp -r game /usr/local/www
+ && cp -r posts /usr/local/www \
+ && cp -r 404 /usr/local/www
 
 #COPY requirements.txt /tmp/requirements.txt
 #COPY render.py render.py

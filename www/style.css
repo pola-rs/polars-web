@@ -56,22 +56,20 @@
  */
 
 :root,
-.theme-dimmed {
-  --background-color: #22272e;
-  --background-color-alt: #0d1117;
-  --button-color: #238636bb;
-  --font-color: #adbac7;
-  --link-color: #70b0ff;
-  --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dimmed.svg");
-}
-
-.theme-light {
+.light {
   --background-color: #ffffff;
   --background-color-alt: #ecf4ff;
-  --button-color: #70b0ff27;
   --font-color: #24292e;
   --link-color: #70b0ff;
   --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dark.svg");
+}
+
+.dark_dimmed {
+  --background-color: #22272e;
+  --background-color-alt: #0d1117;
+  --font-color: #adbac7;
+  --link-color: #70b0ff;
+  --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dimmed.svg");
 }
 
 /* generic definitions and utilities */
@@ -162,6 +160,11 @@ nav .pure-menu.pure-menu-fixed {
   z-index: 4;
 }
 
+nav .pure-menu-children {
+  background: var(--background-color-alt);
+  border-radius: 0.2em;
+}
+
 nav a.pure-menu-horizontal,
 nav a.pure-menu-link {
   border: none;
@@ -180,8 +183,17 @@ nav a.pure-menu-link:focus {
 nav .theme-switcher {
   cursor: pointer;
 }
+
+nav .pure-menu-item.pure-menu-has-children {
+  cursor: default;
+}
+
 nav .pure-menu-item:last-of-type {
   padding: 0 1em;
+}
+
+nav .pure-menu-children .pure-menu-item:last-of-type {
+  padding: 0;
 }
 
 /* SPLASH */
@@ -189,7 +201,7 @@ nav .pure-menu-item:last-of-type {
 header {
   background: var(--background-color);
   background-image: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/ice-ice-baby.svg");
-  background-position: bottom center;
+  background-position: center 150px;
   background-repeat: no-repeat;
   background-size: auto 75%;
   color: var(--font-color);
@@ -220,21 +232,6 @@ header h1 {
 
 header h2 {
   letter-spacing: 0.1em;
-}
-
-/* custom buttons, modified from the default pure-css styles */
-
-a.pure-button-primary {
-  background: var(--button-color);
-  border-radius: 0.2em;
-  color: var(--font-color);
-  font-weight: bold;
-  padding: 0.5em 2em;
-}
-
-a.pure-button-primary:focus,
-a.pure-button-primary:hover {
-  text-decoration: none;
 }
 
 /* CONTENT */

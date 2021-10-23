@@ -27,7 +27,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css"
     />
     <link rel="stylesheet" href="/style.css" />
-    <link rel="stylesheet" href="/game/style.css" />
+    <link rel="stylesheet" href="/404/style.css" />
   </head>
   <body>
     <nav>
@@ -37,7 +37,32 @@
             <a class="pure-menu-link" href="/">Home</a>
           </li>
           <li class="pure-menu-item">
-            <a class="pure-menu-link" href="/game">Blog</a>
+            <a class="pure-menu-link" href="/404">Posts</a>
+          </li>
+          <li class="pure-menu-item">
+            <a class="pure-menu-link" href="https://pola-rs.github.io/polars-book/user-guide/">Cookbook</a>
+          </li>
+          <li class="pure-menu-item pure-menu-allow-hover pure-menu-has-children">
+            <a class="pure-menu-link">Doc</a>
+            <ul class="pure-menu-children">
+              <li class="pure-menu-item">
+                <a class="pure-menu-link" href="https://pola-rs.github.io/polars-book/user-guide/">Rust</a>
+              </li>
+              <li class="pure-menu-item">
+                <a class="pure-menu-link" href="https://pola-rs.github.io/polars-book/user-guide/">Python</a>
+              </li>
+            </ul>
+          </li>
+          <li class="pure-menu-item pure-menu-allow-hover pure-menu-has-children">
+            <a class="pure-menu-link">API</a>
+            <ul class="pure-menu-children">
+              <li class="pure-menu-item">
+                <a class="pure-menu-link" href="https://pola-rs.github.io/polars/polars/">Rust</a>
+              </li>
+              <li class="pure-menu-item">
+                <a class="pure-menu-link" href="https://pola-rs.github.io/polars/py-polars/html/reference/">Python</a>
+              </li>
+            </ul>
           </li>
           <li class="pure-menu-item">
             <a
@@ -64,16 +89,16 @@
             document.documentElement.className = name;
           }
           function toggleTheme() {
-            if (localStorage.getItem("theme") === "theme-dimmed") {
-              setTheme("theme-light");
+            if (localStorage.getItem("theme") === "light") {
+              setTheme("dark_dimmed");
             } else {
-              setTheme("theme-dimmed");
+              setTheme("light");
             }
           }
-          if (localStorage.getItem("theme") === "theme-light") {
-            setTheme("theme-light");
+          if (localStorage.getItem("theme") === "dark_dimmed" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+            setTheme("dark_dimmed")
           } else {
-            setTheme("theme-dimmed");
+            setTheme("light")
           }
         </script>
       </div>
