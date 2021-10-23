@@ -5,28 +5,7 @@
  */
 
 :root,
-.theme-dimmed {
-  --color-1: #adbac7;
-  --color-2: #22272e;
-  --color-3: #f47067;
-  --color-4: #dcbdfb;
-  --color-5: #6cb6ff;
-  --color-6: #96d0ff;
-  --color-7: #f69d50;
-  --color-8: #768390;
-  --color-9: #8ddb8c;
-  --color-10: #adbac7;
-  --color-11: #316dca;
-  --color-12: #eac55f;
-  --color-13: #adbac7;
-  --color-14: #adbac7;
-  --color-15: #b4f1b4;
-  --color-16: #1b4721;
-  --color-17: #ffd8d3;
-  --color-18: #78191b;
-}
-
-.theme-light {
+.light {
   --color-1: #24292e;
   --color-2: #ffffff;
   --color-3: #d73a49;
@@ -45,6 +24,27 @@
   --color-16: #f0fff4;
   --color-17: #b31d28;
   --color-18: #ffeef0;
+}
+
+.dark_dimmed {
+  --color-1: #adbac7;
+  --color-2: #22272e;
+  --color-3: #f47067;
+  --color-4: #dcbdfb;
+  --color-5: #6cb6ff;
+  --color-6: #96d0ff;
+  --color-7: #f69d50;
+  --color-8: #768390;
+  --color-9: #8ddb8c;
+  --color-10: #adbac7;
+  --color-11: #316dca;
+  --color-12: #eac55f;
+  --color-13: #adbac7;
+  --color-14: #adbac7;
+  --color-15: #b4f1b4;
+  --color-16: #1b4721;
+  --color-17: #ffd8d3;
+  --color-18: #78191b;
 }
 
 .hljs {

@@ -1,34 +1,5 @@
 :root,
-.theme-dimmed {
-  --bear-sliding: url("bear-sliding-dark.png");
-  --bear-leaping: url("bear-leaping-dark.png");
-  --bear-running-frame-0: url("bear-running-frame-0-dark.png");
-  --bear-running-frame-1: url("bear-running-frame-1-dark.png");
-  --bear-running-frame-2: url("bear-running-frame-2-dark.png");
-  --bear-running-frame-3: url("bear-running-frame-3-dark.png");
-  --bear-running-frame-4: url("bear-running-frame-4-dark.png");
-  --bear-running-frame-5: url("bear-running-frame-5-dark.png");
-  --bear-running-frame-6: url("bear-running-frame-6-dark.png");
-  --bear-running-frame-7: url("bear-running-frame-7-dark.png");
-  --hurdle-snowman: url("hurdle-snowman-dark.png");
-  --hurdle-snowmen: url("hurdle-snowmen-dark.png");
-  --arctic-bear: url("arctic-bear-dark.png");
-  --arctic-igloo: url("arctic-igloo-dark.png");
-  --arctic-igloos: url("arctic-igloos-dark.png");
-  --arctic-penguin: url("arctic-penguin-dark.png");
-  --arctic-penguins: url("arctic-penguins-dark.png");
-  --arctic-pups: url("arctic-pups-dark.png");
-  --arctic-seal: url("arctic-seal-dark.png");
-  --arctic-seals: url("arctic-seals-dark.png");
-  --arctic-sky: url("arctic-sky-dark.png");
-  --ground-gradient: linear-gradient(
-    180deg,
-    rgba(112, 176, 255, 0.25) 0%,
-    rgba(34, 39, 46, 0.25) 100%
-  );
-}
-
-.theme-light {
+.light {
   --bear-sliding: url("bear-sliding-light.png");
   --bear-leaping: url("bear-leaping-light.png");
   --bear-running-frame-0: url("bear-running-frame-0-light.png");
@@ -54,6 +25,35 @@
     180deg,
     rgba(112, 176, 255, 0.25) 0%,
     rgba(255, 255, 255, 0.25) 100%
+  );
+}
+
+.dark_dimmed {
+  --bear-sliding: url("bear-sliding-dark.png");
+  --bear-leaping: url("bear-leaping-dark.png");
+  --bear-running-frame-0: url("bear-running-frame-0-dark.png");
+  --bear-running-frame-1: url("bear-running-frame-1-dark.png");
+  --bear-running-frame-2: url("bear-running-frame-2-dark.png");
+  --bear-running-frame-3: url("bear-running-frame-3-dark.png");
+  --bear-running-frame-4: url("bear-running-frame-4-dark.png");
+  --bear-running-frame-5: url("bear-running-frame-5-dark.png");
+  --bear-running-frame-6: url("bear-running-frame-6-dark.png");
+  --bear-running-frame-7: url("bear-running-frame-7-dark.png");
+  --hurdle-snowman: url("hurdle-snowman-dark.png");
+  --hurdle-snowmen: url("hurdle-snowmen-dark.png");
+  --arctic-bear: url("arctic-bear-dark.png");
+  --arctic-igloo: url("arctic-igloo-dark.png");
+  --arctic-igloos: url("arctic-igloos-dark.png");
+  --arctic-penguin: url("arctic-penguin-dark.png");
+  --arctic-penguins: url("arctic-penguins-dark.png");
+  --arctic-pups: url("arctic-pups-dark.png");
+  --arctic-seal: url("arctic-seal-dark.png");
+  --arctic-seals: url("arctic-seals-dark.png");
+  --arctic-sky: url("arctic-sky-dark.png");
+  --ground-gradient: linear-gradient(
+    180deg,
+    rgba(112, 176, 255, 0.25) 0%,
+    rgba(34, 39, 46, 0.25) 100%
   );
 }
 
