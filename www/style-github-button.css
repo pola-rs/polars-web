@@ -2,26 +2,45 @@
 .light {
   --github-button-background-color: #ebf0f4;
   --github-button-background-color-alt: #e9ebef;
-  --github-button-background-image: linear-gradient(180deg, #f6f8fa, #ebf0f4 90%);
-  --github-button-background-image-alt: linear-gradient(180deg, #f3f4f6, #e9ebef 90%);
+  --github-button-background-image: linear-gradient(
+    180deg,
+    #f6f8fa,
+    #ebf0f4 90%
+  );
+  --github-button-background-image-alt: linear-gradient(
+    180deg,
+    #f3f4f6,
+    #e9ebef 90%
+  );
   --github-button-border-color: #ccd1d5;
   --github-button-border-color-alt: #caccd1;
   --github-button-font-color: #24292f;
+  --github-button-link-color: #70b0ff;
 }
 
 .dark_dimmed {
   --github-button-background-color: #30363d;
   --github-button-background-color-alt: #3c444d;
-  --github-button-background-image: linear-gradient(180deg, #373e47, #30363d 90%);
-  --github-button-background-image-alt: linear-gradient(180deg, #444c56, #3c444d 90%);
+  --github-button-background-image: linear-gradient(
+    180deg,
+    #373e47,
+    #30363d 90%
+  );
+  --github-button-background-image-alt: linear-gradient(
+    180deg,
+    #444c56,
+    #3c444d 90%
+  );
   --github-button-border-color: #40464e;
   --github-button-border-color-alt: #768390;
   --github-button-font-color: #adbac7;
+  --github-button-link-color: #70b0ff;
 }
 
 div.github-button {
   display: inline-block;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   font-size: 0;
   line-height: 30px;
   margin: 10px;
@@ -35,9 +54,10 @@ div.github-button:hover {
 
 div.github-button a {
   display: inline-block;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: bold;
   margin: 0;
-  padding: 0 15px;
+  padding: 0 13px;
 }
 
 div.github-button a,
@@ -78,5 +98,5 @@ div.github-button a:last-child {
 
 div.github-button a:last-child:focus,
 div.github-button a:last-child:hover {
-  color: var(--link-color);
+  color: var(--github-button-link-color);
 }

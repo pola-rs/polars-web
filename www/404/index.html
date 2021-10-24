@@ -39,28 +39,45 @@
           <li class="pure-menu-item">
             <a class="pure-menu-link" href="/404">Posts</a>
           </li>
-          <li class="pure-menu-item">
-            <a class="pure-menu-link" href="https://pola-rs.github.io/polars-book/user-guide/">Cookbook</a>
-          </li>
-          <li class="pure-menu-item pure-menu-allow-hover pure-menu-has-children">
-            <a class="pure-menu-link">Doc</a>
+          <li
+            class="pure-menu-item pure-menu-allow-hover pure-menu-has-children"
+          >
+            <a class="pure-menu-link">Docs</a>
             <ul class="pure-menu-children">
               <li class="pure-menu-item">
-                <a class="pure-menu-link" href="https://pola-rs.github.io/polars-book/user-guide/">Rust</a>
+                <a
+                  class="pure-menu-link"
+                  href="https://pola-rs.github.io/polars-book/user-guide/"
+                  >Rust</a
+                >
               </li>
               <li class="pure-menu-item">
-                <a class="pure-menu-link" href="https://pola-rs.github.io/polars-book/user-guide/">Python</a>
+                <a
+                  class="pure-menu-link"
+                  href="https://pola-rs.github.io/polars-book/user-guide/"
+                  >Python</a
+                >
               </li>
             </ul>
           </li>
-          <li class="pure-menu-item pure-menu-allow-hover pure-menu-has-children">
+          <li
+            class="pure-menu-item pure-menu-allow-hover pure-menu-has-children"
+          >
             <a class="pure-menu-link">API</a>
             <ul class="pure-menu-children">
               <li class="pure-menu-item">
-                <a class="pure-menu-link" href="https://pola-rs.github.io/polars/polars/">Rust</a>
+                <a
+                  class="pure-menu-link"
+                  href="https://pola-rs.github.io/polars/polars/"
+                  >Rust</a
+                >
               </li>
               <li class="pure-menu-item">
-                <a class="pure-menu-link" href="https://pola-rs.github.io/polars/py-polars/html/reference/">Python</a>
+                <a
+                  class="pure-menu-link"
+                  href="https://pola-rs.github.io/polars/py-polars/html/reference/"
+                  >Python</a
+                >
               </li>
             </ul>
           </li>
@@ -95,10 +112,14 @@
               setTheme("light");
             }
           }
-          if (localStorage.getItem("theme") === "dark_dimmed" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-            setTheme("dark_dimmed")
+          if (
+            localStorage.getItem("theme") === "dark_dimmed" ||
+            (!("theme" in localStorage) &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches)
+          ) {
+            setTheme("dark_dimmed");
           } else {
-            setTheme("light")
+            setTheme("light");
           }
         </script>
       </div>
@@ -119,8 +140,8 @@
       <div class="caption">
         <p>
           We promise you very low query times. If you do have to wait, we offer
-          you this to kill the time...<br /> (press any key to jump over the
-          snowmen)
+          you this to kill the time...<br />
+          (press any key to jump over the snowmen)
         </p>
       </div>
     </header>
