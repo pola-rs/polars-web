@@ -61,6 +61,22 @@ header {
   background-image: none;
 }
 
+header::before {
+  content: var(--bear-sliding) var(--bear-leaping) var(--bear-running-frame-0)
+    var(--bear-running-frame-1) var(--bear-running-frame-2)
+    var(--bear-running-frame-3) var(--bear-running-frame-4)
+    var(--bear-running-frame-5) var(--bear-running-frame-6)
+    var(--bear-running-frame-7) var(--hurdle-snowman) var(--hurdle-snowmen)
+    var(--arctic-bear) var(--arctic-igloo) var(--arctic-igloos)
+    var(--arctic-penguin) var(--arctic-penguins) var(--arctic-pups)
+    var(--arctic-seal) var(--arctic-seals) var(--arctic-sky);
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 0;
+  z-index: -1;
+}
+
 .error {
   font-size: 5rem;
   opacity: 0.5;
