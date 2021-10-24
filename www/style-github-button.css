@@ -54,9 +54,10 @@ div.github-button:hover {
 
 div.github-button a {
   display: inline-block;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: bold;
   margin: 0;
-  padding: 0 15px;
+  padding: 0 13px;
 }
 
 div.github-button a,
