@@ -45,28 +45,45 @@
           <li class="pure-menu-item">
             <a class="pure-menu-link" href="/404">Posts</a>
           </li>
-          <li class="pure-menu-item">
-            <a class="pure-menu-link" href="https://pola-rs.github.io/polars-book/user-guide/">Cookbook</a>
-          </li>
-          <li class="pure-menu-item pure-menu-allow-hover pure-menu-has-children">
-            <a class="pure-menu-link">Doc</a>
+          <li
+            class="pure-menu-item pure-menu-allow-hover pure-menu-has-children"
+          >
+            <a class="pure-menu-link">Docs</a>
             <ul class="pure-menu-children">
               <li class="pure-menu-item">
-                <a class="pure-menu-link" href="https://pola-rs.github.io/polars-book/user-guide/">Rust</a>
+                <a
+                  class="pure-menu-link"
+                  href="https://pola-rs.github.io/polars-book/user-guide/"
+                  >Rust</a
+                >
               </li>
               <li class="pure-menu-item">
-                <a class="pure-menu-link" href="https://pola-rs.github.io/polars-book/user-guide/">Python</a>
+                <a
+                  class="pure-menu-link"
+                  href="https://pola-rs.github.io/polars-book/user-guide/"
+                  >Python</a
+                >
               </li>
             </ul>
           </li>
-          <li class="pure-menu-item pure-menu-allow-hover pure-menu-has-children">
+          <li
+            class="pure-menu-item pure-menu-allow-hover pure-menu-has-children"
+          >
             <a class="pure-menu-link">API</a>
             <ul class="pure-menu-children">
               <li class="pure-menu-item">
-                <a class="pure-menu-link" href="https://pola-rs.github.io/polars/polars/">Rust</a>
+                <a
+                  class="pure-menu-link"
+                  href="https://pola-rs.github.io/polars/polars/"
+                  >Rust</a
+                >
               </li>
               <li class="pure-menu-item">
-                <a class="pure-menu-link" href="https://pola-rs.github.io/polars/py-polars/html/reference/">Python</a>
+                <a
+                  class="pure-menu-link"
+                  href="https://pola-rs.github.io/polars/py-polars/html/reference/"
+                  >Python</a
+                >
               </li>
             </ul>
           </li>
@@ -101,10 +118,14 @@
               setTheme("light");
             }
           }
-          if (localStorage.getItem("theme") === "dark_dimmed" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-            setTheme("dark_dimmed")
+          if (
+            localStorage.getItem("theme") === "dark_dimmed" ||
+            (!("theme" in localStorage) &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches)
+          ) {
+            setTheme("dark_dimmed");
           } else {
-            setTheme("light")
+            setTheme("light");
           }
         </script>
       </div>
@@ -112,27 +133,39 @@
 
     <header>
       <div>
-        <h1>Pola<span style="color:#cd792c">rs</span></h1>
+        <h1>Pola<span style="color: #cd792c">rs</span></h1>
         <h2>Lightning-fast DataFrame library for Rust and Python</h2>
-        <p>
+        <div>
           <div class="github-button">
-            <a href="https://github.com/pola-rs/polars/"><i class="far fa-star"></i>Star</a>
-            <a href="https://github.com/pola-rs/polars/stargazers/" id="stargazers"><i class="fas fa-sync"></i></a>
+            <a href="https://github.com/pola-rs/polars/"
+              ><i class="far fa-star"></i>Star</a
+            >
+            <a
+              href="https://github.com/pola-rs/polars/stargazers/"
+              id="stargazers"
+              ><i class="fas fa-sync"></i
+            ></a>
           </div>
           <div class="github-button">
-            <a href="https://github.com/pola-rs/polars/fork"><i class="fas fa-code-branch"></i>Fork</a>
-            <a href="https://github.com/pola-rs/polars/fork" id="forks"><i class="fas fa-sync"></i></a>
+            <a href="https://github.com/pola-rs/polars/fork"
+              ><i class="fas fa-code-branch"></i>Fork</a
+            >
+            <a href="https://github.com/pola-rs/polars/fork" id="forks"
+              ><i class="fas fa-sync"></i
+            ></a>
           </div>
+        </div>
         <script>
           let s = document.getElementById("stargazers");
           let f = document.getElementById("forks");
-          axios.get("https://api.github.com/repos/pola-rs/polars")
+          axios
+            .get("https://api.github.com/repos/pola-rs/polars")
             .then((resp) => {
-              s.innerHTML = (resp.data.stargazers_count/1000).toFixed(1) + "k";
+              s.innerHTML =
+                (resp.data.stargazers_count / 1000).toFixed(1) + "k";
               f.innerHTML = resp.data.forks_count;
-          });
+            });
         </script>
-        </p>
       </div>
     </header>
 
@@ -159,7 +192,7 @@
               <a href="https://pola-rs.github.io/polars-book/user-guide/"
                 >User Guide</a
               >
-              &
+              &amp;
               <a
                 href="https://pola-rs.github.io/polars/py-polars/html/reference/"
                 >API Reference</a
@@ -189,7 +222,7 @@
               <a href="https://pola-rs.github.io/polars-book/user-guide/"
                 >User Guide</a
               >
-              &
+              &amp;
               <a href="https://pola-rs.github.io/polars/polars/"
                 >API Reference</a
               >
@@ -226,10 +259,10 @@
         <div class="pure-u-1 pure-u-md-3-5 pure-u-lg-3-5">
           <h2>Welcome to fast data wrangling</h2>
           <p>
-            Polars is a lightning fast DataFrame library/in-memory query
-            engine. Its embarrassingly parallel execution, cache efficient
-            algorithms and expressive API makes it perfect for efficient data
-            wrangling, data pipelines, snappy APIs and so much more.
+            Polars is a lightning fast DataFrame library/in-memory query engine.
+            Its embarrassingly parallel execution, cache efficient algorithms
+            and expressive API makes it perfect for efficient data wrangling,
+            data pipelines, snappy APIs and so much more.
           </p>
 
           <p>
@@ -248,7 +281,7 @@
             <p>Below a quick demonstration of Polars API in Rust.</p>
             <pre><code class="language-rust">use polars::prelude::*;
 
-fn example() -> Result&ltDataFrame&gt {
+fn example() -&gt; Result&lt;DataFrame&gt; {
     LazyCsvReader::new("foo.csv".into())
         .finish()
         .filter(col("bar").gt(lit(100)))
@@ -265,7 +298,7 @@ fn example() -> Result&ltDataFrame&gt {
 
 q = (
     pl.scan_csv("iris.csv")
-    .filter(pl.col("sepal_length") > 5)
+    .filter(pl.col("sepal_length") &gt; 5)
     .groupby("species")
     .agg(pl.all().sum())
 )
@@ -285,7 +318,6 @@ df = q.collect()
           hljs.highlightAll();
         </script>
       </section>
-
 
       <section class="padded">
         <div class="pure-g">
@@ -307,17 +339,28 @@ df = q.collect()
         </div>
         <script>
           let e = document.getElementById("contributors");
-          axios.get("https://api.github.com/repos/pola-rs/polars/contributors?per_page=1000")
+          axios
+            .get(
+              "https://api.github.com/repos/pola-rs/polars/contributors?per_page=1000"
+            )
             .then((resp) => {
               resp.data.forEach((c) => {
-                e.innerHTML += '<a href="' + c.html_url + '" title="' + c.login + '"><img src="' + c.avatar_url + '" /></a>';
+                e.innerHTML +=
+                  '<a href="' +
+                  c.html_url +
+                  '" title="' +
+                  c.login +
+                  '"><img src="' +
+                  c.avatar_url +
+                  '" /></a>';
               });
-          });
+            });
         </script>
       </section>
 
       <section class="centered padded ribbon smaller">
-        Visit the <a href="https://github.com/pola-rs">Pola-rs GitHub Organization</a>
+        Visit the
+        <a href="https://github.com/pola-rs">Pola-rs GitHub Organization</a>
       </section>
     </main>
   </body>

@@ -117,15 +117,19 @@ pre {
 .centered {
   text-align: center;
 }
+
 .padded {
   padding: 1em;
 }
+
 .padded-h {
   padding: 0 1em;
 }
+
 .padded-v {
   padding: 1em 0;
 }
+
 .smaller {
   font-size: 90%;
 }
