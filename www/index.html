@@ -108,8 +108,10 @@
 
           if (
             localStorage.getItem("theme") === "dark_dimmed" ||
-            (!("theme" in localStorage) &&
-              window.matchMedia("(prefers-color-scheme: dark)").matches)
+            (
+              !("theme" in localStorage) &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches
+            )
           ) {
             setTheme("dark_dimmed");
           } else {
@@ -145,7 +147,7 @@
         </div>
         <script>
           let s = document.getElementById("stargazers"),
-            f = document.getElementById("forks");
+              f = document.getElementById("forks");
 
           axios
             .get("https://api.github.com/repos/pola-rs/polars")
