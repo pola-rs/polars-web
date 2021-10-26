@@ -97,6 +97,7 @@
             localStorage.setItem("theme", name);
             document.documentElement.className = name;
           }
+
           function toggleTheme() {
             if (localStorage.getItem("theme") === "light") {
               setTheme("dark_dimmed");
@@ -104,10 +105,13 @@
               setTheme("light");
             }
           }
+
           if (
             localStorage.getItem("theme") === "dark_dimmed" ||
-            (!("theme" in localStorage) &&
-              window.matchMedia("(prefers-color-scheme: dark)").matches)
+            (
+              !("theme" in localStorage) &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches
+            )
           ) {
             setTheme("dark_dimmed");
           } else {
@@ -142,8 +146,9 @@
           </div>
         </div>
         <script>
-          let s = document.getElementById("stargazers");
-          let f = document.getElementById("forks");
+          let s = document.getElementById("stargazers"),
+              f = document.getElementById("forks");
+
           axios
             .get("https://api.github.com/repos/pola-rs/polars")
             .then((resp) => {
@@ -325,6 +330,7 @@ df = q.collect()
         </div>
         <script>
           let e = document.getElementById("contributors");
+
           axios
             .get(
               "https://api.github.com/repos/pola-rs/polars/contributors?per_page=1000"
