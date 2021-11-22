@@ -1,14 +1,13 @@
 
-# The Expressions API is Amazing
+# The Expressions API in Polars is Amazing
 
-> This is a guest post by Vincent D. Warmerdam. He's the research advocate at [Rasa](https://rasa.com/), creator of the [calmcode.io](https://calmcode.io) project and maintainer of [many open source projects](https://github.com/koaning/). He's also the proud contributor of the [.pipe() method](https://github.com/pola-rs/polars/pull/82) in the polars project.
+> This is a guest post by Vincent D. Warmerdam. He's the research advocate at [Rasa](https://rasa.com/), creator of the [calmcode.io](https://calmcode.io) project and maintainer of [many open source projects](https://github.com/koaning/). He's also the proud contributor of the [.pipe() method](https://github.com/pola-rs/polars/pull/82) in the polars project and he also recently made a [polars course for beginners on calmcode](https://calmcode.io/partial_fit/introduction.html).
 
 One of my favorite datasets out there is the [World of Warcraft avatar dataset](https://www.kaggle.com/mylesoneill/warcraft-avatar-history), hosted on Kaggle. 
 
 It's a dataset that contains logs from a World of Warcraft server from 2008. Every ten minutes the system would log every player from the Horde faction if they were playing the game. It's about 644MB of data. That means it's small enough to handle on a laptop but it's big enough that you will need to slightly mindful if you use python to analyse this dataset.
 
 Here's a snippet of what the dataset looks like.
-
 
 |   char |   level | race   | charclass   | zone                      | timestamp           |
 |-------:|--------:|:-------|:------------|:--------------------------|:--------------------|
@@ -141,7 +140,13 @@ After then we'd need to perform another aggregation, but now we'd need to group 
 |      7 | 2008-01-16 21:57:02 | false     | true    | true  | 3    | 2        | 6       |
 |      7 | 2008-01-16 22:07:09 | false     | false   | false | 3    | 2        | 6       |
 
-How would you go about implementing this? You could implement this with a `.groupby()`-then-`.join()` kind of operation but that's relatively heavy in terms of compute. Pandas offers an alternative `.groupby()`-then-`transform()` method ...
+## This is Common 
+
+We're going to write a query that does exactly this, but before we do we should take a moment to recognize that these kinds of queries are pretty common. Calculating sessions and summarising them later over users is very common in web analytics. Not just for bot detection but also for general user analytics.
+
+Given that this is so common, how would you go about implementing this? Although this kind of query is so common, it's usually suprisingly tricky to implement. You could implement this with a `.groupby()`-then-`.join()` kind of operation but that's relatively heavy in terms of compute. 
+
+And *this* is the moment where polars is about to shine. It's not just that it has a fast implementation written in rust. It's also because it comes with an amazing expressions API that makes it stand out.
 
 ## Pipelines 
 
@@ -156,9 +161,117 @@ Back to the task at hand. We're going to sessionize and then we're going to calc
  .pipe(remove_bots, threshold=24))
 ```
 
-Making this seperation of concerns is a good first step, but it's typically also the easy bit. We now need to concern ourselves with the implementation of these functions. 
+Making this seperation of concerns is a good first step, but it's typically also the easy bit. We now need to concern ourselves with the implementation of these functions. So let's go by the functions one by one to see how they're implemented. 
 
-### Pandas Implementation
+### Setting the Types
+
+Before doing any analysis it's good to make sure that we set the types right. We're turning the guild-column into a boolean and we're making sure that we have a proper timestamp.
+
+```python
+def set_types(dataf):
+    return (dataf
+            .with_columns([
+                 pl.col("timestamp").str.strptime(pl.Datetime, fmt="%m/%d/%y %H:%M:%S"),
+                 pl.col("guild") != -1,
+             ]))
+```
+
+### Adding the Session
+
+Next, we add a session. This involves sorting and adding some columns. 
+
+```python
+def sessionize(dataf, threshold=20 * 60 * 1_000):
+    return (dataf
+             .sort(["char", "timestamp"])
+             .with_columns([
+                 (pl.col("timestamp").diff().cast(pl.Int64) > threshold).fill_null(True).alias("ts_diff"),
+                 (pl.col("char").diff() != 0).fill_null(True).alias("char_diff"),
+             ])
+             .with_columns([
+                 (pl.col("ts_diff") | pl.col("char_diff")).alias("new_session_mark")
+             ])
+             .with_columns([
+                 pl.col("new_session_mark").cumsum().alias("session")
+             ])
+             .drop(['char_diff', 'ts_diff', 'new_session_mark']))
+```
+
+This function adds intermediate columns to make it easy to debug later but we drop the columns we don't need at the end.
+
+<details>
+  <summary><b>Why so many `with_columns` statements?</b></summary>
+
+You might wonder why we've added three `.with_columns` statements in sequence. That's because at the time of writing this blogpost the columns need to exist before using expression inside a `.with_columns`-call. The `char` and `timestamp` column exist before the first `with_columns()`-call. But since `ts_diff` and `char_diff` get created inside the first `.with_columns`, you need to call a new `.with_columns` again to use these columns. 
+
+</details>
+
+### Adding Other Features
+
+Here comes the part where polars really shines. Instead of writing a combination of `groupby` and `join` queries, we just use the expression API to declare that we want to calculate statistics over some partition. 
+
+```python
+def add_features(dataf):
+    return (dataf
+             .with_columns([
+                 pl.col("char").count().over("session").alias("session_length"),
+                 pl.col("session").n_unique().over("char").alias("n_sessions")
+             ]))
+```
+
+Here's what we calculate. 
+
+1. The first expression in `.with_columns` calculates a count on the character column, which is just counting the number of rows. But the expression adds a `.over("session")` in the expression chain. This ensures that we calculate the number of rows for each session. 
+2. The second expression in `.with_columns` calculates the number of unique session ids per character. This is again achieved by adding `.over("char")` to the chain.
+
+I don't know about you. But this is 'friggin elegant! We're able to do *so much* from a single `.with_columns` call. No need to worry about `groupby`/`join` command. Just add expressions to calculate what you need. 
+
+### Removing the Bots 
+
+You can also use expressions in other statements. This is very convenient when you want to use it to remove rows from a dataset.
+
+```python
+def remove_bots(dataf, max_session_hours=24):
+    # We're using some domain knowledge here. The logger of our dataset should
+    # log data every 10 minutes. That's what this line is based on.
+    n_rows = max_session_hours * 6
+    return (dataf
+            .filter(pl.col("session_length").max().over("char") < n_rows))
+```
+
+Again we're using an expression with an `.over()` in the chain. This time it's calculating the maximum value of the `session_length` per character. If it every exceeds the maximum number of rows, this filter will remove all rows that belong to that character. 
+
+### Cherry on Top: Clever Caching
+
+Let's consider our pipeline again. 
+
+```python
+(df
+ .pipe(set_types)
+ .pipe(sessionize, threshold=20 * 60 * 1000)
+ .pipe(add_features)
+ .pipe(remove_bots, threshold=24))
+```
+
+What's grand about polars is that this pipeline can run no matter if the dataframe is loaded lazily or in eager-mode. If we're interested in playing around with the `remove_bots` threshold, we could rewrite the query to make it more interactive. 
+
+```python
+df_intermediate = (df
+ .pipe(set_types)
+ .pipe(sessionize, threshold=20 * 60 * 1000)
+ .pipe(add_features))
+
+ df_intermediate.pipe(remove_bots, threshold=24)
+```
+
+Again, this is a *nice* API. 
+
+## Conclusion 
+
+This blogpost has shown a use-case for a particular kind of query that involves sessions. Typically these need to be aggregated over partitions in your dataset. It's not just that these queries can become very slow. It's can also be an issue to properly implement them. 
+
+<details>
+  <summary><b>The pandas implementation, for comparison.</b></summary>
 
 Let's consider what it might be like to implement this in `pandas`. The implementation of `set_types` and `sessionize` are relatively straightforward. 
 
@@ -178,10 +291,9 @@ def sessionize(dataf, threshold=60*10):
              .drop(columns=['char_diff', 'ts_diff', 'new_session_mark']))
 ```
 
-We're using the `.assign()` method, per recommendation of the [modern pandas blogpost](https://tomaugspurger.github.io/method-chaining), to add the features we're interesed in. The `sessionize` function works by first sorting the values, after which we're checking the between the rows we detect a datetime difference that's too large. 
+We're using the `.assign()` method, per recommendation of the [modern pandas blogpost](https://tomaugspurger.github.io/method-chaining), to add the features we're interesed in. This isn't the most performant code, but it is safe and maintainable.
 
-
-Getting this right
+It's the next part, however, that's the hard part. Not just for the implementation that's tricky, it's also the biggest performance sink.
 
 ```python
 def add_features(dataf):
@@ -196,5 +308,10 @@ def remove_bots(dataf, max_session_hours=24):
             .drop(columns=["max_sess_len"]))
 ```
 
-### Polars Implementation 
+It should be stressed: you can certainly write the query we're interested in with pandas. I'd even argue that the `.groupby().transform()` isn't half bad. But it's nowhere nearly as convient as the polars API. 
 
+</details>
+
+The reason why the expressions API is so value-able. It makes these kinds of common queries so much easier to write. Polars doesn't just make these queries fast, it also makes it very easy to reason about these queries. And that ... is amazing. 
+
+Sure, polars is fast. And that's a good reason to use it. But to me, that's only a single part of the feature-set. 
