@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base.tpl" %}
 
 {% block header %}
 <header>
@@ -7,9 +7,7 @@
     <h2>Lightning-fast DataFrame library for Rust and Python</h2>
     <div>
       <div class="github-button">
-        <a href="https://github.com/pola-rs/polars/"
-          ><i class="far fa-star"></i>Star</a
-        >
+        <a href="https://github.com/pola-rs/polars/"><i class="far fa-star"></i>Star</a>
         <a
           href="https://github.com/pola-rs/polars/stargazers/"
           id="stargazers"
@@ -17,12 +15,8 @@
         ></a>
       </div>
       <div class="github-button">
-        <a href="https://github.com/pola-rs/polars/fork"
-          ><i class="fas fa-code-branch"></i>Fork</a
-        >
-        <a href="https://github.com/pola-rs/polars/fork" id="forks"
-          ><i class="fas fa-sync"></i
-        ></a>
+        <a href="https://github.com/pola-rs/polars/fork"><i class="fas fa-code-branch"></i>Fork</a>
+        <a href="https://github.com/pola-rs/polars/fork" id="forks"><i class="fas fa-sync"></i></a>
       </div>
     </div>
     <script>

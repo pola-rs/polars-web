@@ -1,4 +1,4 @@
-"""Template script to render Markdown to HTML. Fanciness included."""
+"""Script to render the Polars landing page(s). Limited fanciness included."""
 
 import glob
 import re
@@ -42,7 +42,7 @@ jenv: Environment = Environment(
 meta: typing.List[typing.Dict[str, str]] = []
 
 
-def render_all_posts(path: str = ".", tmpl_name: str = "post.html"):
+def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
     """Render each post using the associated template.
 
     Each Markdown file will be converted to HTML; named identically, different
@@ -63,15 +63,20 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.html"):
     tmpl = jenv.get_template(tmpl_name)
 
     for p in sorted(glob.glob(f"{path}/**/*.md", recursive=True)):
-        sys.stderr.write(f"{p}\n")
+        p_ = re.sub(".md$", ".html", p)
 
         with open(p) as f:
             post = mdwn.convert(f.read())
 
-        with open(re.sub(".md$", ".html", p), "w") as f:
+        with open(p_, "w") as f:
             f.write(tmpl.render(post=post, theme="light"))
 
-        if mdwn.Meta.get("listed", [""])[0].lower() not in ["false", "off", "no"]:
+        # nasty one-liner
+        if mdwn.Meta.get("listed", [""])[0].lower() not in [
+            "false",
+            "off",
+            "no",
+        ] and p.endswith("index.md"):
             meta.append(
                 {
                     "authors": ", ".join(mdwn.Meta["authors"]),
@@ -82,8 +87,10 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.html"):
                 }
             )
 
+        sys.stderr.write(f"{p_}\n")
 
-def render_post_list(path: str = "posts/index.html", tmpl_name: str = "list.html"):
+
+def render_post_list(path: str = "posts/index.html", tmpl_name: str = "list.tpl"):
     """Render the list of posts using the associated template.
 
     Parameters
@@ -103,8 +110,33 @@ def render_post_list(path: str = "posts/index.html", tmpl_name: str = "list.html
     with open(path, "w") as f:
         f.write(tmpl.render(posts=meta))
 
+    sys.stderr.write(f"{path}\n")
 
-def render_homepage(path: str = "index.html", tmpl_name: str = "home.html"):
+
+def render_game_page(path: str = "game.html", tmpl_name: str = "game.tpl"):
+    """Render the little stupid game using the associated template.
+
+    Parameters
+    ----------
+    path : str
+        Target path the game page will be rendered and outputted to. Defaults to
+        `game.html`.
+    tmpl_name : str
+        Name of the template to use. Defaults to `game.html`.
+
+    Notes
+    -----
+    This is a stateful function!
+    """
+    tmpl = jenv.get_template(tmpl_name)
+
+    with open(path, "w") as f:
+        f.write(tmpl.render())
+
+    sys.stderr.write(f"{path}\n")
+
+
+def render_home_page(path: str = "index.html", tmpl_name: str = "home.tpl"):
     """Render the landing page using the associated template.
 
     Parameters
@@ -124,8 +156,11 @@ def render_homepage(path: str = "index.html", tmpl_name: str = "home.html"):
     with open(path, "w") as f:
         f.write(tmpl.render(posts=meta))
 
+    sys.stderr.write(f"{path}\n")
+
 
 if __name__ == "__main__":
     render_all_posts(sys.argv[1])
+    render_game_page(f"{sys.argv[1]}/game.html")
+    render_home_page(f"{sys.argv[1]}/index.html")
     render_post_list(f"{sys.argv[1]}/posts/index.html")
-    render_homepage(f"{sys.argv[1]}/index.html")

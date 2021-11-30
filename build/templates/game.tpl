@@ -1,10 +1,14 @@
-{% extends "base.html" %}
+{% extends "base.tpl" %}
 
 {% block head %}
 <link rel="stylesheet" href="/style-game.css" />
 {% endblock %}
 
 {% block main %}
+{% if error is defined %}
+<div class="error">{{ error }}</div>
+{% endif %}
+
 <div class="game">
   <div class="ground"></div>
   <div id="sky"></div>

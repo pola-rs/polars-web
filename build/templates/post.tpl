@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base.tpl" %}
 
 {% block head %}
 <link rel="stylesheet" href="style.css" />

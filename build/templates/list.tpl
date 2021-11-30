@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base.tpl" %}
 
 {% block main %}
 <article class="padded pure-g">
