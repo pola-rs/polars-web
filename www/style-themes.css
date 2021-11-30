@@ -1,0 +1,30 @@
+/*
+ * COLORS
+ *
+ * each theme contains:
+ *   - 4 background colors: menu/footer, splash, content, ribbon
+ *   - 2 button background colors
+ *   - 2 font colors: common and alternative
+ *   - 1 link color (common to both themes)
+ *
+ * default is a dark -dimmed- palette derived from github theme
+ *
+ * syntax highlighting is taking care of via highlight.js, check the other css
+ */
+
+:root,
+.light {
+  --background-color: #ffffff;
+  --background-color-alt: #ecf4ff;
+  --font-color: #24292e;
+  --link-color: #70b0ff;
+  --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dark.svg");
+}
+
+.dark_dimmed {
+  --background-color: #22272e;
+  --background-color-alt: #0d1117;
+  --font-color: #adbac7;
+  --link-color: #70b0ff;
+  --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dimmed.svg");
+}

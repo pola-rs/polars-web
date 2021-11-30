@@ -1,90 +1,13 @@
-@import url("https://unpkg.com/purecss@2.0.6/build/pure-min.css");
 @import url("https://unpkg.com/purecss@2.0.6/build/grids-responsive-min.css");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.0/katex.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/regular.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css");
 
-@import "/style-github-button.css";
-@import "/style-highlight.css";
-@import "/style-mermaid.css";
-
-/*
- * this css has been heavily modified after being forked from:
- * https://github.com/pure-css/pure/blob/master/site/static/layouts/marketing/
- *
- * any class starting with "pure-" is a default style inherited from pure-css,
- * but we decided to bend it to our preferences
- *
- * pure-css is a "mobile first" framework, e.g., media queries need to apply to
- * larger screen sizes
- *
- * 
- * +---------------------------------------+
- * | logo                          buttons |   nav
- * +---------------------------------------+
- * |                                       |
- * |                                       |
- * |                 title                 |
- * |               subtitles               |   header
- * |                buttons                |
- * |                                       |
- * |                                       |
- * +------------------^^^------------------+   
- * |+-------------------------------------+|   main
- * || pillar     | pillar    | pillar     ||   section
- * |+-------------------------------------+|
- * || ribbon                              ||   section
- * |+-------------------------------------+|
- * || code examples    | code examples    ||   section
- * |+-------------------------------------+|
- * ||   contributors   |     sponsors     ||   section
- * |+-------------------------------------+|
- * ||                footer               ||   section
- * |+-------------------------------------+|
- * +---------------------------------------+
- *
- *
- * notes:
- *   - top menu is fixed and always visible
- *   - splash gets hidden by the content when scrolling
- *   - columnar content uses the pure-css responsive capabilities
- *   - outer/inner wrappers to limit size on extra-large screens
- */
-
-/*
- * COLORS
- *
- * each theme contains:
- *   - 4 background colors: menu/footer, splash, content, ribbon
- *   - 2 button background colors
- *   - 2 font colors: common and alternative
- *   - 1 link color (common to both themes)
- *
- * default is a dark -dimmed- palette derived from github theme
- *
- * syntax highlighting is taking care of via highlight.js, check the other css
- */
-
-:root,
-.light {
-  --background-color: #ffffff;
-  --background-color-alt: #ecf4ff;
-  --font-color: #24292e;
-  --link-color: #70b0ff;
-  --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dark.svg");
-}
-
-.dark_dimmed {
-  --background-color: #22272e;
-  --background-color-alt: #0d1117;
-  --font-color: #adbac7;
-  --link-color: #70b0ff;
-  --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dimmed.svg");
-}
-
-/* generic definitions and utilities */
+@import "style-github-button.css";
+@import "style-highlight.css";
+@import "style-mermaid.css";
+@import "style-themes.css";
 
 * {
   -webkit-box-sizing: border-box;
@@ -126,27 +49,7 @@ pre {
   padding: 1em;
 }
 
-.centered {
-  text-align: center;
-}
-
-.padded {
-  padding: 1em;
-}
-
-.padded-h {
-  padding: 0 1em;
-}
-
-.padded-v {
-  padding: 1em 0;
-}
-
-.smaller {
-  font-size: 90%;
-}
-
-/* HEADER */
+/*************************************************************************************/
 
 nav > div {
   background: var(--background-color-alt);
@@ -164,11 +67,6 @@ nav i {
   margin: 0.4em 0 0 0;
 }
 
-/* 
- * custom menu links, modified from the default pure-css styles
- * fixed menus normally have a border at the bottom
- * higher z-index because of the scroll-over effect
- */
 nav .pure-menu.pure-menu-fixed {
   border-color: var(--background-color);
   border-style: solid;
@@ -212,7 +110,7 @@ nav .pure-menu-children .pure-menu-item:last-of-type {
   padding: 0;
 }
 
-/* SPLASH */
+/*************************************************************************************/
 
 header {
   background: var(--background-color);
@@ -222,12 +120,7 @@ header {
   background-size: auto 75%;
   color: var(--font-color);
   height: 90%;
-  left: 0;
-  overflow: hidden;
-  position: fixed !important;
-  top: 0;
   width: 100%;
-  z-index: 1;
 }
 
 header > div {
@@ -235,7 +128,6 @@ header > div {
   height: 50%;
   left: 0;
   margin: auto;
-  position: absolute;
   right: 0;
   text-align: center;
   top: 100px;
@@ -250,16 +142,13 @@ header h2 {
   letter-spacing: 0.1em;
 }
 
-/* CONTENT */
+/*************************************************************************************/
 
 article {
   margin: 5rem 0 1rem 0;
 }
 
-footer {
-  bottom: 0;
-  z-index: 4;
-}
+/*************************************************************************************/
 
 main {
   background: var(--background-color);
@@ -272,6 +161,8 @@ main {
   width: 100%;
   z-index: 2;
 }
+
+/*************************************************************************************/
 
 section {
   padding: 0 1em;
@@ -317,9 +208,14 @@ section #contributors img {
   width: 40px;
 }
 
-/* MEDIA QUERIES */
+/*************************************************************************************/
 
-/* tablet (and larger) */
+footer {
+  bottom: 0;
+  z-index: 4;
+}
+
+/*************************************************************************************/
 
 @media (min-width: 48em) {
   nav > div {
@@ -341,8 +237,6 @@ section #contributors img {
     font-size: 400%;
   }
 }
-
-/* desktop (and larger) */
 
 @media (min-width: 78em) {
   header h1 {

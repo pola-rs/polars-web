@@ -1,5 +1,46 @@
 {% extends "base.html" %}
 
+{% block header %}
+<header>
+  <div>
+    <h1>Pola<span style="color: #cd792c">rs</span></h1>
+    <h2>Lightning-fast DataFrame library for Rust and Python</h2>
+    <div>
+      <div class="github-button">
+        <a href="https://github.com/pola-rs/polars/"
+          ><i class="far fa-star"></i>Star</a
+        >
+        <a
+          href="https://github.com/pola-rs/polars/stargazers/"
+          id="stargazers"
+          ><i class="fas fa-sync"></i
+        ></a>
+      </div>
+      <div class="github-button">
+        <a href="https://github.com/pola-rs/polars/fork"
+          ><i class="fas fa-code-branch"></i>Fork</a
+        >
+        <a href="https://github.com/pola-rs/polars/fork" id="forks"
+          ><i class="fas fa-sync"></i
+        ></a>
+      </div>
+    </div>
+    <script>
+      let s = document.getElementById("stargazers"),
+          f = document.getElementById("forks");
+
+      axios
+        .get("https://api.github.com/repos/pola-rs/polars")
+        .then((resp) => {
+          s.innerHTML =
+            (resp.data.stargazers_count / 1000).toFixed(1) + "k";
+          f.innerHTML = resp.data.forks_count;
+        });
+    </script>
+  </div>
+</header>
+{% endblock %}
+
 {% block main %}
 <section class="padded-h pure-g">
 
