@@ -69,7 +69,7 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.html"):
             post = mdwn.convert(f.read())
 
         with open(re.sub(".md$", ".html", p), "w") as f:
-            f.write(tmpl.render(extra_css_allowed=True, post=post, theme="light"))
+            f.write(tmpl.render(post=post, theme="light"))
 
         if mdwn.Meta.get("listed", [""])[0].lower() not in ["false", "off", "no"]:
             meta.append(

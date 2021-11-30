@@ -34,9 +34,7 @@
     ></script>
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="stylesheet" href="/style.css" />
-    {% if extra_css_allowed is defined and extra_css_allowed %}
-    <link rel="stylesheet" href="style.css" />
-    {% endif %}
+    {% block head %}{% endblock %}
   </head>
 
   <body>
