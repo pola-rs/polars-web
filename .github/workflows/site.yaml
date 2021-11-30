@@ -23,11 +23,8 @@ jobs:
 
       - name: Render pages
         run: |
-          python build/render.py www build/templates \
-
-      - name: Cleanup source and template files
-        run: |
-          find . -name "*.md" -exec rm -rf {} \;
+          python build/render.py www build/templates
+          find www -name "*.md" -exec rm -rf {} \;
 
       - name: Deploy site
         run: |
