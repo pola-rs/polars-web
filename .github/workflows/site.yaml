@@ -15,13 +15,22 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.9
 
       - name: Install dependencies
         run: |
-          python -m pip install ghp-import
+          python -m pip install ghp-import -r build/requirements.txt
+
+      - name: Render pages
+        run: |
+          python build/render.py www build/templates \
+
+      - name: Cleanup source and template files
+        run: |
+          find . -name "*.md" -exec rm -rf {} \;
 
       - name: Deploy site
         run: |
+          echo "www,pola.rs" > www/CNAME
           ghp-import --no-jekyll www
           git push -qf https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git gh-pages

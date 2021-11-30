@@ -1,3 +1,15 @@
+@import url("https://unpkg.com/purecss@2.0.6/build/pure-min.css");
+@import url("https://unpkg.com/purecss@2.0.6/build/grids-responsive-min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.0/katex.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/regular.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css");
+
+@import "/style-github-button.css";
+@import "/style-highlight.css";
+@import "/style-mermaid.css";
+
 /*
  * this css has been heavily modified after being forked from:
  * https://github.com/pure-css/pure/blob/master/site/static/layouts/marketing/
@@ -239,6 +251,15 @@ header h2 {
 }
 
 /* CONTENT */
+
+article {
+  margin: 5rem 0 1rem 0;
+}
+
+footer {
+  bottom: 0;
+  z-index: 4;
+}
 
 main {
   background: var(--background-color);
