@@ -29,27 +29,27 @@
 }
 
 .dark_dimmed {
-  --bear-sliding: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-sliding-dark.png");
-  --bear-leaping: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-leaping-dark.png");
-  --bear-running-frame-0: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-0-dark.png");
-  --bear-running-frame-1: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-1-dark.png");
-  --bear-running-frame-2: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-2-dark.png");
-  --bear-running-frame-3: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-3-dark.png");
-  --bear-running-frame-4: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-4-dark.png");
-  --bear-running-frame-5: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-5-dark.png");
-  --bear-running-frame-6: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-6-dark.png");
-  --bear-running-frame-7: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-7-dark.png");
-  --hurdle-snowman: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/hurdle-snowman-dark.png");
-  --hurdle-snowmen: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/hurdle-snowmen-dark.png");
-  --arctic-bear: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-bear-dark.png");
-  --arctic-igloo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-igloo-dark.png");
-  --arctic-igloos: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-igloos-dark.png");
-  --arctic-penguin: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-penguin-dark.png");
-  --arctic-penguins: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-penguins-dark.png");
-  --arctic-pups: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-pups-dark.png");
-  --arctic-seal: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-seal-dark.png");
-  --arctic-seals: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-seals-dark.png");
-  --arctic-sky: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-sky-dark.png");
+  --bear-sliding: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-sliding-dark_dimmed.png");
+  --bear-leaping: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-leaping-dark_dimmed.png");
+  --bear-running-frame-0: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-0-dark_dimmed.png");
+  --bear-running-frame-1: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-1-dark_dimmed.png");
+  --bear-running-frame-2: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-2-dark_dimmed.png");
+  --bear-running-frame-3: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-3-dark_dimmed.png");
+  --bear-running-frame-4: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-4-dark_dimmed.png");
+  --bear-running-frame-5: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-5-dark_dimmed.png");
+  --bear-running-frame-6: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-6-dark_dimmed.png");
+  --bear-running-frame-7: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-7-dark_dimmed.png");
+  --hurdle-snowman: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/hurdle-snowman-dark_dimmed.png");
+  --hurdle-snowmen: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/hurdle-snowmen-dark_dimmed.png");
+  --arctic-bear: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-bear-dark_dimmed.png");
+  --arctic-igloo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-igloo-dark_dimmed.png");
+  --arctic-igloos: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-igloos-dark_dimmed.png");
+  --arctic-penguin: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-penguin-dark_dimmed.png");
+  --arctic-penguins: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-penguins-dark_dimmed.png");
+  --arctic-pups: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-pups-dark_dimmed.png");
+  --arctic-seal: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-seal-dark_dimmed.png");
+  --arctic-seals: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-seals-dark_dimmed.png");
+  --arctic-sky: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-sky-dark_dimmed.png");
   --ground-gradient: linear-gradient(
     180deg,
     rgba(112, 176, 255, 0.25) 0%,
@@ -79,17 +79,16 @@ body::before {
 }
 
 .game {
-  display: none;
   height: 250px;
-  margin: 2em auto;
-  max-width: 1500px;
+  margin: calc(65px + 2rem) auto 0 auto;
+  max-width: 1000px;
   overflow: hidden;
   position: relative;
 }
 
 .caption {
-  display: none;
-  margin: 300px auto 0 auto;
+  margin: 3rem auto 0 auto;
+  text-align: center;
 }
 
 .ground {
@@ -236,33 +235,5 @@ body::before {
   }
   100% {
     left: -100px;
-  }
-}
-
-/* MEDIA QUERIES */
-
-/* tablet (and larger) */
-
-@media (min-width: 48em) {
-  .error {
-    font-size: 10rem;
-    opacity: 0.25;
-  }
-}
-
-/* desktop (and larger) */
-
-@media (min-width: 78em) {
-  .error {
-    font-size: 20rem;
-    opacity: 0.1;
-  }
-
-  .game {
-    display: block;
-  }
-
-  .caption {
-    display: block;
   }
 }

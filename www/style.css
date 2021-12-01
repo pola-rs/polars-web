@@ -8,9 +8,8 @@
 @import "style-themes.css";
 
 * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 a {
@@ -28,6 +27,7 @@ body {
   color: var(--font-color);
   font-size: 1rem;
   line-height: 1.75em;
+  margin: 0;
 }
 
 h1,
@@ -47,65 +47,75 @@ pre {
   padding: 1em;
 }
 
-/*************************************************************************************/
-
-nav > div {
-  background: var(--background-color-alt);
-  background-image: none;
-  background-origin: content-box;
-  background-position: left;
-  background-repeat: no-repeat;
-  background-size: auto 2.5rem;
-  padding: 0.5em;
-  text-align: center;
+.columns {
+  display: flex;
+  gap: 2rem;
 }
 
-nav i {
-  font-size: 1.4rem;
-  margin: 0.4em 0 0 0;
+.container {
+  margin: 0 auto;
+  max-width: calc(1600px - 2rem);
+  height: 100%;
+  padding: 0 1rem;
 }
 
-nav .pure-menu.pure-menu-fixed {
-  border-color: var(--background-color);
-  border-style: solid;
-  border-width: 0 0 1px 0;
-  z-index: 4;
+.ribbon {
+  background-color: var(--background-color-alt);
 }
 
-nav .pure-menu-children {
-  background: var(--background-color-alt);
-  border-radius: 0.2em;
-}
-
-nav a.pure-menu-horizontal,
-nav a.pure-menu-link {
-  border: none;
-  color: var(--link-color);
-  text-decoration: none;
-}
-
-nav a.pure-menu-horizontal:hover,
-nav a.pure-menu-horizontal:focus,
-nav a.pure-menu-link:hover,
-nav a.pure-menu-link:focus {
-  background: none;
-  color: var(--font-color);
-}
-
-nav .theme-switcher {
+.theme-switcher {
   cursor: pointer;
 }
 
-nav .pure-menu-item.pure-menu-has-children {
-  cursor: default;
+/*************************************************************************************/
+
+nav {
+  background-color: var(--background-color-alt);
+  height: 65px;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
-nav .pure-menu-item:last-of-type {
-  padding: 0 1em;
+nav .container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }
 
-nav .pure-menu-children .pure-menu-item:last-of-type {
+nav .container > div:first-child {
+  cursor: pointer;
+}
+
+nav .container > div:last-child {
+}
+
+/**************************************/
+
+nav ul {
+  display: flex;
+  gap: 1rem;
+  list-style-type: none;
+  margin: 0;
   padding: 0;
+}
+
+nav li {
+}
+
+nav ul > li {
+  border: 1px solid red;
+}
+
+nav li > ul > li {
+  border: 1px solid blue;
+  display: hidden;
+}
+
+/**************************************/
+
+nav i {
+  font-size: 1.5rem;
 }
 
 /*************************************************************************************/
@@ -113,63 +123,39 @@ nav .pure-menu-children .pure-menu-item:last-of-type {
 header {
   background: var(--background-color);
   background-image: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/ice-ice-baby.svg");
-  background-position: center 150px;
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: auto 75%;
+  background-size: auto 80%;
   color: var(--font-color);
-  height: 90%;
+  height: 80vh;
+  margin: 65px 0 -65px 0; /* nav */
+  min-height: 400px;
   width: 100%;
 }
 
-header > div {
-  bottom: 0;
-  height: 50%;
-  left: 0;
-  margin: auto;
-  right: 0;
-  text-align: center;
-  top: 100px;
-  width: 80%;
+header .container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 65px auto 0 auto; /* nav */
 }
 
 header h1 {
-  font-size: 300%;
+  font-size: 600%;
 }
-
-header h2 {
-  letter-spacing: 0.1em;
-}
-
-/*************************************************************************************/
-
-article {
-  margin: 5rem 0 1rem 0;
-}
-
-/*************************************************************************************/
 
 main {
-  background: var(--background-color);
-  border-color: var(--background-color-alt);
-  border-style: solid;
-  border-width: 1px 0 0 0;
-  min-height: 10%;
-  position: absolute;
-  top: 90%;
-  width: 100%;
-  z-index: 2;
+  border: 1px solid var(--background-color);
+  margin: 65px 0 0 0; /* nav */
+  min-height: calc(100vh - 65px - 50px); /* full height minus nav and footer */
+}
+
+article .container {
+  padding: 2rem inherit;
 }
 
 /*************************************************************************************/
-
-section {
-  padding: 0 1em;
-}
-
-section h1,
-section h2 {
-  letter-spacing: 0.1em;
-}
 
 section h1 i,
 section h2 i,
@@ -180,44 +166,63 @@ section h6 i {
   margin: 0 0.5em 0 0;
 }
 
-section.ribbon {
-  background: var(--background-color-alt);
-  color: var(--font-color);
-}
-
-section.ribbon h1,
-section.ribbon h2,
-section.ribbon h3,
-section.ribbon h4,
-section.ribbon h5,
-section.ribbon h6 {
-  color: var(--font-color);
-}
-
-section .justified {
+section .pilar {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 0 0 2rem 0;
 }
 
-section #contributors img {
+section .pilar > div:last-child {
+  margin: 1rem 0 0 0;
+  text-align: center;
+}
+
+section .intro {
+  padding: 1rem 6rem;
+}
+
+section .code {
+  width: 50%;
+}
+
+section .contribs {
+  flex-grow: 1;
+  text-align: center;
+}
+
+section .contribs img {
   border-radius: 20px;
-  margin: 0 5px;
+  margin: 5px 0;
   width: 40px;
+}
+
+section .sponsors {
+  min-width: 33%;
+  text-align: center;
 }
 
 /*************************************************************************************/
 
 footer {
+  background-color: var(--background-color-alt);
   bottom: 0;
-  z-index: 4;
+  height: 50px;
+  width: 100%;
+}
+
+footer .container {
+  align-items: center;
+  display: flex;
+  gap: 0.3rem;
+  justify-content: center;
 }
 
 /*************************************************************************************/
 
+/*
 @media (min-width: 48em) {
   nav > div {
-    background-image: var(--polars-logo);
     padding: 0.5em 0.5em 0.5em 1em;
     text-align: left;
   }
@@ -241,3 +246,4 @@ footer {
     font-size: 600%;
   }
 }
+*/

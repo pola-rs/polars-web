@@ -40,95 +40,87 @@
   <body>
 
     <nav>
-      <div class="pure-menu pure-menu-horizontal pure-menu-fixed">
-        <ul class="pure-menu-list">
+      <div class="container">
+        <div onclick="window.location='/';">LOGO</div>
+        <div>
+          <ul>
+         
+            <li><a href="/posts">Posts</a></li>
+         
+            <li>
+              <a href="https://pola-rs.github.io/polars-book/user-guide/">Cookbook</a>
+            </li>
+         
+            <li>
+              <a>API</a>
+              <ul>
+                <li><a href="https://pola-rs.github.io/polars/polars/">Rust</a></li>
+                <li>
+                  <a
+                    href="https://pola-rs.github.io/polars/py-polars/html/reference/"
+                  >Python</a>
+                </li>
+              </ul>
+            </li>
+         
+            <li>
+              <a
+                href="https://github.com/pola-rs/polars/"
+              ><i class="fab fa-github"></i></a>
+            </li>
 
-          <li class="pure-menu-item">
-            <a class="pure-menu-link" href="/">Home</a>
-          </li>
+            <li>
+              <a
+                href="https://discord.com/channels/908022250106667068/"
+              ><i class="fab fa-discord"></i></a>
+            </li>
 
-          <li class="pure-menu-item">
-            <a class="pure-menu-link" href="/posts">Posts</a>
-          </li>
-
-          <li class="pure-menu-item">
-            <a
-              class="pure-menu-link"
-              href="https://pola-rs.github.io/polars-book/user-guide/"
-              >Cookbook</a>
-          </li>
-
-          <li class="pure-menu-item pure-menu-allow-hover pure-menu-has-children">
-            <a class="pure-menu-link">API</a>
-            <ul class="pure-menu-children">
-              <li class="pure-menu-item">
-                <a
-                  class="pure-menu-link"
-                  href="https://pola-rs.github.io/polars/polars/"
-                >Rust</a>
-              </li>
-              <li class="pure-menu-item">
-                <a
-                  class="pure-menu-link"
-                  href="https://pola-rs.github.io/polars/py-polars/html/reference/"
-                >Python</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="pure-menu-item">
-            <a
-              class="pure-menu-horizontal"
-              href="https://github.com/pola-rs/polars/"
-            ><i class="fab fa-github"></i></a>
-            <a
-              class="pure-menu-horizontal"
-              href="https://discord.com/channels/908022250106667068/"
-            ><i class="fab fa-discord"></i></a>
-    
             {% if theme is defined %}
-            <a class="pure-menu-horizontal"><i class="far fa-circle"></i></a>
+            <li><a><i class="far fa-circle"></i></a></li>
             {% else %}
-            <a class="pure-menu-horizontal theme-switcher" onclick="toggleTheme()">
-              <i class="fas fa-adjust"></i>
-            </a>
+            <li>
+              <a
+                class="theme-switcher" onclick="toggleTheme()"
+              ><i class="fas fa-adjust"></i></a>
+            </li>
             {% endif %}
-          </li>
 
-        </ul>
-    
-        {% if theme is defined %}
-        <script>
-          localStorage.setItem("theme", {{ theme }});
-          document.documentElement.className = {{ theme }};
-        </script>
-        {% else %}
-        <script>
-          function setTheme(name) {
-            localStorage.setItem("theme", name);
-            document.documentElement.className = name;
-          }
-    
-          function toggleTheme() {
-            if (localStorage.getItem("theme") === "light") {
-              setTheme("dark_dimmed");
-            } else {
-              setTheme("light");
-            }
-          }
-    
-          if (
-            localStorage.getItem("theme") === "dark_dimmed" ||
-            (!("theme" in localStorage) &&
-              window.matchMedia("(prefers-color-scheme: dark)").matches)
-          ) {
+          </ul>
+        </div>
+      </div>
+         
+      {% if theme is defined %}
+      <script>
+        localStorage.setItem("theme", {{ theme }});
+        document.documentElement.className = {{ theme }};
+      </script>
+      {% else %}
+      <script>
+        function setTheme(name) {
+          localStorage.setItem("theme", name);
+          document.documentElement.className = name;
+        }
+      
+        function toggleTheme() {
+          if (localStorage.getItem("theme") === "light") {
             setTheme("dark_dimmed");
           } else {
             setTheme("light");
           }
-        </script>
-        {% endif %}
-      </div>
+        }
+      
+        if (
+          localStorage.getItem("theme") === "dark_dimmed" ||
+          (!("theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          setTheme("dark_dimmed");
+        } else {
+          setTheme("light");
+        }
+      </script>
+      {% endif %}
+
     </nav>
 
     {% block header %}{% endblock %}
@@ -138,10 +130,9 @@
     </main>
 
     <footer>
-      <section class="centered padded ribbon smaller">
-        Visit the
-        <a href="https://github.com/pola-rs">Pola-rs GitHub Organization</a>
-      </section>
+      <div class="container">
+        Visit the <a href="https://github.com/pola-rs">Pola-rs GitHub Organization</a>
+      </div>
     </footer>
 
   </body>

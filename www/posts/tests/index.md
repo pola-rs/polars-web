@@ -1,10 +1,12 @@
 ---
-title: Howto and sample ground
+title: Contribution guide and sample ground
 tldr: Contribution guide for posts, and Markdown-to-HTML rendering.
 authors: Polars maintainers
 link: https://www.pola.rs/
 listed: true
 ---
+
+# Contribution guide and sample ground
 
 To contribute, **create a new folder** named after today's date in the `YYYYMMDD/` format
 within the `www/posts/` filetree present in a branch of your own
