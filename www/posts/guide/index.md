@@ -3,7 +3,6 @@ title: Contribution guide and sample ground
 tldr: Contribution guide for posts, and Markdown-to-HTML rendering.
 authors: Polars maintainers
 link: https://www.pola.rs/
-rendered: true
 ---
 
 # Contribution guide and sample ground
