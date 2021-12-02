@@ -110,7 +110,7 @@ To turn this column into a `session_id` we merely need to call `cumsum` on the `
 |      7 | 2008-01-16 21:57:02 | false     | true    | true  | 3    |
 |      7 | 2008-01-16 22:07:09 | false     | false   | false | 3    |
 
-Depending on how the dataset is partition there are also other, potentionally more performant, methods to sessionize the data. But we'll assume this method of sessionisation below. Next, we'd need to calculate the session length, which involves an aggregation per session that we need to attach.
+Depending on how the dataset is partitioned there are also other, potentionally more performant, methods to sessionize the data. But we'll assume this method of sessionisation below. Next, we'd need to calculate the session length, which involves an aggregation per session that we need to attach.
 
 |   char | timestamp           | diff_char | diff_ts | diff  | sess | sess_len |
 |-------:|:--------------------|-----------|---------|-------|------|----------|
@@ -144,7 +144,7 @@ After then we'd need to perform another aggregation, but now we'd need to group 
 
 We're going to write a query that does exactly this, but before we do we should take a moment to recognize that these kinds of queries are pretty common. Calculating sessions and summarising them later over users is very common in web analytics. Not just for bot detection but also for general user analytics.
 
-Given that this is so common, how would you go about implementing this? Although this kind of query is so common, it's usually suprisingly tricky to implement. You could implement this with a `.groupby()`-then-`.join()` kind of operation but that's relatively heavy in terms of compute. 
+Given that this is so common, how would you go about implementing this? Although this kind of query is so common, it's usually suprisingly tricky to implement. You could implement this with a `.groupby()`-then-`.join()` kind of operation but that's relatively heavy in terms of compute. Not to mention that it'll be very tedious to write multiple `.groupby()`-then-`.join()` statements.
 
 And *this* is the moment where polars is about to shine. It's not just that it has a fast implementation written in rust. It's also because it comes with an amazing expressions API that makes it stand out.
 
@@ -203,6 +203,8 @@ This function adds intermediate columns to make it easy to debug later but we dr
   <summary><b>Why so many `with_columns` statements?</b></summary>
 
 You might wonder why we've added three `.with_columns` statements in sequence. That's because at the time of writing this blogpost the columns need to exist before using expression inside a `.with_columns`-call. The `char` and `timestamp` column exist before the first `with_columns()`-call. But since `ts_diff` and `char_diff` get created inside the first `.with_columns`, you need to call a new `.with_columns` again to use these columns. 
+ 
+Typically want to cluster as many expressions as possible in a single `with_columns`-statement, because every expression is executed on a separate thread. If you use `.with_column` sequentially you risk that the optimiser cannot recognize that the command may be run in parallel. 
 
 </details>
 
@@ -239,7 +241,7 @@ def remove_bots(dataf, max_session_hours=24):
             .filter(pl.col("session_length").max().over("char") < n_rows))
 ```
 
-Again we're using an expression with an `.over()` in the chain. This time it's calculating the maximum value of the `session_length` per character. If it every exceeds the maximum number of rows, this filter will remove all rows that belong to that character. 
+Again we're using an expression with an `.over()` in the chain. This time it's calculating the maximum value of the `session_length` per character. If it ever exceeds the maximum number of rows, this filter will remove all rows that belong to that character. 
 
 ### Cherry on Top: Clever Caching
 
@@ -312,6 +314,6 @@ It should be stressed: you can certainly write the query we're interested in wit
 
 </details>
 
-The reason why the expressions API is so value-able. It makes these kinds of common queries so much easier to write. Polars doesn't just make these queries fast, it also makes it very easy to reason about these queries. And that ... is amazing. 
+This is the reason why the expressions API is so value-able. It makes these kinds of common queries so much easier to write. Polars doesn't just make these queries fast, it also makes it very easy to reason about these queries. And that ... is amazing. 
 
-Sure, polars is fast. And that's a good reason to use it. But to me, that's only a single part of the feature-set. 
+Sure, polars is fast. And that's a perfectly fine reason to consider it. But to me, that's only a single part of the feature-set. 
