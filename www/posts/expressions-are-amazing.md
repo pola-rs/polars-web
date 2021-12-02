@@ -199,8 +199,8 @@ def sessionize(dataf, threshold=20 * 60 * 1_000):
 
 This function adds intermediate columns to make it easy to debug later but we drop the columns we don't need at the end.
 
-<details>
-  <summary><b>Why so many `with_columns` statements?</b></summary>
+<details markdown="1">
+  <summary markdown="1"><b>Why so many `with_columns` statements?</b></summary>
 
 You might wonder why we've added three `.with_columns` statements in sequence. That's because at the time of writing this blogpost the columns need to exist before using expression inside a `.with_columns`-call. The `char` and `timestamp` column exist before the first `with_columns()`-call. But since `ts_diff` and `char_diff` get created inside the first `.with_columns`, you need to call a new `.with_columns` again to use these columns. 
  
@@ -272,8 +272,8 @@ Again, this is a *nice* API.
 
 This blogpost has shown a use-case for a particular kind of query that involves sessions. Typically these need to be aggregated over partitions in your dataset. It's not just that these queries can become very slow. It's can also be an issue to properly implement them. 
 
-<details>
-  <summary><b>The pandas implementation, for comparison.</b></summary>
+<details markdown="1">
+  <summary markdown="1"><b>The pandas implementation, for comparison.</b></summary>
 
 Let's consider what it might be like to implement this in `pandas`. The implementation of `set_types` and `sessionize` are relatively straightforward. 
 
