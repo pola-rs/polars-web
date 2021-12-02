@@ -20,7 +20,9 @@ render_all_posts(path: str, tmpl_name: str):
 Render each post using the associated template.
 
 Each Markdown file will be converted to HTML; named identically, different
-extension. On the way fills in the `meta` list (describing each post).
+extension. On the way fills in the `meta` object describing the post.
+
+The
 
 **Parameters:**
 

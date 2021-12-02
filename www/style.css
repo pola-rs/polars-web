@@ -7,6 +7,15 @@
 @import "style-highlight.css";
 @import "style-themes.css";
 
+:root,
+.light {
+  --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dark.svg");
+}
+
+.dark_dimmed {
+  --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dimmed.svg");
+}
+
 * {
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -25,7 +34,9 @@ a:hover {
 body {
   background: var(--background-color);
   color: var(--font-color);
-  font-size: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 1.1rem;
   line-height: 1.75em;
   margin: 0;
 }
@@ -87,6 +98,7 @@ nav {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 9;
 }
 
 nav .menu {
@@ -96,39 +108,74 @@ nav .menu {
   padding: 0 1rem;
 }
 
-nav .menu .pl-logo {
+nav .menu img.pl-logo {
+  background-image: var(--polars-logo);
+  background-repeat: no-repeat;
+  background-size: auto 45px;
   cursor: pointer;
+  display: block;
+  height: 45px;
+  padding-left: 90px;
+  width: 90px;
 }
 
-nav .menu .pl-buttons {
+nav .menu .pl-buttons i {
+  font-size: 1.4rem;
 }
 
-/**************************************/
+nav .menu .pl-buttons i:not(:last-child) {
+  margin-right: 1rem;
+}
 
 nav .menu .pl-buttons ul {
-  display: flex;
-  gap: 1rem;
-  list-style-type: none;
-  margin: 0;
+  background-color: var(--background-color-alt);
+  border-radius: 5px;
+  list-style: none;
   padding: 0;
 }
 
-nav .menu .pl-buttons li {
+nav .menu .pl-buttons ul li {
+  cursor: pointer;
+  font-weight: bold;
 }
 
-nav .menu .pl-buttons ul > li {
-  border: 1px solid red;
+nav .menu .pl-buttons ul li a:focus,
+nav .menu .pl-buttons ul li a:hover {
+  text-decoration: none;
 }
 
-nav .menu .pl-buttons li > ul > li {
-  border: 1px solid blue;
-  display: hidden;
+nav .menu .pl-buttons ul li.icon {
+  margin: 0 0.5rem;
 }
 
-/**************************************/
+nav .menu .pl-buttons ul li.text {
+  margin: 0 1rem;
+}
 
-nav .menu .pl-buttons i {
-  font-size: 1.5rem;
+nav .menu .pl-buttons > ul {
+  display: flex;
+  height: 100%;
+}
+
+nav .menu .pl-buttons > ul li > ul {
+  display: none;
+  margin-left: -1.5rem;
+}
+
+nav .menu .pl-buttons > ul li:hover > ul {
+  display: block;
+  line-height: 2rem;
+  position: absolute;
+  padding: 0.5rem;
+}
+
+nav .menu .pl-buttons > ul li > ul li {
+  padding-top: 0.5rem;
+}
+
+nav .menu .pl-buttons > ul li > ul li::before {
+  color: var(--rust-color);
+  content: "> ";
 }
 
 header {
@@ -159,6 +206,10 @@ main {
   margin-top: 65px; /* nav */
   min-height: calc(100vh - 65px - 50px); /* full height minus nav and footer */
   width: 100%;
+}
+
+main article h1:first-child {
+  padding-top: 0;
 }
 
 main article .pl-year {
@@ -203,14 +254,6 @@ main article .pl-post {
   padding: 1rem 15rem;
 }
 
-main article .pl-post > h1 {
-  border-color: var(--rust-color);
-  border-style: solid;
-  border-width: 0 0 0 3px;
-  padding: 0 0 0 1rem;
-  margin-left: calc(-1rem - 3px); /* border-width */
-}
-
 main section .pl-details {
   display: flex;
   flex-direction: column;
@@ -224,6 +267,7 @@ main section .pl-details > div {
 
 main section .pl-details > div:last-child {
   margin-top: 1rem;
+  text-align: center;
 }
 
 main section .pl-intro {

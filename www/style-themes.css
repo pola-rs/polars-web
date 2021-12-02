@@ -18,7 +18,6 @@
   --background-color-alt: #ecf4ff;
   --font-color: #24292e;
   --link-color: #70b0ff;
-  --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dark.svg");
   --rust-color: #cd792c;
 }
 
@@ -27,6 +26,5 @@
   --background-color-alt: #0d1117;
   --font-color: #adbac7;
   --link-color: #70b0ff;
-  --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dimmed.svg");
   --rust-color: #cd792c;
 }

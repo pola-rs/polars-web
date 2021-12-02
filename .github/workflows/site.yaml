@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - render-markdown
 
 jobs:
   test:
@@ -26,8 +27,8 @@ jobs:
           python build/render.py www build/templates
           find www -name "*.md" -exec rm -rf {} \;
 
-      - name: Deploy site
-        run: |
-          echo "www.pola.rs" > www/CNAME
-          ghp-import --no-jekyll www
-          git push -qf https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git gh-pages
+          #      - name: Deploy site
+          #        run: |
+          #          echo "www.pola.rs" > www/CNAME
+          #          ghp-import --no-jekyll www
+          #          git push -qf https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git gh-pages

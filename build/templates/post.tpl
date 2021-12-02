@@ -1,8 +1,7 @@
 {% extends "base.tpl" %}
 
 {% block head %}
-<link rel="stylesheet" href="/style-markdown.css" />
-<link rel="stylesheet" href="/style-mermaid.css" />
+<link rel="stylesheet" href="/style-post.css" />
 <link rel="stylesheet" href="style.css" />
 {% endblock %}
 

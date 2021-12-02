@@ -3,7 +3,7 @@ title: Contribution guide and sample ground
 tldr: Contribution guide for posts, and Markdown-to-HTML rendering.
 authors: Polars maintainers
 link: https://www.pola.rs/
-listed: true
+rendered: true
 ---
 
 # Contribution guide and sample ground
@@ -19,21 +19,21 @@ satisfied with your production!
 When building the list of posts we use the **front matter content** to define title,
 author(s), _etc._ Start your `index.md` with:
 
-```markdown
+```text
 ---
 title: My Polars contribution
-tldr: A quick description of the post that can span multiple lines but cannot include
-      Markdown markers.
+tldr: A quick description of the post that can span multiple lines (note the
+      indentation) but cannot include Markdown shenanigans.
 authors: GitHub nickname, full name, supervillain handle we do not judge
 link: GitHub page, personal blog, random Rick Astley song
 ---
 
-# Polars is breathtaking, my blog post and the story of this realisation
+# Polars is breathtaking, the story of my realisation
 ```
 
 The content of the `title` field will be used to redirect to the post itself, and the
 `link` will be the target of the link the `authors` text will be point to. The `tldr`
-spiel, if present, will be used as marketing for readers to get interested.
+spiel, if present, will be used as "motivational blurb" for readers to get interested.
 
 Note that without those information the **blog post will not be listed**, and will not
 be accessible for our readers!
@@ -65,12 +65,12 @@ a couple `JavaScript` libraries:
 * [`KaTeX`](https://katex.org/) to render equations written in LaTeX.
 * [`Mermaid`](https://mermaidjs.github.io/) to render diagrams and flowcharts.
 
-The styling is stored in the [`style-markdown.css`](/style-markdown.css) file. It is
-however allowed to custom them by adding a `style.css` file in the folder containing
+The styling is stored in the [`style-post.css`](/style-post.css) file. It is however
+**allowed to custom** them styles by adding a `style.css` file in the folder containing
 the `Markdown` post to render.
 
-Decision has been made to keep a light theme for all posts to accomodate for contributed
-content with white background.
+Decision has been made to keep a **light theme** for all posts to accomodate for
+contributed content with white background.
 
 Note that if you follow the steps indicated in the main repo, and `Docker` helping, you
 should be able to render it locally to have a look at your post as it will appear to
@@ -277,6 +277,15 @@ Rendered in the browser via [`highlight.js`](https://highlightjs.org/).
 ````markdown
 ```python
 import polars as pl
+
+q = (
+    pl.scan_csv("iris.csv")
+    .filter(pl.col("sepal_length") > 5)
+    .groupby("species")
+    .agg(pl.all().sum())
+)
+
+df = q.collect()
 ```
 ````
 

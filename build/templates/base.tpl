@@ -44,22 +44,22 @@
 
         <div class="menu">
 
-          <div class="pl-logo" onclick="window.location='/';">LOGO</div>
+          <img
+            class="pl-logo"
+            onclick="window.location='/';"
+            src="https://raw.githubusercontent.com/carnarez/polars-static/master/logos/polars-logo-dimmed.svg"
+          />
 
           <div class="pl-buttons">
             <ul>
            
-              <li><a href="/posts">Posts</a></li>
-           
-              <li>
-                <a href="https://pola-rs.github.io/polars-book/user-guide/">Cookbook</a>
-              </li>
-           
-              <li>
+              <li class="text">
                 <a>API</a>
                 <ul>
-                  <li><a href="https://pola-rs.github.io/polars/polars/">Rust</a></li>
-                  <li>
+                  <li class="text">
+                    <a href="https://pola-rs.github.io/polars/polars/">Rust</a>
+                  </li>
+                  <li class="text">
                     <a
                       href="https://pola-rs.github.io/polars/py-polars/html/reference/"
                     >Python</a>
@@ -67,22 +67,28 @@
                 </ul>
               </li>
            
-              <li>
+              <li class="text">
+                <a href="https://pola-rs.github.io/polars-book/user-guide/">Cookbook</a>
+              </li>
+           
+              <li class="text"><a href="/posts">Posts</a></li>
+           
+              <li class="icon">
                 <a
                   href="https://github.com/pola-rs/polars/"
                 ><i class="fab fa-github"></i></a>
               </li>
          
-              <li>
+              <li class="icon">
                 <a
                   href="https://discord.com/channels/908022250106667068/"
                 ><i class="fab fa-discord"></i></a>
               </li>
          
               {% if theme is defined %}
-              <li><a><i class="far fa-circle"></i></a></li>
+              <li class="icon"><a><i class="far fa-circle"></i></a></li>
               {% else %}
-              <li>
+              <li class="icon">
                 <a
                   class="theme-switcher" onclick="toggleTheme()"
                 ><i class="fas fa-adjust"></i></a>

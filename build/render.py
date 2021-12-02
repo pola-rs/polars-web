@@ -39,7 +39,7 @@ jenv: Environment = Environment(
     loader=FileSystemLoader("templates" if len(sys.argv) < 3 else sys.argv[2])
 )
 
-meta: typing.Dict[int, typing.List[typing.Dict[str, str]]] = {}
+meta: typing.Dict[str, typing.List[typing.Dict[str, str]]] = {}
 
 
 def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
@@ -85,7 +85,7 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
             f.write(tmpl.render(post=post, theme="light"))
 
         # nasty one-liner
-        if mdwn.Meta.get("listed", [""])[0].lower() not in [
+        if mdwn.Meta.get("rendered", [""])[0].lower() not in [
             "false",
             "off",
             "no",

@@ -73,25 +73,28 @@ body::before {
   z-index: -1;
 }
 
+main article {
+  padding-top: 100px;
+}
+
 .error {
-  font-size: 5rem;
-  opacity: 0.5;
+  font-size: 2000%;
+  margin-top: 100px;
+  opacity: 0.1;
+  position: absolute;
+  width: 100%;
+  text-align: center;
 }
 
 .game {
   height: 250px;
-  margin: calc(65px + 2rem) auto 0 auto;
+  margin: auto;
   max-width: 1000px;
   overflow: hidden;
   position: relative;
 }
 
-.caption {
-  margin: 3rem auto 0 auto;
-  text-align: center;
-}
-
-.ground {
+.game .ground {
   background: var(--ground-gradient);
   border-color: #70b0ff77;
   border-style: solid;
@@ -102,7 +105,7 @@ body::before {
   width: 100%;
 }
 
-#sky {
+.game #sky {
   animation: slide 120s infinite linear;
   background-image: var(--arctic-sky);
   background-repeat: no-repeat;
@@ -113,7 +116,7 @@ body::before {
   width: 150px;
 }
 
-#bear {
+.game #bear {
   animation: bear 0.8s linear infinite;
   background-repeat: no-repeat;
   height: 50px;
@@ -149,7 +152,7 @@ body::before {
   }
 }
 
-#bear.jump {
+.game #bear.jump {
   animation: jump 0.8s linear;
   background-image: var(--bear-leaping);
   height: 50px;
@@ -185,7 +188,7 @@ body::before {
   }
 }
 
-#hurdle {
+.game #hurdle {
   animation: slide 4s infinite linear;
   background-image: var(--hurdle-snowman);
   background-repeat: no-repeat;
@@ -196,7 +199,7 @@ body::before {
   width: 100px;
 }
 
-#stuff1 {
+.game #stuff1 {
   animation: slide 3.8s 1.25s infinite linear;
   background-image: var(--arctic-igloo);
   background-repeat: no-repeat;
@@ -207,7 +210,7 @@ body::before {
   width: 40%;
 }
 
-#stuff2 {
+.game #stuff2 {
   animation: slide 3.8s 2.5s infinite linear;
   background-image: var(--arctic-seal);
   background-repeat: no-repeat;
@@ -218,7 +221,7 @@ body::before {
   width: 40%;
 }
 
-#stuff3 {
+.game #stuff3 {
   animation: slide 3.8s 3.75s infinite linear;
   background-image: var(--arctic-penguins);
   background-repeat: no-repeat;
@@ -236,4 +239,9 @@ body::before {
   100% {
     left: -100px;
   }
+}
+
+.caption {
+  margin: 3rem auto 0 auto;
+  text-align: center;
 }

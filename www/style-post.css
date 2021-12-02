@@ -1,0 +1,160 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.0/katex.min.css");
+
+@import "style-mermaid.css";
+
+/* general */
+
+body {
+  counter-reset: eqn;
+}
+
+hr {
+  border-color: var(--background-color-alt);
+  border-style: solid;
+  border-width: 1px 0 0 0;
+  margin: 0;
+  width: 50%;
+}
+
+/*
+ * 
+ * blockquotes
+ * for now goes buggy for multiline
+ *
+ */
+
+blockquote {
+  border-color: var(--link-color);
+  border-style: solid;
+  border-width: 0 0 0 3px;
+  margin: 0;
+  padding: 0 1rem;
+}
+
+blockquote > p {
+  display: inline-block;
+  font-style: italic;
+  margin: 0;
+  padding: 0;
+}
+
+blockquote:after,
+blockquote:before {
+  color: var(--link-color);
+  content: '"';
+  font-weight: bold;
+}
+
+/* code */
+
+code,
+pre {
+  border-radius: 0.3rem;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 90%;
+}
+
+code {
+  background-color: var(--background-color-alt);
+  padding: 0.2rem 0.4rem;
+}
+
+pre {
+  border-color: var(--background-color-alt);
+  border-style: solid;
+  border-width: 1px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 90%;
+  line-height: 1.5rem;
+  padding: 0.2rem 0.6rem;
+}
+
+pre > code {
+  padding: 0;
+}
+
+.hljs {
+  background: none; /* due to some weird decisions in the official stylesheet */
+}
+
+/* equations */
+
+.katex {
+  width: 100%;
+}
+
+span.katex-display {
+  align-items: center;
+  display: flex;
+}
+
+span.katex-display:after {
+  color: var(--font-color);
+  content: "[" counter(eqn) "]";
+  counter-increment: eqn;
+  padding: 0 0 0 2rem;
+}
+
+/* links */
+
+a {
+  color: var(--link-color);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:focus,
+a:hover {
+  text-decoration: underline;
+}
+
+/* tables */
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+table thead tr th,
+table tbody tr td {
+  padding: 0 1rem;
+}
+
+table thead tr th,
+table tbody tr:last-child td {
+  border-color: var(--font-color);
+  border-style: solid;
+  border-width: 0 0 1px 0;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: var(--background-color-alt);
+}
+
+/* titles */
+
+h1 {
+  font-size: 200%;
+  padding: 4rem 0 1rem 0;
+}
+
+h2 {
+  font-size: 150%;
+  padding: 2rem 0 0 0;
+}
+
+h3,
+h4 {
+  font-size: 130%;
+}
+
+h5,
+h6 {
+  font-size: 100%;
+}
+
+h6 {
+  font-weight: normal;
+}
