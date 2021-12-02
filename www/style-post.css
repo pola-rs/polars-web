@@ -16,12 +16,7 @@ hr {
   width: 50%;
 }
 
-/*
- * 
- * blockquotes
- * for now goes buggy for multiline
- *
- */
+/* blockquotes */
 
 blockquote {
   border-color: var(--link-color);
@@ -38,11 +33,18 @@ blockquote > p {
   padding: 0;
 }
 
-blockquote:after,
-blockquote:before {
+blockquote > p:after,
+blockquote > p:before {
   color: var(--link-color);
-  content: '"';
   font-weight: bold;
+}
+
+blockquote > p:after {
+  content: ' "';
+}
+
+blockquote > p:before {
+  content: '" ';
 }
 
 /* code */
@@ -77,6 +79,12 @@ pre > code {
 
 .hljs {
   background: none; /* due to some weird decisions in the official stylesheet */
+}
+
+/* details */
+
+summary {
+  cursor: pointer;
 }
 
 /* equations */
