@@ -41,52 +41,59 @@
 
     <nav>
       <div class="container">
-        <div onclick="window.location='/';">LOGO</div>
-        <div>
-          <ul>
-         
-            <li><a href="/posts">Posts</a></li>
-         
-            <li>
-              <a href="https://pola-rs.github.io/polars-book/user-guide/">Cookbook</a>
-            </li>
-         
-            <li>
-              <a>API</a>
-              <ul>
-                <li><a href="https://pola-rs.github.io/polars/polars/">Rust</a></li>
-                <li>
-                  <a
-                    href="https://pola-rs.github.io/polars/py-polars/html/reference/"
-                  >Python</a>
-                </li>
-              </ul>
-            </li>
-         
-            <li>
-              <a
-                href="https://github.com/pola-rs/polars/"
-              ><i class="fab fa-github"></i></a>
-            </li>
 
-            <li>
-              <a
-                href="https://discord.com/channels/908022250106667068/"
-              ><i class="fab fa-discord"></i></a>
-            </li>
+        <div class="menu">
 
-            {% if theme is defined %}
-            <li><a><i class="far fa-circle"></i></a></li>
-            {% else %}
-            <li>
-              <a
-                class="theme-switcher" onclick="toggleTheme()"
-              ><i class="fas fa-adjust"></i></a>
-            </li>
-            {% endif %}
+          <div class="pl-logo" onclick="window.location='/';">LOGO</div>
 
-          </ul>
+          <div class="pl-buttons">
+            <ul>
+           
+              <li><a href="/posts">Posts</a></li>
+           
+              <li>
+                <a href="https://pola-rs.github.io/polars-book/user-guide/">Cookbook</a>
+              </li>
+           
+              <li>
+                <a>API</a>
+                <ul>
+                  <li><a href="https://pola-rs.github.io/polars/polars/">Rust</a></li>
+                  <li>
+                    <a
+                      href="https://pola-rs.github.io/polars/py-polars/html/reference/"
+                    >Python</a>
+                  </li>
+                </ul>
+              </li>
+           
+              <li>
+                <a
+                  href="https://github.com/pola-rs/polars/"
+                ><i class="fab fa-github"></i></a>
+              </li>
+         
+              <li>
+                <a
+                  href="https://discord.com/channels/908022250106667068/"
+                ><i class="fab fa-discord"></i></a>
+              </li>
+         
+              {% if theme is defined %}
+              <li><a><i class="far fa-circle"></i></a></li>
+              {% else %}
+              <li>
+                <a
+                  class="theme-switcher" onclick="toggleTheme()"
+                ><i class="fas fa-adjust"></i></a>
+              </li>
+              {% endif %}
+         
+            </ul>
+          </div>
+
         </div>
+
       </div>
          
       {% if theme is defined %}
@@ -131,7 +138,11 @@
 
     <footer>
       <div class="container">
-        Visit the <a href="https://github.com/pola-rs">Pola-rs GitHub Organization</a>
+
+        <div class="pl-links">
+          Visit the <a href="https://github.com/pola-rs">Pola-rs GitHub Organization</a>
+        </div>
+
       </div>
     </footer>
 

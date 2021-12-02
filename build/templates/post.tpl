@@ -8,6 +8,8 @@
 
 {% block main %}
 <article>
-  <div class="container">{{ post }}</div>
+  <div class="container">
+    <div class="pl-post">{{ post }}</div>
+  </div>
 </article>
 {% endblock %}

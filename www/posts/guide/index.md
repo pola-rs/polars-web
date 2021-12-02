@@ -165,10 +165,10 @@ Napoleon alledgedly said[^1]:
 # Images
 
 ```markdown
-![Polars Python Logo](https://raw.githubusercontent.com/pola-rs/polars-static/master/web/polars-logo-python.svg)
+![Favicon](/favicon.png)
 ```
 
-![Polars Python Logo](https://raw.githubusercontent.com/pola-rs/polars-static/master/web/polars-logo-python.svg)
+![Favicon](/favicon.png)
 
 # Inline code
 

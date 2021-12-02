@@ -5,7 +5,7 @@ import re
 import sys
 import typing
 
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader, Template
 
 from markdown import Markdown
 from markdown.extensions import Extension
@@ -39,14 +39,16 @@ jenv: Environment = Environment(
     loader=FileSystemLoader("templates" if len(sys.argv) < 3 else sys.argv[2])
 )
 
-meta: typing.List[typing.Dict[str, str]] = []
+meta: typing.Dict[int, typing.List[typing.Dict[str, str]]] = {}
 
 
 def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
     """Render each post using the associated template.
 
     Each Markdown file will be converted to HTML; named identically, different
-    extension. On the way fills in the `meta` list (describing each post).
+    extension. On the way fills in the `meta` object describing the post.
+
+    The 
 
     Parameters
     ----------
@@ -59,16 +61,27 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
     -----
     This is a stateful function!
     """
-    mdwn = Markdown(extensions=exts)
-    tmpl = jenv.get_template(tmpl_name)
+    tmpl: Template = jenv.get_template(tmpl_name)
+    when: typing.List[str] = []
 
     for p in sorted(glob.glob(f"{path}/**/*.md", recursive=True)):
-        p_ = re.sub(".md$", ".html", p)
+        mdwn = Markdown(extensions=exts)
+        newp = re.sub(".md$", ".html", p)
+
+        try:
+            year = str(int(p.replace(f"{path}/posts/", "").split("/")[0][:4]))
+        except ValueError:
+            year = "misc"
+
+        if year not in meta:
+            if year != "misc":
+                when.append(year)
+            meta[year] = []
 
         with open(p) as f:
             post = mdwn.convert(f.read())
 
-        with open(p_, "w") as f:
+        with open(newp, "w") as f:
             f.write(tmpl.render(post=post, theme="light"))
 
         # nasty one-liner
@@ -77,7 +90,7 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
             "off",
             "no",
         ] and p.endswith("index.md"):
-            meta.append(
+            meta[year].append(
                 {
                     "authors": ", ".join(mdwn.Meta["authors"]),
                     "auth_href": mdwn.Meta.get("link", [""])[0],
@@ -87,7 +100,12 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
                 }
             )
 
-        sys.stderr.write(f"{p_}\n")
+        sys.stderr.write(f"{newp}\n")
+
+    # most recent first
+    for year in sorted(when, reverse=True) + ["misc"]:
+        l = meta.pop(year)
+        meta[year] = l[::-1]
 
 
 def render_post_list(path: str = "posts/index.html", tmpl_name: str = "list.tpl"):

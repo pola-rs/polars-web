@@ -40,6 +40,15 @@ h6 {
   font-weight: normal;
 }
 
+h1 i,
+h2 i,
+h3 i,
+h4 i,
+h5 i,
+h6 i {
+  margin-right: 0.5rem;
+}
+
 pre {
   border: 1px solid var(--background-color-alt);
   border-radius: 5px;
@@ -49,50 +58,54 @@ pre {
 
 .columns {
   display: flex;
-  gap: 2rem;
 }
 
 .container {
   margin: 0 auto;
   max-width: calc(1600px - 2rem);
   height: 100%;
-  padding: 0 1rem;
 }
 
 .ribbon {
   background-color: var(--background-color-alt);
 }
 
+.rust-color {
+  color: var(--rust-color);
+}
+
 .theme-switcher {
   cursor: pointer;
 }
 
-/*************************************************************************************/
-
 nav {
   background-color: var(--background-color-alt);
+  border-color: var(--background-color);
+  border-style: solid;
+  border-width: 0 0 1px 0;
   height: 65px;
   position: fixed;
   top: 0;
   width: 100%;
 }
 
-nav .container {
+nav .menu {
   align-items: center;
   display: flex;
   justify-content: space-between;
+  padding: 0 1rem;
 }
 
-nav .container > div:first-child {
+nav .menu .pl-logo {
   cursor: pointer;
 }
 
-nav .container > div:last-child {
+nav .menu .pl-buttons {
 }
 
 /**************************************/
 
-nav ul {
+nav .menu .pl-buttons ul {
   display: flex;
   gap: 1rem;
   list-style-type: none;
@@ -100,109 +113,145 @@ nav ul {
   padding: 0;
 }
 
-nav li {
+nav .menu .pl-buttons li {
 }
 
-nav ul > li {
+nav .menu .pl-buttons ul > li {
   border: 1px solid red;
 }
 
-nav li > ul > li {
+nav .menu .pl-buttons li > ul > li {
   border: 1px solid blue;
   display: hidden;
 }
 
 /**************************************/
 
-nav i {
+nav .menu .pl-buttons i {
   font-size: 1.5rem;
 }
 
-/*************************************************************************************/
-
 header {
-  background: var(--background-color);
+  margin-top: 65px; /* nav */
+  margin-bottom: -65px; /* if header present, cancel top margin for the main */
+  width: 100%;
+}
+
+header .pl-splash {
+  align-items: center;
+  background-color: var(--background-color);
   background-image: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/ice-ice-baby.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: auto 80%;
-  color: var(--font-color);
-  height: 80vh;
-  margin: 65px 0 -65px 0; /* nav */
-  min-height: 400px;
-  width: 100%;
-}
-
-header .container {
-  align-items: center;
   display: flex;
   flex-direction: column;
+  height: 80vh;
   justify-content: center;
-  margin: 65px auto 0 auto; /* nav */
+  min-height: 400px;
 }
 
-header h1 {
+header .pl-splash h1 {
   font-size: 600%;
 }
 
 main {
-  border: 1px solid var(--background-color);
-  margin: 65px 0 0 0; /* nav */
+  margin-top: 65px; /* nav */
   min-height: calc(100vh - 65px - 50px); /* full height minus nav and footer */
+  width: 100%;
 }
 
-article .container {
-  padding: 2rem inherit;
+main article .pl-year {
+  border-color: var(--background-color-alt);
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  font-size: 90%;
+  padding: 1rem;
+  text-transform: uppercase;
 }
 
-/*************************************************************************************/
-
-section h1 i,
-section h2 i,
-section h3 i,
-section h4 i,
-section h5 i,
-section h6 i {
-  margin: 0 0.5em 0 0;
+main article .pl-excerpt {
+  margin: 1rem 0;
 }
 
-section .pilar {
+main article .pl-excerpt:first-child {
+  margin-top: calc(65px + 2rem); /* nav */
+}
+
+main article .pl-excerpt:last-child {
+  margin-bottom: 2rem;
+}
+
+main article .pl-excerpt h2 {
+  color: var(--link-color);
+}
+
+main article .pl-excerpt > div {
+  border-color: var(--background-color);
+  border-style: solid;
+  border-width: 0 0 0 3px;
+  padding: 1rem;
+}
+
+main article .pl-excerpt > div:focus,
+main article .pl-excerpt > div:hover {
+  border-color: var(--rust-color);
+  cursor: pointer;
+}
+
+main article .pl-post {
+  padding: 1rem 15rem;
+}
+
+main article .pl-post > h1 {
+  border-color: var(--rust-color);
+  border-style: solid;
+  border-width: 0 0 0 3px;
+  padding: 0 0 0 1rem;
+  margin-left: calc(-1rem - 3px); /* border-width */
+}
+
+main section .pl-details {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 0 0 2rem 0;
+  padding-bottom: 2rem; /* enough top margin from the header */
 }
 
-section .pilar > div:last-child {
-  margin: 1rem 0 0 0;
-  text-align: center;
+main section .pl-details > div {
+  padding: 0 1rem;
 }
 
-section .intro {
-  padding: 1rem 6rem;
+main section .pl-details > div:last-child {
+  margin-top: 1rem;
 }
 
-section .code {
+main section .pl-intro {
+  padding: 1rem 7rem;
+}
+
+main section .pl-code {
+  padding: 1rem;
   width: 50%;
 }
 
-section .contribs {
+main section .pl-contribs {
   flex-grow: 1;
+  padding: 1rem;
   text-align: center;
 }
 
-section .contribs img {
+main section .pl-contribs img {
   border-radius: 20px;
-  margin: 5px 0;
+  margin: 0 5px;
   width: 40px;
 }
 
-section .sponsors {
+main section .pl-sponsors {
   min-width: 33%;
+  padding: 1rem;
   text-align: center;
 }
-
-/*************************************************************************************/
 
 footer {
   background-color: var(--background-color-alt);
@@ -211,39 +260,12 @@ footer {
   width: 100%;
 }
 
-footer .container {
+footer .pl-links {
   align-items: center;
   display: flex;
+  font-size: 90%;
   gap: 0.3rem;
+  height: 100%;
   justify-content: center;
+  padding: 1rem;
 }
-
-/*************************************************************************************/
-
-/*
-@media (min-width: 48em) {
-  nav > div {
-    padding: 0.5em 0.5em 0.5em 1em;
-    text-align: left;
-  }
-
-  nav > div ul {
-    float: right;
-  }
-
-  header > div {
-    width: 50%;
-    height: 50%;
-  }
-
-  header h1 {
-    font-size: 400%;
-  }
-}
-
-@media (min-width: 78em) {
-  header h1 {
-    font-size: 600%;
-  }
-}
-*/
