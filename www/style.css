@@ -1,83 +1,24 @@
-/*
- * this css has been heavily modified after being forked from:
- * https://github.com/pure-css/pure/blob/master/site/static/layouts/marketing/
- *
- * any class starting with "pure-" is a default style inherited from pure-css,
- * but we decided to bend it to our preferences
- *
- * pure-css is a "mobile first" framework, e.g., media queries need to apply to
- * larger screen sizes
- *
- * 
- * +---------------------------------------+
- * | logo                          buttons |   nav
- * +---------------------------------------+
- * |                                       |
- * |                                       |
- * |                 title                 |
- * |               subtitles               |   header
- * |                buttons                |
- * |                                       |
- * |                                       |
- * +------------------^^^------------------+   
- * |+-------------------------------------+|   main
- * || pillar     | pillar    | pillar     ||   section
- * |+-------------------------------------+|
- * || ribbon                              ||   section
- * |+-------------------------------------+|
- * || code examples    | code examples    ||   section
- * |+-------------------------------------+|
- * ||   contributors   |     sponsors     ||   section
- * |+-------------------------------------+|
- * ||                footer               ||   section
- * |+-------------------------------------+|
- * +---------------------------------------+
- *
- *
- * notes:
- *   - top menu is fixed and always visible
- *   - splash gets hidden by the content when scrolling
- *   - columnar content uses the pure-css responsive capabilities
- *   - outer/inner wrappers to limit size on extra-large screens
- */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/regular.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css");
 
-/*
- * COLORS
- *
- * each theme contains:
- *   - 4 background colors: menu/footer, splash, content, ribbon
- *   - 2 button background colors
- *   - 2 font colors: common and alternative
- *   - 1 link color (common to both themes)
- *
- * default is a dark -dimmed- palette derived from github theme
- *
- * syntax highlighting is taking care of via highlight.js, check the other css
- */
+@import "style-github-button.css";
+@import "style-highlight.css";
+@import "style-themes.css";
 
 :root,
 .light {
-  --background-color: #ffffff;
-  --background-color-alt: #ecf4ff;
-  --font-color: #24292e;
-  --link-color: #70b0ff;
   --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dark.svg");
 }
 
 .dark_dimmed {
-  --background-color: #22272e;
-  --background-color-alt: #0d1117;
-  --font-color: #adbac7;
-  --link-color: #70b0ff;
   --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dimmed.svg");
 }
 
-/* generic definitions and utilities */
-
 * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 a {
@@ -93,8 +34,11 @@ a:hover {
 body {
   background: var(--background-color);
   color: var(--font-color);
-  font-size: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 1.1rem;
   line-height: 1.75em;
+  margin: 0;
 }
 
 h1,
@@ -107,6 +51,15 @@ h6 {
   font-weight: normal;
 }
 
+h1 i,
+h2 i,
+h3 i,
+h4 i,
+h5 i,
+h6 i {
+  margin-right: 0.5rem;
+}
+
 pre {
   border: 1px solid var(--background-color-alt);
   border-radius: 5px;
@@ -114,217 +67,248 @@ pre {
   padding: 1em;
 }
 
-.centered {
-  text-align: center;
+.columns {
+  display: flex;
 }
 
-.padded {
-  padding: 1em;
+.container {
+  margin: 0 auto;
+  max-width: calc(1600px - 2rem);
+  height: 100%;
 }
 
-.padded-h {
-  padding: 0 1em;
+.ribbon {
+  background-color: var(--background-color-alt);
 }
 
-.padded-v {
-  padding: 1em 0;
+.rust-color {
+  color: var(--rust-color);
 }
 
-.smaller {
-  font-size: 90%;
-}
-
-/* HEADER */
-
-nav > div {
-  background: var(--background-color-alt);
-  background-image: none;
-  background-origin: content-box;
-  background-position: left;
-  background-repeat: no-repeat;
-  background-size: auto 2.5rem;
-  padding: 0.5em;
-  text-align: center;
-}
-
-nav i {
-  font-size: 1.4rem;
-  margin: 0.4em 0 0 0;
-}
-
-/* 
- * custom menu links, modified from the default pure-css styles
- * fixed menus normally have a border at the bottom
- * higher z-index because of the scroll-over effect
- */
-nav .pure-menu.pure-menu-fixed {
-  border-color: var(--background-color);
-  border-style: solid;
-  border-width: 0 0 1px 0;
-  z-index: 4;
-}
-
-nav .pure-menu-children {
-  background: var(--background-color-alt);
-  border-radius: 0.2em;
-}
-
-nav a.pure-menu-horizontal,
-nav a.pure-menu-link {
-  border: none;
-  color: var(--link-color);
-  text-decoration: none;
-}
-
-nav a.pure-menu-horizontal:hover,
-nav a.pure-menu-horizontal:focus,
-nav a.pure-menu-link:hover,
-nav a.pure-menu-link:focus {
-  background: none;
-  color: var(--font-color);
-}
-
-nav .theme-switcher {
+.theme-switcher {
   cursor: pointer;
 }
 
-nav .pure-menu-item.pure-menu-has-children {
-  cursor: default;
+nav {
+  background-color: var(--background-color-alt);
+  border-color: var(--background-color);
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  height: 65px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9;
 }
 
-nav .pure-menu-item:last-of-type {
-  padding: 0 1em;
+nav .menu {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
 }
 
-nav .pure-menu-children .pure-menu-item:last-of-type {
+nav .menu img.pl-logo {
+  background-image: var(--polars-logo);
+  background-repeat: no-repeat;
+  background-size: auto 45px;
+  cursor: pointer;
+  display: block;
+  height: 45px;
+  padding-left: 90px;
+  width: 90px;
+}
+
+nav .menu .pl-buttons i {
+  font-size: 1.4rem;
+}
+
+nav .menu .pl-buttons i:not(:last-child) {
+  margin-right: 1rem;
+}
+
+nav .menu .pl-buttons ul {
+  background-color: var(--background-color-alt);
+  border-radius: 5px;
+  list-style: none;
   padding: 0;
 }
 
-/* SPLASH */
+nav .menu .pl-buttons ul li {
+  cursor: pointer;
+}
+
+nav .menu .pl-buttons ul li a:focus,
+nav .menu .pl-buttons ul li a:hover {
+  text-decoration: none;
+}
+
+nav .menu .pl-buttons ul li.icon {
+  margin: 0 0.5rem;
+}
+
+nav .menu .pl-buttons ul li.text {
+  margin: 0 1rem;
+}
+
+nav .menu .pl-buttons > ul {
+  display: flex;
+  height: 100%;
+}
+
+nav .menu .pl-buttons > ul li > ul {
+  display: none;
+  margin-left: -1.5rem;
+}
+
+nav .menu .pl-buttons > ul li:hover > ul {
+  display: block;
+  line-height: 2rem;
+  position: absolute;
+  padding: 0.5rem;
+}
+
+nav .menu .pl-buttons > ul li > ul li {
+  padding-top: 0.5rem;
+}
+
+nav .menu .pl-buttons > ul li > ul li::before {
+  color: var(--rust-color);
+  content: "> ";
+}
 
 header {
-  background: var(--background-color);
-  background-image: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/ice-ice-baby.svg");
-  background-position: center 150px;
-  background-repeat: no-repeat;
-  background-size: auto 75%;
-  color: var(--font-color);
-  height: 90%;
-  left: 0;
-  overflow: hidden;
-  position: fixed !important;
-  top: 0;
+  margin-top: 65px; /* nav */
+  margin-bottom: -65px; /* if header present, cancel top margin for the main */
   width: 100%;
-  z-index: 1;
 }
 
-header > div {
-  bottom: 0;
-  height: 50%;
-  left: 0;
-  margin: auto;
-  position: absolute;
-  right: 0;
-  text-align: center;
-  top: 100px;
-  width: 80%;
+header .pl-splash {
+  align-items: center;
+  background-color: var(--background-color);
+  background-image: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/ice-ice-baby.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 80%;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  justify-content: center;
+  min-height: 400px;
 }
 
-header h1 {
-  font-size: 300%;
+header .pl-splash h1 {
+  font-size: 600%;
 }
-
-header h2 {
-  letter-spacing: 0.1em;
-}
-
-/* CONTENT */
 
 main {
-  background: var(--background-color);
+  margin-top: 65px; /* nav */
+  min-height: calc(100vh - 65px - 50px); /* full height minus nav and footer */
+  width: 100%;
+}
+
+main article h1:first-child {
+  padding-top: 0;
+}
+
+main article .pl-year {
   border-color: var(--background-color-alt);
   border-style: solid;
-  border-width: 1px 0 0 0;
-  min-height: 10%;
-  position: absolute;
-  top: 90%;
-  width: 100%;
-  z-index: 2;
+  border-width: 0 0 1px 0;
+  font-size: 90%;
+  padding: 1rem;
+  text-transform: uppercase;
 }
 
-section {
-  padding: 0 1em;
+main article .pl-excerpt {
+  margin: 1rem 0;
 }
 
-section h1,
-section h2 {
-  letter-spacing: 0.1em;
+main article .pl-excerpt:first-child {
+  margin-top: calc(65px + 2rem); /* nav */
 }
 
-section h1 i,
-section h2 i,
-section h3 i,
-section h4 i,
-section h5 i,
-section h6 i {
-  margin: 0 0.5em 0 0;
+main article .pl-excerpt:last-child {
+  margin-bottom: 2rem;
 }
 
-section.ribbon {
-  background: var(--background-color-alt);
-  color: var(--font-color);
+main article .pl-excerpt h2 {
+  color: var(--link-color);
 }
 
-section.ribbon h1,
-section.ribbon h2,
-section.ribbon h3,
-section.ribbon h4,
-section.ribbon h5,
-section.ribbon h6 {
-  color: var(--font-color);
+main article .pl-excerpt > div {
+  border-color: var(--background-color);
+  border-style: solid;
+  border-width: 0 0 0 3px;
+  padding: 1rem;
 }
 
-section .justified {
+main article .pl-excerpt > div:focus,
+main article .pl-excerpt > div:hover {
+  border-color: var(--rust-color);
+  cursor: pointer;
+}
+
+main article .pl-post {
+  padding: 1rem 15rem;
+}
+
+main section .pl-details {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-bottom: 2rem; /* enough top margin from the header */
 }
 
-section #contributors img {
+main section .pl-details > div {
+  padding: 0 1rem;
+}
+
+main section .pl-details > div:last-child {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+main section .pl-intro {
+  padding: 1rem 7rem;
+}
+
+main section .pl-code {
+  padding: 1rem;
+  width: 50%;
+}
+
+main section .pl-contribs {
+  flex-grow: 1;
+  padding: 1rem;
+  text-align: center;
+}
+
+main section .pl-contribs img {
   border-radius: 20px;
   margin: 0 5px;
   width: 40px;
 }
 
-/* MEDIA QUERIES */
-
-/* tablet (and larger) */
-
-@media (min-width: 48em) {
-  nav > div {
-    background-image: var(--polars-logo);
-    padding: 0.5em 0.5em 0.5em 1em;
-    text-align: left;
-  }
-
-  nav > div ul {
-    float: right;
-  }
-
-  header > div {
-    width: 50%;
-    height: 50%;
-  }
-
-  header h1 {
-    font-size: 400%;
-  }
+main section .pl-sponsors {
+  min-width: 33%;
+  padding: 1rem;
+  text-align: center;
 }
 
-/* desktop (and larger) */
+footer {
+  background-color: var(--background-color-alt);
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+}
 
-@media (min-width: 78em) {
-  header h1 {
-    font-size: 600%;
-  }
+footer .pl-links {
+  align-items: center;
+  display: flex;
+  font-size: 90%;
+  gap: 0.3rem;
+  height: 100%;
+  justify-content: center;
+  padding: 1rem;
 }

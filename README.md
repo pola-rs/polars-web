@@ -1,7 +1,2 @@
-**Polars landing page.**
-
-Makes use of a niftily
-[patched](https://blog.oddbit.com/post/2015-01-04-building-a-minimal-web-server-for-testing-kubernetes/)
-[`thttpd`](https://acme.com/software/thttpd/) as a _very_ lightweight HTTP
-server for local development/testing. Run `make serve` to get it started, and
-visit [http://localhost:8000/](http://localhost:8000/).
+**Polars landing page.** Simple `Jinja2` templating. Static as it gets. Run `make serve`
+and read `http://localhost:8000/posts/guide` for the contribution how-to.

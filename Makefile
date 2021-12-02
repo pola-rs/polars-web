@@ -1,8 +1,7 @@
+.PHONY: build
+
 build:
-	docker build --tag polars-web .
+	docker build --file build/Dockerfile --tag polars-web .
 
 serve: build
-	docker run --name polars-web --publish 8000:80 --rm polars-web
-
-fmt:
-	npx prettier -w .
+	docker run --interactive --name polars-web --publish 8000:80 --rm --tty polars-web
