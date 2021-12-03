@@ -6,7 +6,7 @@ authors: koaning
 link: https://koaning.io/
 ---
 
-> This is a guest post by Vincent D. Warmerdam. He is a research advocate at [Rasa](https://rasa.com/), creator of the [calmcode.io](https://calmcode.io) project and maintainer of [many open source projects](https://github.com/koaning/). He is also the proud contributor of the [.pipe() method](https://github.com/pola-rs/polars/pull/82) in the `Polars` project, and he recently made a [`Polars` course for beginners](https://calmcode.io/partial_fit/introduction.html).
+> This is a guest post by Vincent D. Warmerdam. He is a research advocate at [Rasa](https://rasa.com/), creator of the [calmcode.io](https://calmcode.io) project and maintainer of [many open source projects](https://github.com/koaning/). He is also the proud contributor of the [`.pipe()` method](https://github.com/pola-rs/polars/pull/82) in the `Polars` project, and he recently made a [`Polars` course for beginners](https://calmcode.io/partial_fit/introduction.html).
 
 # The Expressions API in Polars is Amazing
 

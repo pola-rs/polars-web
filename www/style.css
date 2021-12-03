@@ -8,7 +8,7 @@
 @import "style-themes.css";
 
 :root {
-  --nav-height: 65px;
+  --nav-height: 50px;
   --footer-height: 50px;
 }
 
@@ -109,19 +109,20 @@ nav {
 nav .menu {
   align-items: center;
   display: flex;
-  justify-content: center;
+  height: 100%;
+  justify-content: space-between;
   padding: 0 1rem;
 }
 
 nav .menu img.pl-logo {
   background-image: var(--polars-logo);
   background-repeat: no-repeat;
-  background-size: auto 45px;
+  background-size: auto 25px;
   cursor: pointer;
-  display: none;
-  height: 45px;
-  padding-left: 90px;
-  width: 90px;
+  display: block;
+  height: 25px;
+  padding-left: 50px;
+  width: 50px;
 }
 
 nav .menu .pl-buttons i {
@@ -149,11 +150,11 @@ nav .menu .pl-buttons ul li a:hover {
 }
 
 nav .menu .pl-buttons ul li.icon {
-  margin: 0 0.5rem;
+  margin-left: 0.25rem;
 }
 
 nav .menu .pl-buttons ul li.text {
-  margin: 0 1rem;
+  margin-right: 1rem;
 }
 
 nav .menu .pl-buttons > ul {
@@ -326,16 +327,27 @@ footer .pl-links {
 /* tablet (and larger) */
 
 @media (min-width: 58em) {
+  :root {
+    --nav-height: 65px;
+  }
+
   .columns {
     display: flex;
   }
 
-  nav .menu {
-    justify-content: space-between;
+  nav .menu img.pl-logo {
+    background-size: auto 45px;
+    height: 45px;
+    padding-left: 90px;
+    width: 90px;
   }
 
-  nav .menu img.pl-logo {
-    display: block;
+  nav .menu .pl-buttons ul li.icon {
+    margin-left: 0.5rem;
+  }
+
+  nav .menu .pl-buttons ul li.text {
+    margin-right: 2rem;
   }
 
   header .pl-splash h1 {
