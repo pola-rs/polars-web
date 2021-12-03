@@ -37,6 +37,25 @@ spiel, if present, will be used as "motivational blurb" for readers to get inter
 Note that without those information the **blog post will not be listed**, and will not
 be accessible for our readers!
 
+Extras:
+
+* A post can be removed from the list of posts by adding the `not-listed` keyword to the
+  `config` key. Note it will stil be rendered to handle broken links (although we like
+  our [easter egg](/game.html)).
+* ~~Decision has been made to keep a **light theme** for all posts to accomodate for
+  contributed content with white background.~~ One can **force a theme** by adding a
+  `dark-theme` or `light-theme` value to the `config` key. Not specifying (or providing
+  both) allows toggling between both themes.
+
+```text
+---
+[...]
+config: dark-theme not-listed
+---
+
+# Polars is breathtaking, the story of my realisation
+```
+
 The rest of this page stands as an example of supported Markdown-to-HTML processing, and
 the final look and feel. The rendering itself is done via
 [`Python-Markdown`](https://python-markdown.github.io/), with plenty added extensions to
@@ -56,6 +75,8 @@ deal with the fancy stuff (if you need something extra let's discuss it in the P
   to enhance the processing of fenced blocks.
 * [`TableExtension`](https://python-markdown.github.io/extensions/tables/) to render
   tables.
+* [`TocExtension`](https://python-markdown.github.io/extensions/toc/) to generate the
+  table of contents and anchor the titles.
 
 Once generated, some extra rendering is done in the browser -*i.e.*, on the client- via
 a couple `JavaScript` libraries:
@@ -67,9 +88,6 @@ a couple `JavaScript` libraries:
 The styling is stored in the [`style-post.css`](/style-post.css) file. It is however
 **allowed to custom** them styles by adding a `style.css` file in the folder containing
 the `Markdown` post to render.
-
-Decision has been made to keep a **light theme** for all posts to accomodate for
-contributed content with white background.
 
 Note that if you follow the steps indicated in the main repo, and `Docker` helping, you
 should be able to render it locally to have a look at your post as it will appear to
@@ -354,3 +372,11 @@ Text
 ###### Subparagraph
 
 Text
+
+# Table of Contents
+
+```markdown
+[TOC]
+```
+
+[TOC]

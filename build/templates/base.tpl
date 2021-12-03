@@ -85,14 +85,14 @@
                 ><i class="fab fa-discord"></i></a>
               </li>
          
-              {% if theme is defined %}
-              <li class="icon"><a><i class="far fa-circle"></i></a></li>
-              {% else %}
+              {% if theme is undefined or theme is none %}
               <li class="icon">
                 <a
                   class="theme-switcher" onclick="toggleTheme()"
                 ><i class="fas fa-adjust"></i></a>
               </li>
+              {% else %}
+              <li class="icon"><a><i class="far fa-circle"></i></a></li>
               {% endif %}
          
             </ul>
@@ -102,12 +102,7 @@
 
       </div>
          
-      {% if theme is defined %}
-      <script>
-        localStorage.setItem("theme", {{ theme }});
-        document.documentElement.className = {{ theme }};
-      </script>
-      {% else %}
+      {% if theme is undefined or theme is none %}
       <script>
         function setTheme(name) {
           localStorage.setItem("theme", name);
@@ -131,6 +126,11 @@
         } else {
           setTheme("light");
         }
+      </script>
+      {% else %}
+      <script>
+        localStorage.setItem("theme", {{ theme }});
+        document.documentElement.className = {{ theme }};
       </script>
       {% endif %}
 
