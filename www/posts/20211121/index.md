@@ -30,7 +30,7 @@ Here's a snippet of what the dataset looks like.
 
 ## The Task 
 
-There's a lot of interesting things you could do with this dataset. After all, 2008 was the year where the Frozen Throne expansion came out. So there's plenty of churn-related things you could unravel. The task that I want to explore in this blogpost is related to something else though; bot-detection. After all, it's very likely that this dataset includes non-human players and these need to be detected.
+There's a lot of interesting things you could do with this dataset. After all, 2008 was the year where the Frozen Throne expansion came out. So there's plenty of churn-related things you could unravel. The task that I want to explore in this blogpost is related to something else though; bot-detection. This video game was so popular that it attracted many hackers and it's very likely that this dataset includes non-human players and these need to be detected.
 
 There are many way to detect these bots, but it's good to start with some simple domain rules. A good starting point might be to start looking for users that have a suspiciously long session length. If a character is seen playing for 36 hours without a break, one could argue that there may be a bot. The end goal for us is to remove bots from the dataset as a preprocessing step for other analyses.
 
@@ -323,4 +323,4 @@ It should be stressed: you can certainly write the query we're interested in wit
 
 This is the reason why the expressions API is so value-able. It makes these kinds of common queries so much easier to write. Polars doesn't just make these queries fast, it also makes it very easy to reason about these queries. And that ... is amazing. 
 
-Sure, polars is fast. And that's a perfectly fine reason to consider it. But to me, that's only a single part of the feature-set. 
+Sure, polars is fast. The pandas variant takes about 10 minutes to run while polars is just 7 seconds. [That's an 80x speedup](https://calmcode.io/polars/calm.html). So yeah, speed is totally a valid reason to consider exploring polars. But to me, that's only a single part of the feature-set. The API is also where it's at. 
