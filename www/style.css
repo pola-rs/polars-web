@@ -164,14 +164,14 @@ nav .menu .pl-buttons > ul {
 
 nav .menu .pl-buttons > ul li > ul {
   display: none;
-  margin-left: -1.5rem;
+  line-height: 2rem;
+  margin-left: -1rem;
+  padding: 0.5rem 0 0.5rem 1rem;
+  position: absolute;
 }
 
 nav .menu .pl-buttons > ul li:hover > ul {
   display: block;
-  line-height: 2rem;
-  position: absolute;
-  padding: 0.5rem;
 }
 
 nav .menu .pl-buttons > ul li > ul li {
