@@ -7,6 +7,11 @@
 @import "style-highlight.css";
 @import "style-themes.css";
 
+:root {
+  --nav-height: 65px;
+  --footer-height: 50px;
+}
+
 :root,
 .light {
   --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dark.svg");
@@ -68,7 +73,7 @@ pre {
 }
 
 .columns {
-  display: flex;
+  display: block;
 }
 
 .container {
@@ -94,7 +99,7 @@ nav {
   border-color: var(--background-color);
   border-style: solid;
   border-width: 0 0 1px 0;
-  height: 65px;
+  height: var(--nav-height);
   position: fixed;
   top: 0;
   width: 100%;
@@ -104,7 +109,7 @@ nav {
 nav .menu {
   align-items: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 1rem;
 }
 
@@ -113,7 +118,7 @@ nav .menu img.pl-logo {
   background-repeat: no-repeat;
   background-size: auto 45px;
   cursor: pointer;
-  display: block;
+  display: none;
   height: 45px;
   padding-left: 90px;
   width: 90px;
@@ -178,8 +183,8 @@ nav .menu .pl-buttons > ul li > ul li::before {
 }
 
 header {
-  margin-top: 65px; /* nav */
-  margin-bottom: -65px; /* if header present, cancel top margin for the main */
+  margin-top: var(--nav-height);
+  margin-bottom: -var(--nav-height);
   width: 100%;
 }
 
@@ -195,15 +200,16 @@ header .pl-splash {
   height: 80vh;
   justify-content: center;
   min-height: 400px;
+  text-align: center;
 }
 
 header .pl-splash h1 {
-  font-size: 600%;
+  font-size: 300%;
 }
 
 main {
-  margin-top: 65px; /* nav */
-  min-height: calc(100vh - 65px - 50px); /* full height minus nav and footer */
+  margin-top: var(--nav-height);
+  min-height: calc(100vh - var(--nav-height) - var(--footer-height));
   width: 100%;
 }
 
@@ -225,7 +231,7 @@ main article .pl-excerpt {
 }
 
 main article .pl-excerpt:first-child {
-  margin-top: calc(65px + 2rem); /* nav */
+  margin-top: calc(var(--nav-height) + 2rem);
 }
 
 main article .pl-excerpt:last-child {
@@ -250,14 +256,16 @@ main article .pl-excerpt > div:hover {
 }
 
 main article .pl-post {
-  padding: 1rem 15rem;
+  padding: 1rem 1rem;
+  margin: 0 auto;
+  max-width: 1000px;
 }
 
 main section .pl-details {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-bottom: 2rem; /* enough top margin from the header */
+  padding-bottom: 2rem;
 }
 
 main section .pl-details > div {
@@ -270,12 +278,14 @@ main section .pl-details > div:last-child {
 }
 
 main section .pl-intro {
-  padding: 1rem 7rem;
+  padding: 1rem 1rem;
+  margin: 0 auto;
+  max-width: 1000px;
 }
 
 main section .pl-code {
   padding: 1rem;
-  width: 50%;
+  width: 100%;
 }
 
 main section .pl-contribs {
@@ -311,4 +321,36 @@ footer .pl-links {
   height: 100%;
   justify-content: center;
   padding: 1rem;
+}
+
+/* tablet (and larger) */
+
+@media (min-width: 58em) {
+  .columns {
+    display: flex;
+  }
+
+  nav .menu {
+    justify-content: space-between;
+  }
+
+  nav .menu img.pl-logo {
+    display: block;
+  }
+
+  header .pl-splash h1 {
+    font-size: 400%;
+  }
+
+  main section .pl-code {
+    width: 50%;
+  }
+}
+
+/* desktop (and larger) */
+
+@media (min-width: 78em) {
+  header .pl-splash h1 {
+    font-size: 600%;
+  }
 }
