@@ -71,6 +71,8 @@ deal with the fancy stuff (if you need something extra let's discuss it in the P
   to introduce underlined and superscript text.
 * [`MarkdownInHtmlExtension`](https://python-markdown.github.io/extensions/md_in_html/)
   to parse and render Markdown located *within* HTML blocks.
+* [`MetaExtension`](https://python-markdown.github.io/extensions/meta/) to parse front
+  matter content (metadata).
 * [`SuperFencesCodeExtension`](https://facelessuser.github.io/pymdown-extensions/extensions/superfences/)
   to enhance the processing of fenced blocks.
 * [`TableExtension`](https://python-markdown.github.io/extensions/tables/) to render
