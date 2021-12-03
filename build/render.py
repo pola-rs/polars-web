@@ -81,15 +81,24 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
         with open(p) as f:
             post = mdwn.convert(f.read())
 
-        with open(newp, "w") as f:
-            f.write(tmpl.render(post=post, theme="light"))
+        listed = True
+        theme = None
+        if "config" in mdwn.Meta:
+            config = " ".join(mdwn.Meta["config"])
 
-        # nasty one-liner
-        if mdwn.Meta.get("rendered", [""])[0].lower() not in [
-            "false",
-            "off",
-            "no",
-        ] and p.endswith("index.md"):
+            if "not-listed" in config:
+                listed = False
+            if "dark-theme" in config:
+                theme = "dark"
+            if "light-theme" in config:
+                theme = "light"
+            if "dark-theme" in config and "light-theme" in config:
+                theme = None
+
+        with open(newp, "w") as f:
+            f.write(tmpl.render(post=post, theme=theme))
+
+        if listed and p.endswith("index.md"):
             meta[year].append(
                 {
                     "authors": ", ".join(mdwn.Meta["authors"]),
