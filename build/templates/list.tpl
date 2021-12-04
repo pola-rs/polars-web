@@ -8,21 +8,34 @@
     <p class="pl-year">{{ year }}</p>
 
     {% for item in items %}
-    <section class="pl-excerpt" onclick="window.location='{{ item.post_href }}';">
+    <section class="pl-excerpt">
       <div>
+        <div>
+          <a href="{{ item.post_href }}"><h2>{{ item.title }}</h2></a>
+
+          <p>
+          {%- if item.auth_href is defined -%}
+          by <a href="{{ item.auth_href }}">{{ item.authors }}</a>
+          {%- else -%}
+          by {{ item.authors }}
+          {%- endif -%}
+          &nbsp;
+          {%- if item.date is not none -%}
+          on {{ item.date.m }}. {{ item.date.d }}
+          {%- endif -%}
+          </p>
+         
+          {% if item.tldr is defined %}
+          <p>{{ item.tldr }}</p>
+          {% endif %}
     
-        <a href="{{ item.post_href }}"><h2>{{ item.title }}</h2></a>
-     
-        {% if item.auth_href is defined %}
-        <p>by <a href="{{ item.auth_href }}">{{ item.authors }}</a></p>
-        {% else %}
-        <p>by {{ item.authors }}</p>
+        </div>
+
+        {% if item.thumbnail is not none %}
+        <div>
+          <a href="{{ item.post_href }}"><img src="{{ item.thumbnail }}" /></a>
+        </div>
         {% endif %}
-     
-        {% if item.tldr is defined %}
-        <p>{{ item.tldr }}</p>
-        {% endif %}
-    
       </div>
     </section>
     {% endfor %}

@@ -5,6 +5,7 @@ tldr: Bristech Bytesize #17: Polars, the fastest DataFrame library you never hea
       Leitão (co-founder and data scientist at Munin Data).
 authors: ritchie46
 link: https://github.com/ritchie46
+thumbnail: bristech.png
 ---
 
 # Polars DataFrame library built on Apache Arrow
@@ -32,3 +33,6 @@ fully utilize the CPU's of this generation.
 Besides blazingly fast algorithms, cache efficient memory layout and multi-threading,
 it consists of a lazy query engine, allowing Polars to do several optimizations that
 may improve query time and memory usage.
+
+_Talk organized by [Bristech](https://bris.tech/) as part of their monthly
+[Meetup](https://www.meetup.com/bristech/events/279653542/) sessions._
