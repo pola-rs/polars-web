@@ -218,6 +218,11 @@ main article h1:first-child {
   padding-top: 0;
 }
 
+main article iframe {
+  display: block;
+  margin: 0 auto;
+}
+
 main article .pl-year {
   border-color: var(--background-color-alt);
   border-style: solid;
@@ -243,6 +248,11 @@ main article .pl-excerpt h2 {
   color: var(--link-color);
 }
 
+main article .pl-excerpt img {
+  border-radius: 5px;
+  max-height: 160px;
+}
+
 main article .pl-excerpt > div {
   border-color: var(--background-color);
   border-style: solid;
@@ -253,7 +263,10 @@ main article .pl-excerpt > div {
 main article .pl-excerpt > div:focus,
 main article .pl-excerpt > div:hover {
   border-color: var(--rust-color);
-  cursor: pointer;
+}
+
+main article .pl-excerpt > div > div:not(:first-child) {
+  text-align: center;
 }
 
 main article .pl-post {
@@ -352,6 +365,12 @@ footer .pl-links {
 
   header .pl-splash h1 {
     font-size: 400%;
+  }
+
+  main article .pl-excerpt > div {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
   }
 
   main section .pl-code {

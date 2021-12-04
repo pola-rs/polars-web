@@ -5,9 +5,10 @@ import re
 import sys
 import typing
 
+from datetime import datetime
 from jinja2 import Environment, FileSystemLoader, Template
-
 from markdown import Markdown
+
 from markdown.extensions import Extension
 from markdown.extensions.footnotes import FootnoteExtension
 from markdown.extensions.md_in_html import MarkdownInHtmlExtension
@@ -39,7 +40,7 @@ jenv: Environment = Environment(
     loader=FileSystemLoader("templates" if len(sys.argv) < 3 else sys.argv[2])
 )
 
-meta: typing.Dict[str, typing.List[typing.Dict[str, str]]] = {}
+meta: typing.Dict[typing.Union[int, str], typing.List[typing.Dict[str, str]]] = {}
 
 
 def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
@@ -47,8 +48,6 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
 
     Each Markdown file will be converted to HTML; named identically, different
     extension. On the way fills in the `meta` object describing the post.
-
-    The 
 
     Parameters
     ----------
@@ -65,22 +64,52 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
     when: typing.List[str] = []
 
     for p in sorted(glob.glob(f"{path}/**/*.md", recursive=True)):
-        mdwn = Markdown(extensions=exts)
-        newp = re.sub(".md$", ".html", p)
 
+        # dirname
+        dirn = "/".join(p.replace(f"{path}/posts/", "").split("/")[:-1])
+
+        # organize per date of publication
         try:
-            year = str(int(p.replace(f"{path}/posts/", "").split("/")[0][:4]))
+            date = datetime.strptime(dirn.split("/")[0], "%Y%m%d")
+            year = date.year
         except ValueError:
+            date = None
             year = "misc"
 
         if year not in meta:
+            meta[year] = []
             if year != "misc":
                 when.append(year)
-            meta[year] = []
 
+        # convert the markdown content
+        mdwn = Markdown(extensions=exts)
         with open(p) as f:
             post = mdwn.convert(f.read())
 
+        title = " ".join(mdwn.Meta["title"])
+        tldr = " ".join(mdwn.Meta["tldr"])
+
+        if "thumbnail" in mdwn.Meta:
+            t = mdwn.Meta["thumbnail"][0]
+            thumbnail = t
+            meta_img = t
+            if not thumbnail.startswith("https://"):
+                thumbnail = f"/posts/{dirn}/{t}"
+                meta_img = f"https://www.pola.rs/posts/{dirn}/{t}"
+        else:
+            thumbnail = None
+
+        # update the meta tags
+        tags = {
+            "meta_desc": tldr,
+            "meta_title": title,
+            "meta_url": f"https://www.pola.rs/posts/{dirn}",
+        }
+
+        if thumbnail is not None:
+            tags["meta_img"] = meta_img
+
+        # parse the extra keys
         listed = True
         theme = None
         if "config" in mdwn.Meta:
@@ -95,23 +124,32 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
             if "dark-theme" in config and "light-theme" in config:
                 theme = None
 
-        with open(newp, "w") as f:
-            f.write(tmpl.render(post=post, theme=theme))
-
+        # add entry to the meta object
         if listed and p.endswith("index.md"):
             meta[year].append(
                 {
                     "authors": ", ".join(mdwn.Meta["authors"]),
                     "auth_href": mdwn.Meta.get("link", [""])[0],
-                    "post_href": "/".join(p.replace(path, "").split("/")[:-1]),
-                    "title": " ".join(mdwn.Meta["title"]),
-                    "tldr": " ".join(mdwn.Meta.get("tldr", [""])),
+                    "date": None if date is None else {
+                        "y": date.year,
+                        "m": datetime.strftime(date, "%b"),
+                        "d": date.day,
+                    },
+                    "post_href": f"/posts/{dirn}",
+                    "thumbnail": thumbnail,
+                    "title": title,
+                    "tldr": tldr,
                 }
             )
 
+        # write the new file
+        newp = re.sub(".md$", ".html", p)
+        with open(newp, "w") as f:
+            f.write(tmpl.render(post=post, theme=theme, **tags))
+
         sys.stderr.write(f"{newp}\n")
 
-    # most recent first
+    # re-order the posts, most recent first
     for year in sorted(when, reverse=True) + ["misc"]:
         l = meta.pop(year)
         meta[year] = l[::-1]

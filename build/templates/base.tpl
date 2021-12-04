@@ -6,6 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% include "meta.tpl" %}
     <title>Polars</title>
+    {% if theme is undefined or theme is none %}
+    <script>
+      function setTheme(name) {
+        localStorage.setItem("theme", name);
+        document.documentElement.className = name;
+      }
+    
+      function toggleTheme() {
+        if (localStorage.getItem("theme") === "light") {
+          setTheme("dark_dimmed");
+        } else {
+          setTheme("light");
+        }
+      }
+    
+      if (
+        localStorage.getItem("theme") === "dark_dimmed" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        setTheme("dark_dimmed");
+      } else {
+        setTheme("light");
+      }
+    </script>
+    {% else %}
+    <script>
+      localStorage.setItem("theme", {{ theme }});
+      document.documentElement.className = {{ theme }};
+    </script>
+    {% endif %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"></script>
     <script
       defer
@@ -102,39 +133,6 @@
         </div>
 
       </div>
-         
-      {% if theme is undefined or theme is none %}
-      <script>
-        function setTheme(name) {
-          localStorage.setItem("theme", name);
-          document.documentElement.className = name;
-        }
-      
-        function toggleTheme() {
-          if (localStorage.getItem("theme") === "light") {
-            setTheme("dark_dimmed");
-          } else {
-            setTheme("light");
-          }
-        }
-      
-        if (
-          localStorage.getItem("theme") === "dark_dimmed" ||
-          (!("theme" in localStorage) &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches)
-        ) {
-          setTheme("dark_dimmed");
-        } else {
-          setTheme("light");
-        }
-      </script>
-      {% else %}
-      <script>
-        localStorage.setItem("theme", {{ theme }});
-        document.documentElement.className = {{ theme }};
-      </script>
-      {% endif %}
-
     </nav>
 
     {% block header %}{% endblock %}

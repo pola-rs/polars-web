@@ -22,8 +22,6 @@ Render each post using the associated template.
 Each Markdown file will be converted to HTML; named identically, different
 extension. On the way fills in the `meta` object describing the post.
 
-The
-
 **Parameters:**
 
 * `path` [`str`]: Root folder to [recursively] fetch the files to process from. Defaults to `.`.

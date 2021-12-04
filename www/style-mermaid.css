@@ -1,0 +1,5 @@
+div.mermaid svg {
+  display: block;
+  line-height: 1rem;
+  margin: 0 auto;
+}

@@ -1,11 +1,13 @@
 ---
 title: Contribution guide and sample ground
 tldr: Contribution guide for posts, and Markdown-to-HTML rendering.
-authors: Polars maintainers
+authors: maintainers
 link: https://www.pola.rs/
 ---
 
-# Contribution guide and sample ground
+# Contribution guide
+
+## Location
 
 To contribute, **create a new folder** named after today's date in the `YYYYMMDD/` format
 within the `www/posts/` filetree present in a branch of your own
@@ -15,46 +17,59 @@ within the `www/posts/` filetree present in a branch of your own
 same folder (use a relative path when including them). Send us a Pull Request once
 satisfied with your production!
 
+## Front matter
+
+### Mandatory
+
 When building the list of posts we use the **front matter content** to define title,
 author(s), _etc._ Start your `index.md` with:
 
 ```text
 ---
+authors: GitHub nickname, full name, supervillain handle we do not judge
 title: My Polars contribution
 tldr: A quick description of the post that can span multiple lines (note the
       indentation) but cannot include Markdown shenanigans.
-authors: GitHub nickname, full name, supervillain handle we do not judge
+---
+
+# Polars is breathtaking, the story of my realisation
+```
+
+The content of the `title` field will be used to redirect to the post itself, and `tldr`
+spiel will be used as "motivational blurb" for readers to get interested. The
+[meta tags](https://metatags.io/) associated with the post are also generated from those
+values.
+
+Note that without those information the **blog post will not be listed**, and will not
+be accessible for (y)our readers!
+
+### Extra keys
+
+* One can provide a `link` key, value to be associated with the author(s): its value
+  will be the target of the link the `authors` text will be pointing to.
+* The `config` key supports the following:
+    - A post can be removed from the list of posts by adding the `not-listed` keyword to
+      the `config` key. Note it will stil be rendered to handle broken links (although
+      we like our [easter egg](/game.html)).
+    - ~~Decision has been made to keep a **light theme** for all posts to accomodate for
+      contributed content with white background.~~ One can **force a theme** by adding a
+      `dark-theme` or `light-theme` value to the `config` key. Not specifying (or
+      providing both) allows toggling between both themes.
+* Thumbnail for the list of post can be provided via the `thumbnail` key. The image is
+  expected to be in the same folder as the post itself, unless starting with `https://`,
+  and its height will be limited to 160 pixels.
+
+```text
+---
+[...]
+config: dark-theme not-listed
 link: GitHub page, personal blog, random Rick Astley song
 ---
 
 # Polars is breathtaking, the story of my realisation
 ```
 
-The content of the `title` field will be used to redirect to the post itself, and the
-`link` will be the target of the link the `authors` text will be point to. The `tldr`
-spiel, if present, will be used as "motivational blurb" for readers to get interested.
-
-Note that without those information the **blog post will not be listed**, and will not
-be accessible for our readers!
-
-Extras:
-
-* A post can be removed from the list of posts by adding the `not-listed` keyword to the
-  `config` key. Note it will stil be rendered to handle broken links (although we like
-  our [easter egg](/game.html)).
-* ~~Decision has been made to keep a **light theme** for all posts to accomodate for
-  contributed content with white background.~~ One can **force a theme** by adding a
-  `dark-theme` or `light-theme` value to the `config` key. Not specifying (or providing
-  both) allows toggling between both themes.
-
-```text
----
-[...]
-config: dark-theme not-listed
----
-
-# Polars is breathtaking, the story of my realisation
-```
+# Mardown sample ground
 
 The rest of this page stands as an example of supported Markdown-to-HTML processing, and
 the final look and feel. The rendering itself is done via
@@ -95,7 +110,7 @@ Note that if you follow the steps indicated in the main repo, and `Docker` helpi
 should be able to render it locally to have a look at your post as it will appear to
 any reader.
 
-# Blockquotes
+## Blockquotes
 
 Napoleon alledgedly said:
 
@@ -105,9 +120,9 @@ Napoleon alledgedly said:
 
 > Un bon croquis vaut mieux qu'un long discours.
 
-# Emphasis
+## Emphasis
 
-## General
+### General
 
 ```markdown
 *This text should be italic.* _This should also be italic._
@@ -131,7 +146,7 @@ _One **can** ^^combine^^ all ~~those~~._
 
 _One **can** ^^combine^^ all ~~those~~._
 
-## Sub-/super-script
+### Sub-/super-script
 
 ```markdown
 H~2~O
@@ -143,11 +158,11 @@ H~2~O
 
 Copyright^©^
 
-# Equations
+## Equations
 
 Rendered in the browser via [`KaTeX`](https://katex.org/). `$$` and `$` notations are supported.
 
-## Block
+### Block
 
 ```markdown
 $$E = m \, c^{2}$$
@@ -159,7 +174,7 @@ $$E = m \, c^{2}$$
 
 $$f(x) = \int_{-\infty}^{\infty} \hat{f}(\xi) \, e^{2 \pi i \xi x} \, d\xi$$
 
-## Inline
+### Inline
 
 ```markdown
 And here is an inline equation: $2 \pi i \xi x$.
@@ -167,7 +182,7 @@ And here is an inline equation: $2 \pi i \xi x$.
 
 And here is an inline equation: $2 \pi i \xi x$.
 
-# Footnotes
+## Footnotes
 
 Napoleon alledgedly said[^1]:
 
@@ -181,7 +196,7 @@ Napoleon alledgedly said[^1]:
 
 > Un bon croquis vaut mieux qu'un long discours.
 
-# Images
+## Images
 
 ```markdown
 ![Favicon](/favicon.png)
@@ -189,7 +204,7 @@ Napoleon alledgedly said[^1]:
 
 ![Favicon](/favicon.png)
 
-# Inline code
+## Inline code
 
 ```markdown
 Inline code blocks such as `import polars as pl` are not highlighted.
@@ -197,7 +212,7 @@ Inline code blocks such as `import polars as pl` are not highlighted.
 
 Inline code blocks such as `import polars as pl` are not highlighted.
 
-# Links
+## Links
 
 ```markdown
 [`Polars` organization](https://github.com/pola-rs)
@@ -205,9 +220,9 @@ Inline code blocks such as `import polars as pl` are not highlighted.
 
 [`Polars` organization](https://github.com/pola-rs)
 
-# Lists
+## Lists
 
-## Unordered list
+### Unordered list
 
 ```markdown
 * Item
@@ -221,7 +236,7 @@ Inline code blocks such as `import polars as pl` are not highlighted.
     * Subitem
     * Subitem
 
-## Ordered list
+### Ordered list
 
 ```markdown
 1. Item 1
@@ -235,7 +250,7 @@ Inline code blocks such as `import polars as pl` are not highlighted.
     1. Item 2a
     1. Item 2b
 
-# Markdown in HTML
+## Markdown in HTML
 
 ````markdown
 <details markdown="1">
@@ -267,7 +282,7 @@ import polars as pl
 
 </details>
 
-# Mermaid diagram
+## Mermaid diagram
 
 Rendered in the browser via [`Mermaid`](https://mermaidjs.github.io/).
 
@@ -303,7 +318,7 @@ sequenceDiagram
 
 Check [this page](https://mermaid-js.github.io/mermaid/#/theming) to style diagrams.
 
-# Syntax highlighting
+## Syntax highlighting
 
 Rendered in the browser via [`highlight.js`](https://highlightjs.org/).
 
@@ -335,7 +350,7 @@ q = (
 df = q.collect()
 ```
 
-# Tables
+## Tables
 
 ```markdown
 First Header | Second Header
@@ -351,13 +366,9 @@ Content from cell 1 | Content from cell 2
 Content in the first column | Content in the second column
 $2 \pi r^{2}$ | With inline equation
 
-# Title
+## Titles
 
-Using the `#` to `######` notation.
-
-## Subtitle
-
-Text
+Using the `#` to `######` notation. Above is a subtitle. Below everything else.
 
 ### Section
 
@@ -375,7 +386,7 @@ Text
 
 Text
 
-# Table of Contents
+## Table of Contents
 
 ```markdown
 [TOC]
