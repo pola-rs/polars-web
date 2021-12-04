@@ -20,7 +20,9 @@ render_all_posts(path: str, tmpl_name: str):
 Render each post using the associated template.
 
 Each Markdown file will be converted to HTML; named identically, different
-extension. On the way fills in the `meta` object describing the post.
+extension. Symbolic links will be created between date-coined folders and
+corresponding title-coined ones, allowing posts to be reached according to
+whichever convention. On the way fills in the `meta` object describing the post.
 
 **Parameters:**
 

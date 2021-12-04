@@ -1,6 +1,7 @@
 """Script to render the Polars landing page(s). Limited fanciness included."""
 
 import glob
+import os
 import re
 import sys
 import typing
@@ -47,7 +48,9 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
     """Render each post using the associated template.
 
     Each Markdown file will be converted to HTML; named identically, different
-    extension. On the way fills in the `meta` object describing the post.
+    extension. Symbolic links will be created between date-coined folders and
+    corresponding title-coined ones, allowing posts to be reached according to
+    whichever convention. On the way fills in the `meta` object describing the post.
 
     Parameters
     ----------
@@ -60,13 +63,24 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
     -----
     This is a stateful function!
     """
+    wd: str = os.getcwd()
+
     tmpl: Template = jenv.get_template(tmpl_name)
     when: typing.List[str] = []
+    tags: typing.Dict[str, str] = {}
 
     for p in sorted(glob.glob(f"{path}/**/*.md", recursive=True)):
 
         # dirname
         dirn = "/".join(p.replace(f"{path}/posts/", "").split("/")[:-1])
+        tags["url"] = f"https://www.pola.rs/posts/{dirn}"
+
+        # convert the markdown content
+        md = Markdown(extensions=exts)
+        with open(p) as f:
+            post = md.convert(f.read())
+
+        # NECESSARY
 
         # organize per date of publication
         try:
@@ -76,47 +90,37 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
             date = None
             year = "misc"
 
-        if year not in meta:
-            meta[year] = []
-            if year != "misc":
-                when.append(year)
+        # parse the mandatory front matter
+        try:
+            auth = ", ".join(md.Meta["authors"])
+            titl = " ".join(md.Meta["title"])
+            tldr = " ".join(md.Meta["tldr"])
 
-        # convert the markdown content
-        mdwn = Markdown(extensions=exts)
-        with open(p) as f:
-            post = mdwn.convert(f.read())
+            # date <-> title
+            syml = re.sub(r"\W+", "-", f"{dirn}-{titl}").lower()
+            if date is None:
+                url_post = f"/posts/{dirn}"
+            else:
+                url_post = f"/posts/{syml}"
 
-        title = " ".join(mdwn.Meta["title"])
-        tldr = " ".join(mdwn.Meta["tldr"])
+            tags["desc"] = tldr
+            tags["title"] = titl
+            tags["url"] = f"https://www.pola.rs{url_post}"
 
-        if "thumbnail" in mdwn.Meta:
-            t = mdwn.Meta["thumbnail"][0]
-            thumbnail = t
-            meta_img = t
-            if not thumbnail.startswith("https://"):
-                thumbnail = f"/posts/{dirn}/{t}"
-                meta_img = f"https://www.pola.rs/posts/{dirn}/{t}"
-        else:
-            thumbnail = None
+            listed = True
+        except KeyError:
+            listed = False
 
-        # update the meta tags
-        tags = {
-            "meta_desc": tldr,
-            "meta_title": title,
-            "meta_url": f"https://www.pola.rs/posts/{dirn}",
-        }
+        # OPTIONAL
 
-        if thumbnail is not None:
-            tags["meta_img"] = meta_img
-
-        # parse the extra keys
-        listed = True
+        # parse the config key
         theme = None
-        if "config" in mdwn.Meta:
-            config = " ".join(mdwn.Meta["config"])
+        if "config" in md.Meta:
+            config = " ".join(md.Meta["config"])
 
             if "not-listed" in config:
                 listed = False
+
             if "dark-theme" in config:
                 theme = "dark"
             if "light-theme" in config:
@@ -124,21 +128,41 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
             if "dark-theme" in config and "light-theme" in config:
                 theme = None
 
+        # link to authors' content
+        url_auth = None
+        if "link" in md.Meta:
+            url_auth = md.Meta["link"][0]
+
+        # thumbnail
+        thmb = None
+        if "thumbnail" in md.Meta:
+            thmb = md.Meta["thumbnail"][0]
+            tags["img"] = thmb
+            if not thmb.startswith("https://"):
+                thmb = f"/posts/{dirn}/{thmb}"
+                tags["img"] = f"https://www.pola.rs{thmb}"
+
         # add entry to the meta object
         if listed and p.endswith("index.md"):
+
+            if year not in meta:
+                meta[year] = []
+                if year != "misc":
+                    when.append(year)
+
             meta[year].append(
                 {
-                    "authors": ", ".join(mdwn.Meta["authors"]),
-                    "auth_href": mdwn.Meta.get("link", [""])[0],
+                    "authors": auth,
                     "date": None if date is None else {
                         "y": date.year,
                         "m": datetime.strftime(date, "%b"),
                         "d": date.day,
                     },
-                    "post_href": f"/posts/{dirn}",
-                    "thumbnail": thumbnail,
-                    "title": title,
-                    "tldr": tldr,
+                    "img": thmb,
+                    "url_auth": url_auth,
+                    "url_post": url_post,
+                    "title": titl,
+                    "blurb": tldr,
                 }
             )
 
@@ -146,6 +170,14 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
         newp = re.sub(".md$", ".html", p)
         with open(newp, "w") as f:
             f.write(tmpl.render(post=post, theme=theme, **tags))
+
+        # create soft link
+        # might sound hacky, but quick and simple solution
+        # no broken links either
+        if year != "misc":
+            os.chdir(f"{path}/posts")
+            os.symlink(dirn, syml, target_is_directory=True)
+            os.chdir(wd)
 
         sys.stderr.write(f"{newp}\n")
 
