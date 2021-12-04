@@ -35,8 +35,8 @@ tldr: A quick description of the post that can span multiple lines (note the
 # Polars is breathtaking, the story of my realisation
 ```
 
-The content of the `title` field will be used to redirect to the post itself, and `tldr`
-spiel will be used as "motivational blurb" for readers to get interested. The
+The content of the `title` field will be used to redirect to the post itself, and the 
+`tldr` spiel will be used as "motivational blurb" for readers to get interested. The
 [meta tags](https://metatags.io/) associated with the post are also generated from those
 values.
 
@@ -55,15 +55,16 @@ be accessible for (y)our readers!
       contributed content with white background.~~ One can **force a theme** by adding a
       `dark-theme` or `light-theme` value to the `config` key. Not specifying (or
       providing both) allows toggling between both themes.
-* Thumbnail for the list of post can be provided via the `thumbnail` key. The image is
-  expected to be in the same folder as the post itself, unless starting with `https://`,
-  and its height will be limited to 160 pixels.
+* A thumbnail for the list of post can be provided via the `thumbnail` key. The image is
+  expected to be in the same folder as the post itself, unless starting with `https://`;
+  its height will be limited to 160 pixels.
 
 ```text
 ---
 [...]
 config: dark-theme not-listed
 link: GitHub page, personal blog, random Rick Astley song
+thumbnail: image.png
 ---
 
 # Polars is breathtaking, the story of my realisation
