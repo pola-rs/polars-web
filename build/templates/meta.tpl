@@ -1,11 +1,8 @@
-{% extends "base.tpl" %}
+{%- set meta_title = "Polars, lightning-fast DataFrame library" -%}
+{%- set meta_desc = "Polars is a blazingly fast DataFrames library completely written in Rust, using the Apache Arrow memory model. It exposes bindings for the popular Python and soon JavaScript languages. Polars supports a full lazy execution API allowing query optimization." -%}
+{%- set meta_url = "https://www.pola.rs/" -%}
+{%- set meta_img = "https://raw.githubusercontent.com/pola-rs/polars-static/master/web/splash.png" -%}
 
-{% set meta_title = "Polars, lightning-fast DataFrame library" %}
-{% set meta_desc = "Polars is a blazingly fast DataFrames library completely written in Rust, using the Apache Arrow memory model. It exposes bindings for the popular Python and soon JavaScript languages. Polars supports a full lazy execution API allowing query optimization." %}
-{% set meta_url = "https://www.pola.rs/" %}
-{% set meta_img = "https://raw.githubusercontent.com/pola-rs/polars-static/master/web/splash.png" %}
-
-{% block meta %}
 <meta name="description" content="{{ meta_desc }}" />
 <meta name="title" content="{{ meta_title }}" />
 
@@ -20,4 +17,3 @@
 <meta property="twitter:image" content="{{ meta_img }}" />
 <meta property="twitter:title" content="{{ meta_title }}" />
 <meta property="twitter:url" content="{{ meta_url }}" />
-{% endblock %}
