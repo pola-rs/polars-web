@@ -1,6 +1,5 @@
-**Polars landing page.** Simple `Jinja2` templating. Static as it gets. Run `make serve`
-and read [`http://localhost:8000/posts/guide`](http://localhost:8000/posts/guide) for
-the contribution guide.
+**Polars landing page.** Simple `Jinja2` templating. Static as it gets. Starts with
+`make serve`.
 
 **Want to contribute some content for a post?** And appear on
 [this page](https://www.pola.rs/posts/)? Check our contributing guide
