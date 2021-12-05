@@ -1,8 +1,8 @@
 ---
-title: Contribution guide and sample ground
-tldr: Contribution guide for posts, and Markdown-to-HTML rendering.
 authors: maintainers
 link: https://www.pola.rs/
+title: Contribution guide and sample ground
+summary: Contribution guide for posts, and Markdown-to-HTML rendering.
 ---
 
 # Contribution guide
@@ -28,36 +28,35 @@ author(s), _etc._ Start your `index.md` with:
 ---
 authors: GitHub nickname, full name, supervillain handle we do not judge
 title: My Polars contribution
-tldr: A quick description of the post that can span multiple lines (note the
-      indentation) but cannot include Markdown shenanigans.
+summary: A quick description of the post that can span multiple lines (note the
+         indentation) but cannot include Markdown shenanigans.
 ---
 
 # Polars is breathtaking, the story of my realisation
 ```
 
 The content of the `title` field will be used to redirect to the post itself, and the 
-`tldr` spiel will be used as "motivational blurb" for readers to get interested. The
+`summary` spiel will be used as "motivational blurb" for readers to get interested. The
 [meta tags](https://metatags.io/) associated with the post are also generated from those
 values.
 
-Note that without those information the **blog post will not be listed**, and will not
-be accessible for (y)our readers!
+Note that without those information the **post will not be listed**, and will not be
+accessible for (y)our readers!
 
-### Extra keys
+### Optional
 
-* One can provide a `link` key, value to be associated with the author(s): its value
-  will be the target of the link the `authors` text will be pointing to.
-* The `config` key supports the following:
+* `link`: target of the link the `authors` text will be pointing to.
+* `config`, supporting the following:
     - A post can be removed from the list of posts by adding the `not-listed` keyword to
       the `config` key. Note it will stil be rendered to handle broken links (although
       we like our [easter egg](/game.html)).
     - ~~Decision has been made to keep a **light theme** for all posts to accomodate for
       contributed content with white background.~~ One can **force a theme** by adding a
-      `dark-theme` or `light-theme` value to the `config` key. Not specifying (or
-      providing both) allows toggling between both themes.
-* A thumbnail for the list of post can be provided via the `thumbnail` key. The image is
-  expected to be in the same folder as the post itself, unless starting with `https://`;
-  its height will be limited to 160 pixels.
+      `dark-theme` or `light-theme` value to the `config` key. Not specifying -or
+      providing both- allows toggling between both themes.
+* `image`: a thumbnail for the list of post. The image is expected to be in the same
+  folder as the post itself, unless starting with `https://`; its height will be limited
+  to 160 pixels.
 
 ```text
 ---

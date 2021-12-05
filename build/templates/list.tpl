@@ -11,29 +11,27 @@
     <section class="pl-excerpt">
       <div>
         <div>
-          <a href="{{ item.post_href }}"><h2>{{ item.title }}</h2></a>
+          <a href="{{ item.endpoint }}"><h2>{{ item.title }}</h2></a>
 
           <p>
-          {%- if item.auth_href is defined -%}
-          by <a href="{{ item.auth_href }}">{{ item.authors }}</a>
+          {%- if item.authurl is not none -%}
+          by <a href="{{ item.ur_auth }}">{{ item.authors }}</a>
           {%- else -%}
           by {{ item.authors }}
           {%- endif -%}
           &nbsp;
           {%- if item.date is not none -%}
-          on {{ item.date.m }}. {{ item.date.d }}
+          on {{ item.date.month }}. {{ item.date.day }}
           {%- endif -%}
           </p>
          
-          {% if item.tldr is defined %}
-          <p>{{ item.tldr }}</p>
-          {% endif %}
+          <p>{{ item.blurb }}</p>
     
         </div>
 
-        {% if item.thumbnail is not none %}
+        {% if item.image is not none %}
         <div>
-          <a href="{{ item.post_href }}"><img src="{{ item.thumbnail }}" /></a>
+          <a href="{{ item.endpoint }}"><img src="{{ item.image }}" /></a>
         </div>
         {% endif %}
       </div>
