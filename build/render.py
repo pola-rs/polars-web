@@ -136,7 +136,7 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
     titles: typing.List[str] = []
 
     for p in sorted(glob.glob(f"{path}/**/*.md", recursive=True)):
-        dirname = "/".join(p.replace(f"{path}/posts/", "").split("/")[:-1])
+        dirname = p.replace(f"{path}/posts/", "").rsplit("/", 1)[0]
 
         # fetch date of publication
         date, year = _date(dirname)
@@ -241,15 +241,21 @@ def render_post_list(path: str = "posts/index.html", tmpl_name: str = "list.tpl"
     -----
     This is a stateful function!
     """
-    tmpl = jenv.get_template(tmpl_name)
+    wd: str = os.getcwd()
+
+    template: Template = jenv.get_template(tmpl_name)
 
     with open(path, "w") as f:
-        f.write(tmpl.render(posts=meta))
+        f.write(template.render(posts=meta))
 
     sys.stderr.write(f"{path}\n")
 
 
-def render_game_page(path: str = "game.html", tmpl_name: str = "game.tpl"):
+def render_game_page(
+    path: str = "game.html",
+    html_error_codes: typing.List[int] = [],
+    tmpl_name: str = "game.tpl",
+):
     """Render the little stupid game using the associated template.
 
     Parameters
@@ -264,12 +270,22 @@ def render_game_page(path: str = "game.html", tmpl_name: str = "game.tpl"):
     -----
     This is a stateful function!
     """
-    tmpl = jenv.get_template(tmpl_name)
+    template: Template = jenv.get_template(tmpl_name)
 
     with open(path, "w") as f:
-        f.write(tmpl.render())
+        f.write(template.render())
 
     sys.stderr.write(f"{path}\n")
+
+    # render template for each html error code provided
+    dirname, filename = path.rsplit("/", 1)
+    for error in html_error_codes:
+        path = f"{dirname}/{error}.html"
+
+        with open(path, "w") as f:
+            f.write(template.render(error=error))
+
+        sys.stderr.write(f"{path}\n")
 
 
 def render_home_page(path: str = "index.html", tmpl_name: str = "home.tpl"):
@@ -287,16 +303,16 @@ def render_home_page(path: str = "index.html", tmpl_name: str = "home.tpl"):
     -----
     This is a stateful function!
     """
-    tmpl = jenv.get_template(tmpl_name)
+    template: Template = jenv.get_template(tmpl_name)
 
     with open(path, "w") as f:
-        f.write(tmpl.render(posts=meta))
+        f.write(template.render(posts=meta))
 
     sys.stderr.write(f"{path}\n")
 
 
 if __name__ == "__main__":
     render_all_posts(sys.argv[1])
-    render_game_page(f"{sys.argv[1]}/game.html")
-    render_home_page(f"{sys.argv[1]}/index.html")
     render_post_list(f"{sys.argv[1]}/posts/index.html")
+    render_home_page(f"{sys.argv[1]}/index.html")
+    render_game_page(f"{sys.argv[1]}/game.html", [404])
