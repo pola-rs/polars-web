@@ -51,7 +51,7 @@ def _date(dirname: str) -> typing.Tuple[datetime, str]:
         year = date.year
     except ValueError:
         date = None
-        year = "misc"
+        year = None
 
     return date, year
 
@@ -74,15 +74,15 @@ def _config(value: typing.List[str]) -> typing.Dict[str, str]:
     if value is not None:
 
         # render but skip the listing
-        if "not-listed" in config:
+        if "not-listed" in value:
             listed = False
 
         # force a specific theme
-        if "dark-theme" in config:
+        if "dark-theme" in value:
             theme = "dark"
-        if "light-theme" in config:
+        if "light-theme" in value:
             theme = "light"
-        if "dark-theme" in config and "light-theme" in config:
+        if "dark-theme" in value and "light-theme" in value:
             theme = None
 
     return {"listed": listed, "theme": theme}
@@ -153,19 +153,16 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
             blurb = " ".join(md.Meta["summary"])
 
             # sanitised title
-            if year != "misc":
+            if year is not None:
                 symlink = _symlink(title, titles)
                 titles.append(symlink)
 
             listed = True
-
         except KeyError:
-            symlink = None
-
             listed = False
 
         # endpoint
-        if year == "misc" or symlink is None:
+        if year is None:
             endpoint = f"/posts/{dirname}/"
         else:
             endpoint = f"/posts/{symlink}/"
@@ -182,12 +179,11 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
         metatags["url"] = f"https://www.pola.rs{endpoint}"
 
         # add entry to the meta object
-        if listed*config.pop("listed") and p.endswith("index.md"):
+        if listed*config.pop("listed") and p.endswith("index.md") and year is not None:
 
             if year not in meta:
                 meta[year] = []
-                if year != "misc":
-                    timeline.append(year)
+                timeline.append(year)
 
             meta[year].append(
                 {
@@ -206,14 +202,14 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
             )
 
         # write the new file
-        newp = re.sub(".md$", ".html", p)
+        newp = re.sub(".md$", ".html", p).lower()
         with open(newp, "w") as f:
             f.write(template.render(post=html, **config, **metatags))
 
         # create soft link date <-> title
         # might sound hacky, but quick and simple solution without creating new folders
         # (effectively keeping github repo structure) and move all extra content
-        if year != "misc" and symlink is not None:
+        if year is not None:
             os.chdir(f"{path}/posts")
             os.symlink(dirname, symlink, target_is_directory=True)
             os.chdir(wd)
@@ -221,7 +217,7 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
         sys.stderr.write(f"{newp}\n")
 
     # re-order the posts, most recent first
-    for year in sorted(timeline, reverse=True) + ["misc"]:
+    for year in sorted(timeline, reverse=True):
         l = meta.pop(year)
         meta[year] = l[::-1]
 

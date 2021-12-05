@@ -3,6 +3,7 @@ authors: maintainers
 link: https://www.pola.rs/
 title: Contribution guide and sample ground
 summary: Contribution guide for posts, and Markdown-to-HTML rendering.
+config: not-listed
 ---
 
 # Contribution guide
@@ -72,9 +73,10 @@ thumbnail: image.png
 # Mardown sample ground
 
 The rest of this page stands as an example of supported Markdown-to-HTML processing, and
-the final look and feel. The rendering itself is done via
-[`Python-Markdown`](https://python-markdown.github.io/), with plenty added extensions to
-deal with the fancy stuff (if you need something extra let's discuss it in the PR):
+the final look and feel (better to read it
+[there](https://www.pola.rs/posts/contributing.html) than on GitHub). The rendering
+itself is done via [`Python-Markdown`](https://python-markdown.github.io/), with plenty
+added extensions to deal with the fancy stuff:
 
 * [`DeleteSubExtension`](https://facelessuser.github.io/pymdown-extensions/extensions/tilde/)
   to introduce crossed out and subscript text.
@@ -95,8 +97,9 @@ deal with the fancy stuff (if you need something extra let's discuss it in the P
 * [`TocExtension`](https://python-markdown.github.io/extensions/toc/) to generate the
   table of contents and anchor the titles.
 
-Once generated, some extra rendering is done in the browser -*i.e.*, on the client- via
-a couple `JavaScript` libraries:
+If you need something extra let's discuss it in your PR. Once generated, some further
+rendering is done in the browser -*i.e.*, on the client- via a couple `JavaScript`
+libraries:
 
 * [`highlight.js`](https://highlightjs.org/) for syntax highlighting.
 * [`KaTeX`](https://katex.org/) to render equations written in LaTeX.
