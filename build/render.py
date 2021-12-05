@@ -106,6 +106,14 @@ def _image(value: typing.List[str], root: str) -> str:
 
         return image
 
+def _tables(html: str) -> str:
+    """Wrap tables in `<div>` to allow for `overflow: scroll` on mobile."""
+    return (
+        html
+        .replace("<table>", '<div class="table">\n<table>')
+        .replace("</table>", "</table>\n</div>")
+    )
+
 
 def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
     """Render each post using the associated template.
@@ -145,6 +153,9 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
         md = Markdown(extensions=exts)
         with open(p) as f:
             html = md.convert(f.read())
+
+        # post-processing
+        html = _tables(html)
 
         # parse the mandatory front matter
         try:

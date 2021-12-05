@@ -141,6 +141,10 @@ table tbody tr:nth-child(odd) {
   background-color: var(--background-color-alt);
 }
 
+div.table {
+  overflow-x: scroll;
+}
+
 /* titles */
 
 h1 {
