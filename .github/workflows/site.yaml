@@ -29,5 +29,5 @@ jobs:
       - name: Deploy site
         run: |
           echo "www.pola.rs" > www/CNAME
-          ghp-import --no-jekyll www
+          ghp-import --follow-links --no-jekyll www
           git push -qf https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git gh-pages

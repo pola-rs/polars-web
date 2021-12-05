@@ -56,14 +56,14 @@ def _date(dirname: str) -> typing.Tuple[datetime, str]:
     return date, year
 
 
-def _sanitize(title: str, titles: typing.List[str] = []) -> str:
+def _symlink(title: str, titles: typing.List[str] = []) -> str:
     """Generate the endpoint used for a post from its title."""
-    cleaned = re.sub(r"\W+", "-", title).lower()
+    symlink = re.sub(r"\W+", "-", title).lower()
 
-    if cleaned in titles:
-        cleaned = f"{cleaned}-{urls.count(cleaned) + 1}"
+    if symlink in titles:
+        symlink = f"{symlink}-{urls.count(symlink) + 1}"
 
-    return cleaned
+    return symlink
 
 
 def _config(value: typing.List[str]) -> typing.Dict[str, str]:
@@ -136,10 +136,10 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
     titles: typing.List[str] = []
 
     for p in sorted(glob.glob(f"{path}/**/*.md", recursive=True)):
-        dirn = "/".join(p.replace(f"{path}/posts/", "").split("/")[:-1])
+        dirname = "/".join(p.replace(f"{path}/posts/", "").split("/")[:-1])
 
         # fetch date of publication
-        date, year = _date(dirn)
+        date, year = _date(dirname)
 
         # convert the markdown content
         md = Markdown(extensions=exts)
@@ -154,21 +154,21 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
 
             # sanitised title
             if year != "misc":
-                newdirn = _sanitize(title, titles)
-                titles.append(newdirn)
+                symlink = _symlink(title, titles)
+                titles.append(symlink)
 
             listed = True
 
         except KeyError:
-            newdirn = None
+            symlink = None
 
             listed = False
 
         # endpoint
-        if year == "misc" or newdirn is None:
-            endpoint = f"/posts/{dirn}/"
+        if year == "misc" or symlink is None:
+            endpoint = f"/posts/{dirname}/"
         else:
-            endpoint = f"/posts/{newdirn}/"
+            endpoint = f"/posts/{symlink}/"
 
         # parse the optional front matter
         config = _config(md.Meta.get("config", None))
@@ -205,14 +205,18 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
                 }
             )
 
-        # create endpoint folder if not existing
-        if year != "misc":
-            os.makedirs(f"{path}{endpoint}")
-
         # write the new file
-        newp = re.sub(".md$", ".html", p).replace(dirn, newdirn)
+        newp = re.sub(".md$", ".html", p)
         with open(newp, "w") as f:
             f.write(template.render(post=html, **config, **metatags))
+
+        # create soft link date <-> title
+        # might sound hacky, but quick and simple solution without creating new folders
+        # (effectively keeping github repo structure) and move all extra content
+        if year != "misc" and symlink is not None:
+            os.chdir(f"{path}/posts")
+            os.symlink(dirname, symlink, target_is_directory=True)
+            os.chdir(wd)
 
         sys.stderr.write(f"{newp}\n")
 
