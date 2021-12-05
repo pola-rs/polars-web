@@ -1,5 +1,5 @@
 {%- set default_title = "Polars, lightning-fast DataFrame library" -%}
-{%- set default_blurb = "Polars is a blazingly fast DataFrames library completely written in Rust, using the Apache Arrow memory model. It exposes bindings for the popular Python and soon JavaScript languages. Polars supports a full lazy execution API allowing query optimization." -%}
+{%- set default_blurb = "Polars is a blazingly fast DataFrame library completely written in Rust, using the Apache Arrow memory model. It exposes bindings for the popular Python and soon JavaScript languages. Polars supports a full lazy execution API allowing query optimization." -%}
 {%- set default_url = "https://www.pola.rs/" -%}
 {%- set default_img = "https://raw.githubusercontent.com/pola-rs/polars-static/master/web/splash.png" -%}
 

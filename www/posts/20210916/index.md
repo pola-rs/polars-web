@@ -1,11 +1,11 @@
 ---
-title: Talk @ Bristech Bytesize Conference
-tldr: Bristech Bytesize #17: Polars, the fastest DataFrame library you never heard of...
-      Panel with Joris van den Bossche (software engineer at Voltron Data) & Jorge C.
-      Leitão (co-founder and data scientist at Munin Data).
 authors: ritchie46
 link: https://github.com/ritchie46
-thumbnail: bristech.png
+title: Talk @ Bristech Bytesize Conference
+summary: Bristech Bytesize #17: Polars, the fastest DataFrame library you never heard
+         of... Panel with Joris van den Bossche (software engineer at Voltron Data) &
+         Jorge C. Leitão (co-founder and data scientist at Munin Data).
+image: bristech.png
 ---
 
 # Polars DataFrame library built on Apache Arrow

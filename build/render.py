@@ -41,7 +41,70 @@ jenv: Environment = Environment(
     loader=FileSystemLoader("templates" if len(sys.argv) < 3 else sys.argv[2])
 )
 
-meta: typing.Dict[typing.Union[int, str], typing.List[typing.Dict[str, str]]] = {}
+meta: typing.Dict[typing.Union[int, str], typing.List[typing.Any]] = {}
+
+
+def _date(dirname: str) -> typing.Tuple[datetime, str]:
+    """Fetch publication date from dirname."""
+    try:
+        date = datetime.strptime(dirname.split("/")[0], "%Y%m%d")
+        year = date.year
+    except ValueError:
+        date = None
+        year = "misc"
+
+    return date, year
+
+
+def _symlink(title: str, titles: typing.List[str] = []) -> str:
+    """Generate the endpoint used for a post from its title."""
+    symlink = re.sub(r"\W+", "-", title).lower()
+
+    if symlink in titles:
+        symlink = f"{symlink}-{urls.count(symlink) + 1}"
+
+    return symlink
+
+
+def _config(value: typing.List[str]) -> typing.Dict[str, str]:
+    """Parse the content of the config key, if provided. To be extended to more keys."""
+    listed = True
+    theme = None
+
+    if value is not None:
+
+        # render but skip the listing
+        if "not-listed" in config:
+            listed = False
+
+        # force a specific theme
+        if "dark-theme" in config:
+            theme = "dark"
+        if "light-theme" in config:
+            theme = "light"
+        if "dark-theme" in config and "light-theme" in config:
+            theme = None
+
+    return {"listed": listed, "theme": theme}
+
+
+def _link(value: typing.List[str]) -> str:
+    """Process the link provided for the author(s)."""
+    if value is not None:
+        return value[0]
+
+
+def _image(value: typing.List[str], root: str) -> str:
+    """Process the thumbnail image."""
+    root = root.rstrip("/")
+
+    if value is not None:
+        image = value[0]
+
+        if not image.startswith("https://"):
+            image = f"{root}/{image}"
+
+        return image
 
 
 def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
@@ -50,7 +113,9 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
     Each Markdown file will be converted to HTML; named identically, different
     extension. Symbolic links will be created between date-coined folders and
     corresponding title-coined ones, allowing posts to be reached according to
-    whichever convention. On the way fills in the `meta` object describing the post.
+    whichever convention.
+
+    On the way fills in the `meta` object describing the post.
 
     Parameters
     ----------
@@ -65,124 +130,97 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
     """
     wd: str = os.getcwd()
 
-    tmpl: Template = jenv.get_template(tmpl_name)
-    when: typing.List[str] = []
-    tags: typing.Dict[str, str] = {}
+    template: Template = jenv.get_template(tmpl_name)
+    timeline: typing.List[str] = []
+    metatags: typing.Dict[str, str] = {}
+    titles: typing.List[str] = []
 
     for p in sorted(glob.glob(f"{path}/**/*.md", recursive=True)):
+        dirname = "/".join(p.replace(f"{path}/posts/", "").split("/")[:-1])
 
-        # dirname
-        dirn = "/".join(p.replace(f"{path}/posts/", "").split("/")[:-1])
-        tags["url"] = f"https://www.pola.rs/posts/{dirn}"
+        # fetch date of publication
+        date, year = _date(dirname)
 
         # convert the markdown content
         md = Markdown(extensions=exts)
         with open(p) as f:
-            post = md.convert(f.read())
-
-        # NECESSARY
-
-        # organize per date of publication
-        try:
-            date = datetime.strptime(dirn.split("/")[0], "%Y%m%d")
-            year = date.year
-        except ValueError:
-            date = None
-            year = "misc"
+            html = md.convert(f.read())
 
         # parse the mandatory front matter
         try:
-            auth = ", ".join(md.Meta["authors"])
-            titl = " ".join(md.Meta["title"])
-            tldr = " ".join(md.Meta["tldr"])
+            auths = ", ".join(md.Meta["authors"])
+            title = " ".join(md.Meta["title"])
+            blurb = " ".join(md.Meta["summary"])
 
-            # date <-> title
-            syml = re.sub(r"\W+", "-", f"{dirn}-{titl}").lower()
-            if date is None:
-                url_post = f"/posts/{dirn}"
-            else:
-                url_post = f"/posts/{syml}"
-
-            tags["desc"] = tldr
-            tags["title"] = titl
-            tags["url"] = f"https://www.pola.rs{url_post}"
+            # sanitised title
+            symlink = _symlink(title, titles)
+            titles.append(symlink)
 
             listed = True
+
         except KeyError:
+            symlink = None
+
             listed = False
 
-        # OPTIONAL
+        # endpoint
+        if year == "misc" or symlink is None:
+            endpoint = f"/posts/{dirname}/"
+        else:
+            endpoint = f"/posts/{symlink}/"
 
-        # parse the config key
-        theme = None
-        if "config" in md.Meta:
-            config = " ".join(md.Meta["config"])
+        # parse the optional front matter
+        config = _config(md.Meta.get("config", None))
+        authurl = _link(md.Meta.get("link", None))
+        image = _image(md.Meta.get("image", None), endpoint)
 
-            if "not-listed" in config:
-                listed = False
-
-            if "dark-theme" in config:
-                theme = "dark"
-            if "light-theme" in config:
-                theme = "light"
-            if "dark-theme" in config and "light-theme" in config:
-                theme = None
-
-        # link to authors' content
-        url_auth = None
-        if "link" in md.Meta:
-            url_auth = md.Meta["link"][0]
-
-        # thumbnail
-        thmb = None
-        if "thumbnail" in md.Meta:
-            thmb = md.Meta["thumbnail"][0]
-            tags["img"] = thmb
-            if not thmb.startswith("https://"):
-                thmb = f"/posts/{dirn}/{thmb}"
-                tags["img"] = f"https://www.pola.rs{thmb}"
+        # update meta tags
+        metatags["title"] = title
+        metatags["blurb"] = blurb
+        metatags["img"] = None if image is None else f"https://www.pola.rs{image}"
+        metatags["url"] = f"https://www.pola.rs{endpoint}"
 
         # add entry to the meta object
-        if listed and p.endswith("index.md"):
+        if listed*config.pop("listed") and p.endswith("index.md"):
 
             if year not in meta:
                 meta[year] = []
                 if year != "misc":
-                    when.append(year)
+                    timeline.append(year)
 
             meta[year].append(
                 {
-                    "authors": auth,
+                    "authors": auths,
+                    "authurl": authurl,
+                    "blurb": blurb,
                     "date": None if date is None else {
-                        "y": date.year,
-                        "m": datetime.strftime(date, "%b"),
-                        "d": date.day,
+                        "year": date.year,
+                        "month": datetime.strftime(date, "%b"),
+                        "day": date.day,
                     },
-                    "img": thmb,
-                    "url_auth": url_auth,
-                    "url_post": url_post,
-                    "title": titl,
-                    "blurb": tldr,
+                    "endpoint": endpoint,
+                    "image": image,
+                    "title": title,
                 }
             )
 
         # write the new file
         newp = re.sub(".md$", ".html", p)
         with open(newp, "w") as f:
-            f.write(tmpl.render(post=post, theme=theme, **tags))
+            f.write(template.render(post=html, **config, **metatags))
 
-        # create soft link
-        # might sound hacky, but quick and simple solution
-        # no broken links either
+        # create soft link date <-> title
+        # might sound hacky, but quick and simple solution without creating new folders
+        # (effectively keeping github repo structure), and no broken links
         if year != "misc":
             os.chdir(f"{path}/posts")
-            os.symlink(dirn, syml, target_is_directory=True)
+            os.symlink(dirname, symlink, target_is_directory=True)
             os.chdir(wd)
 
         sys.stderr.write(f"{newp}\n")
 
     # re-order the posts, most recent first
-    for year in sorted(when, reverse=True) + ["misc"]:
+    for year in sorted(timeline, reverse=True) + ["misc"]:
         l = meta.pop(year)
         meta[year] = l[::-1]
 
