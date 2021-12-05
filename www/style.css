@@ -221,6 +221,8 @@ main article h1:first-child {
 main article iframe {
   display: block;
   margin: 0 auto;
+  max-width: 560px;
+  width: 100%;
 }
 
 main article .pl-year {
