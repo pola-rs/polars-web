@@ -38,7 +38,7 @@
      id="defs4">
     <style
        type="text/css"
-       id="style2">@import url(https://fonts.googleapis.com/css?family=ubuntu);
+       id="style2">
 </style>
   </defs>
   <g
@@ -53,10 +53,10 @@
        pointer-events="all"
        id="rect6" />
     <text
-       x="219.5"
-       y="57.5"
+       x="219.89453"
+       y="64.374023"
        id="text8"
-       style="font-size:12px;font-family:ubuntu;text-anchor:middle;fill:#000000">1111111111111111111111...1111111111111111</text>
+       style="font-size:12px;font-family:sans-serif;text-anchor:middle;fill:#000000">11111111111111111...1111111111111111</text>
     <rect
        x="0"
        y="40"
@@ -70,7 +70,7 @@
        id="rect12" />
     <switch
        id="switch16"
-       transform="translate(-0.5,-0.5)">
+       transform="translate(-0.10253906,0.36816406)">
       <foreignObject
          style="overflow: visible; text-align: left;"
          pointer-events="none"
@@ -106,10 +106,10 @@
        pointer-events="all"
        id="rect20" />
     <text
-       x="219.5"
-       y="97.5"
+       x="219.73926"
+       y="104.36816"
        id="text22"
-       style="font-size:12px;font-family:ubuntu;text-anchor:middle;fill:#000000">1111111111111111111111...1111111111111110</text>
+       style="font-size:12px;font-family:sans-serif;text-anchor:middle;fill:#000000">11111111111111111...1111111111111110</text>
     <rect
        x="0"
        y="80"
@@ -123,7 +123,7 @@
        id="rect26" />
     <switch
        id="switch30"
-       transform="translate(-0.5,-0.5)">
+       transform="translate(-0.04101562,0.36816406)">
       <foreignObject
          style="overflow: visible; text-align: left;"
          pointer-events="none"
@@ -136,6 +136,7 @@
              style="box-sizing: border-box; font-size: 0; text-align: center; ">
             <xhtml:div
                style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">2<xhtml:sup>64</xhtml:sup>
+
 
  - 2<xhtml:sup>0</xhtml:sup>
 </xhtml:div>
@@ -161,10 +162,10 @@
        pointer-events="all"
        id="rect34" />
     <text
-       x="219.5"
-       y="137.5"
+       x="219.73926"
+       y="144.36816"
        id="text36"
-       style="font-size:12px;font-family:ubuntu;text-anchor:middle;fill:#000000">1111111111111111111111...1111111111111100</text>
+       style="font-size:12px;font-family:sans-serif;text-anchor:middle;fill:#000000">11111111111111111...1111111111111100</text>
     <rect
        x="0"
        y="120"
@@ -178,7 +179,7 @@
        id="rect40" />
     <switch
        id="switch44"
-       transform="translate(-0.5,-0.5)">
+       transform="translate(0.11425781,0.36816406)">
       <foreignObject
          style="overflow: visible; text-align: left;"
          pointer-events="none"
@@ -191,6 +192,7 @@
              style="box-sizing: border-box; font-size: 0; text-align: center; ">
             <xhtml:div
                style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">2<xhtml:sup>64</xhtml:sup>
+
 
  - 2<xhtml:sup>1</xhtml:sup>
 </xhtml:div>
@@ -216,10 +218,10 @@
        pointer-events="all"
        id="rect48" />
     <text
-       x="219.5"
-       y="177.5"
+       x="219.73926"
+       y="184.36816"
        id="text50"
-       style="font-size:12px;font-family:ubuntu;text-anchor:middle;fill:#000000">1111111111111111111111...1111111111111000</text>
+       style="font-size:12px;font-family:sans-serif;text-anchor:middle;fill:#000000">11111111111111111...1111111111111000</text>
     <rect
        x="0"
        y="160"
@@ -233,7 +235,7 @@
        id="rect54" />
     <switch
        id="switch58"
-       transform="translate(-0.5,-0.5)">
+       transform="translate(0.16113281,0.36816406)">
       <foreignObject
          style="overflow: visible; text-align: left;"
          pointer-events="none"
@@ -246,6 +248,7 @@
              style="box-sizing: border-box; font-size: 0; text-align: center; ">
             <xhtml:div
                style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">2<xhtml:sup>64</xhtml:sup>
+
 
  - 2<xhtml:sup>2</xhtml:sup>
 </xhtml:div>
@@ -271,10 +274,10 @@
        pointer-events="all"
        id="rect62" />
     <text
-       x="219.5"
-       y="257.5"
+       x="220.00293"
+       y="264.36816"
        id="text64"
-       style="font-size:12px;font-family:ubuntu;text-anchor:middle;fill:#000000">0000000000000000000000...0000000000000000</text>
+       style="font-size:12px;font-family:sans-serif;text-anchor:middle;fill:#000000">00000000000000000...0000000000000000</text>
     <rect
        x="0"
        y="240"
@@ -288,7 +291,7 @@
        id="rect68" />
     <switch
        id="switch72"
-       transform="translate(-0.5,-0.5)">
+       transform="translate(-0.10253906,0.36816406)">
       <foreignObject
          style="overflow: visible; text-align: left;"
          pointer-events="none"
@@ -301,6 +304,7 @@
              style="box-sizing: border-box; font-size: 0; text-align: center; ">
             <xhtml:div
                style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">2<xhtml:sup>64</xhtml:sup>
+
 
  - 2<xhtml:sup>64</xhtml:sup>
 </xhtml:div>
@@ -326,10 +330,10 @@
        pointer-events="all"
        id="rect76" />
     <text
-       x="219.5"
-       y="220.64799"
+       x="220.00586"
+       y="220.74414"
        id="text78"
-       style="font-size:12px;font-family:ubuntu;text-anchor:middle;fill:#000000">...</text>
+       style="font-size:12px;font-family:sans-serif;text-anchor:middle;fill:#000000">...</text>
     <rect
        x="0"
        y="200"
@@ -343,7 +347,7 @@
        id="rect82" />
     <switch
        id="switch86"
-       transform="translate(-0.5,-3.352)">
+       transform="translate(0.00585938,-3.2558594)">
       <foreignObject
          style="overflow: visible; text-align: left;"
          pointer-events="none"
@@ -403,7 +407,7 @@
        id="rect122" />
     <switch
        id="switch126"
-       transform="translate(-0.5,-3.352)">
+       transform="translate(0.00585938,-3.2558594)">
       <foreignObject
          style="overflow: visible; text-align: left;"
          pointer-events="none"
@@ -441,7 +445,7 @@
        id="rect130" />
     <switch
        id="switch134"
-       transform="translate(-0.5,-0.5)">
+       transform="translate(0.17578125,-0.68945312)">
       <foreignObject
          style="overflow: visible; text-align: left;"
          pointer-events="none"
@@ -492,7 +496,7 @@
        style="stroke-width:1.00251" />
     <switch
        id="switch94"
-       transform="translate(-0.5,-0.5)">
+       transform="translate(0.23730469,-0.68945312)">
       <foreignObject
          style="overflow: visible; text-align: left;"
          pointer-events="none"
@@ -519,7 +523,7 @@
     </switch>
     <switch
        id="switch102"
-       transform="translate(-0.5,-0.5)">
+       transform="translate(0.39257813,-0.68945312)">
       <foreignObject
          style="overflow: visible; text-align: left;"
          pointer-events="none"
@@ -546,7 +550,7 @@
     </switch>
     <switch
        id="switch110"
-       transform="translate(-0.5,-0.5)">
+       transform="translate(0.43945313,-0.68945312)">
       <foreignObject
          style="overflow: visible; text-align: left;"
          pointer-events="none"
@@ -573,7 +577,7 @@
     </switch>
     <switch
        id="switch118"
-       transform="translate(-0.5,-0.5)">
+       transform="translate(0.31933594,-0.68945312)">
       <foreignObject
          style="overflow: visible; text-align: left;"
          pointer-events="none"
@@ -612,7 +616,7 @@
        style="stroke:#666666;stroke-opacity:0.98406291" />
     <switch
        id="switch142"
-       transform="translate(-0.5,-0.5)">
+       transform="translate(-0.17285156,0.36816406)">
       <foreignObject
          style="overflow: visible; text-align: left;"
          pointer-events="none"
@@ -651,7 +655,7 @@
        style="stroke:#666666;stroke-opacity:0.98406291" />
     <switch
        id="switch150"
-       transform="translate(-0.5,-0.5)">
+       transform="translate(-0.36621094,-0.68945312)">
       <foreignObject
          style="overflow: visible; text-align: left;"
          pointer-events="none"
@@ -690,7 +694,7 @@
        style="stroke:#666666;stroke-opacity:0.98406291" />
     <switch
        id="switch158"
-       transform="translate(-0.5,-0.5)">
+       transform="translate(-0.05566406,-0.68945312)">
       <foreignObject
          style="overflow: visible; text-align: left;"
          pointer-events="none"
