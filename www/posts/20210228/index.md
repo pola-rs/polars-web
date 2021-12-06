@@ -206,7 +206,7 @@ This is for instance the case if we do an aggregation on the columns in a DataFr
 All columns can be aggregated on in parallel.
 Another embarrassingly parallel algorithm in Polars in the apply phase in a groupby operation.
 
-![Embarrassingly parallel apply phase](split-parllel-apply-combine.svg)
+![Embarrassingly parallel apply phase](split-parallel-apply-combine.svg)
 
 ### Parallel hashing
 

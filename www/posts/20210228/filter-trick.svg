@@ -24,9 +24,9 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      showgrid="false"
-     inkscape:zoom="1.2477718"
-     inkscape:cx="159.885"
-     inkscape:cy="140.65071"
+     inkscape:zoom="1.7646158"
+     inkscape:cx="271.73054"
+     inkscape:cy="76.787253"
      inkscape:window-width="1920"
      inkscape:window-height="972"
      inkscape:window-x="0"
@@ -82,7 +82,7 @@
           <xhtml:div
              style="box-sizing: border-box; font-size: 0; text-align: center; ">
             <xhtml:div
-               style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">2<xhtml:sup>64</xhtml:sup>
+               style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">2<xhtml:sup>64</xhtml:sup>
 </xhtml:div>
           </xhtml:div>
         </xhtml:div>
@@ -91,7 +91,7 @@
          x="40"
          y="64"
          fill="#000000"
-         font-family="ubuntu"
+         font-family="sans-serif"
          font-size="12px"
          text-anchor="middle"
          id="text14">264</text>
@@ -135,7 +135,8 @@
           <xhtml:div
              style="box-sizing: border-box; font-size: 0; text-align: center; ">
             <xhtml:div
-               style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">2<xhtml:sup>64</xhtml:sup>
+               style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">2<xhtml:sup>64</xhtml:sup>
+
  - 2<xhtml:sup>0</xhtml:sup>
 </xhtml:div>
           </xhtml:div>
@@ -145,7 +146,7 @@
          x="40"
          y="104"
          fill="#000000"
-         font-family="ubuntu"
+         font-family="sans-serif"
          font-size="12px"
          text-anchor="middle"
          id="text28">264 - 20</text>
@@ -189,7 +190,8 @@
           <xhtml:div
              style="box-sizing: border-box; font-size: 0; text-align: center; ">
             <xhtml:div
-               style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">2<xhtml:sup>64</xhtml:sup>
+               style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">2<xhtml:sup>64</xhtml:sup>
+
  - 2<xhtml:sup>1</xhtml:sup>
 </xhtml:div>
           </xhtml:div>
@@ -199,7 +201,7 @@
          x="40"
          y="144"
          fill="#000000"
-         font-family="ubuntu"
+         font-family="sans-serif"
          font-size="12px"
          text-anchor="middle"
          id="text42">264 - 21</text>
@@ -243,7 +245,8 @@
           <xhtml:div
              style="box-sizing: border-box; font-size: 0; text-align: center; ">
             <xhtml:div
-               style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">2<xhtml:sup>64</xhtml:sup>
+               style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">2<xhtml:sup>64</xhtml:sup>
+
  - 2<xhtml:sup>2</xhtml:sup>
 </xhtml:div>
           </xhtml:div>
@@ -253,7 +256,7 @@
          x="40"
          y="184"
          fill="#000000"
-         font-family="ubuntu"
+         font-family="sans-serif"
          font-size="12px"
          text-anchor="middle"
          id="text56">264 - 22</text>
@@ -297,7 +300,8 @@
           <xhtml:div
              style="box-sizing: border-box; font-size: 0; text-align: center; ">
             <xhtml:div
-               style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">2<xhtml:sup>64</xhtml:sup>
+               style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">2<xhtml:sup>64</xhtml:sup>
+
  - 2<xhtml:sup>64</xhtml:sup>
 </xhtml:div>
           </xhtml:div>
@@ -307,7 +311,7 @@
          x="40"
          y="264"
          fill="#000000"
-         font-family="ubuntu"
+         font-family="sans-serif"
          font-size="12px"
          text-anchor="middle"
          id="text70">264 - 264</text>
@@ -351,7 +355,7 @@
           <xhtml:div
              style="box-sizing: border-box; font-size: 0; text-align: center; ">
             <xhtml:div
-               style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">...</xhtml:div>
+               style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">...</xhtml:div>
           </xhtml:div>
         </xhtml:div>
       </foreignObject>
@@ -359,48 +363,10 @@
          x="40"
          y="224"
          fill="#000000"
-         font-family="ubuntu"
+         font-family="sans-serif"
          font-size="12px"
          text-anchor="middle"
          id="text84">...</text>
-    </switch>
-    <rect
-       x="361"
-       y="40"
-       width="199"
-       height="40"
-       fill-opacity="0.6"
-       fill="#fff2cc"
-       stroke="#d6b656"
-       stroke-opacity="0.6"
-       pointer-events="all"
-       id="rect90" />
-    <switch
-       id="switch94"
-       transform="translate(-0.5,-0.5)">
-      <foreignObject
-         style="overflow: visible; text-align: left;"
-         pointer-events="none"
-         width="100%"
-         height="100%"
-         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-        <xhtml:div
-           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 197px; height: 1px; padding-top: 60px; margin-left: 362px;">
-          <xhtml:div
-             style="box-sizing: border-box; font-size: 0; text-align: center; ">
-            <xhtml:div
-               style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">take first 64 values; skip 0</xhtml:div>
-          </xhtml:div>
-        </xhtml:div>
-      </foreignObject>
-      <text
-         x="460"
-         y="64"
-         fill="#000000"
-         font-family="ubuntu"
-         font-size="12px"
-         text-anchor="middle"
-         id="text92">take first 64 values; skip 0</text>
     </switch>
     <rect
        x="360"
@@ -413,33 +379,6 @@
        stroke-opacity="0.6"
        pointer-events="all"
        id="rect98" />
-    <switch
-       id="switch102"
-       transform="translate(-0.5,-0.5)">
-      <foreignObject
-         style="overflow: visible; text-align: left;"
-         pointer-events="none"
-         width="100%"
-         height="100%"
-         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-        <xhtml:div
-           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 100px; margin-left: 361px;">
-          <xhtml:div
-             style="box-sizing: border-box; font-size: 0; text-align: center; ">
-            <xhtml:div
-               style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">take first 63 values; skip 1</xhtml:div>
-          </xhtml:div>
-        </xhtml:div>
-      </foreignObject>
-      <text
-         x="460"
-         y="104"
-         fill="#000000"
-         font-family="ubuntu"
-         font-size="12px"
-         text-anchor="middle"
-         id="text100">take first 63 values; skip 1</text>
-    </switch>
     <rect
        x="360"
        y="120"
@@ -451,71 +390,6 @@
        stroke-opacity="0.6"
        pointer-events="all"
        id="rect106" />
-    <switch
-       id="switch110"
-       transform="translate(-0.5,-0.5)">
-      <foreignObject
-         style="overflow: visible; text-align: left;"
-         pointer-events="none"
-         width="100%"
-         height="100%"
-         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-        <xhtml:div
-           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 140px; margin-left: 361px;">
-          <xhtml:div
-             style="box-sizing: border-box; font-size: 0; text-align: center; ">
-            <xhtml:div
-               style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">take first 63 values; skip 2</xhtml:div>
-          </xhtml:div>
-        </xhtml:div>
-      </foreignObject>
-      <text
-         x="460"
-         y="144"
-         fill="#000000"
-         font-family="ubuntu"
-         font-size="12px"
-         text-anchor="middle"
-         id="text108">take first 63 values; skip 2</text>
-    </switch>
-    <rect
-       x="361"
-       y="160"
-       width="199"
-       height="40"
-       fill-opacity="0.6"
-       fill="#fff2cc"
-       stroke="#d6b656"
-       stroke-opacity="0.6"
-       pointer-events="all"
-       id="rect114" />
-    <switch
-       id="switch118"
-       transform="translate(-0.5,-0.5)">
-      <foreignObject
-         style="overflow: visible; text-align: left;"
-         pointer-events="none"
-         width="100%"
-         height="100%"
-         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-        <xhtml:div
-           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 197px; height: 1px; padding-top: 180px; margin-left: 362px;">
-          <xhtml:div
-             style="box-sizing: border-box; font-size: 0; text-align: center; ">
-            <xhtml:div
-               style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">take first 63 values; skip 3</xhtml:div>
-          </xhtml:div>
-        </xhtml:div>
-      </foreignObject>
-      <text
-         x="460"
-         y="184"
-         fill="#000000"
-         font-family="ubuntu"
-         font-size="12px"
-         text-anchor="middle"
-         id="text116">take first 63 values; skip 3</text>
-    </switch>
     <rect
        x="360"
        y="200"
@@ -541,7 +415,7 @@
           <xhtml:div
              style="box-sizing: border-box; font-size: 0; text-align: center; ">
             <xhtml:div
-               style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">...</xhtml:div>
+               style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">...</xhtml:div>
           </xhtml:div>
         </xhtml:div>
       </foreignObject>
@@ -549,7 +423,7 @@
          x="460"
          y="224"
          fill="#000000"
-         font-family="ubuntu"
+         font-family="sans-serif"
          font-size="12px"
          text-anchor="middle"
          id="text124">...</text>
@@ -579,7 +453,7 @@
           <xhtml:div
              style="box-sizing: border-box; font-size: 0; text-align: center; ">
             <xhtml:div
-               style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">take first 0 values; skip 64</xhtml:div>
+               style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">take first 0 values; skip 64</xhtml:div>
           </xhtml:div>
         </xhtml:div>
       </foreignObject>
@@ -587,10 +461,142 @@
          x="460"
          y="264"
          fill="#000000"
-         font-family="ubuntu"
+         font-family="sans-serif"
          font-size="12px"
          text-anchor="middle"
          id="text132">take first 0 values; skip 64</text>
+    </switch>
+    <rect
+       x="360"
+       y="40"
+       width="200"
+       height="40"
+       fill-opacity="0.6"
+       fill="#fff2cc"
+       stroke="#d6b656"
+       stroke-opacity="0.6"
+       pointer-events="all"
+       id="rect90"
+       style="stroke-width:1.00251" />
+    <rect
+       x="360"
+       y="160"
+       width="200"
+       height="40"
+       fill-opacity="0.6"
+       fill="#fff2cc"
+       stroke="#d6b656"
+       stroke-opacity="0.6"
+       pointer-events="all"
+       id="rect114"
+       style="stroke-width:1.00251" />
+    <switch
+       id="switch94"
+       transform="translate(-0.5,-0.5)">
+      <foreignObject
+         style="overflow: visible; text-align: left;"
+         pointer-events="none"
+         width="100%"
+         height="100%"
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+        <xhtml:div
+           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 197px; height: 1px; padding-top: 60px; margin-left: 362px;">
+          <xhtml:div
+             style="box-sizing: border-box; font-size: 0; text-align: center; ">
+            <xhtml:div
+               style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">take first 64 values; skip 0</xhtml:div>
+          </xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         x="460"
+         y="64"
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="12px"
+         text-anchor="middle"
+         id="text92">take first 64 values; skip 0</text>
+    </switch>
+    <switch
+       id="switch102"
+       transform="translate(-0.5,-0.5)">
+      <foreignObject
+         style="overflow: visible; text-align: left;"
+         pointer-events="none"
+         width="100%"
+         height="100%"
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+        <xhtml:div
+           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 100px; margin-left: 361px;">
+          <xhtml:div
+             style="box-sizing: border-box; font-size: 0; text-align: center; ">
+            <xhtml:div
+               style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">take first 63 values; skip 1</xhtml:div>
+          </xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         x="460"
+         y="104"
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="12px"
+         text-anchor="middle"
+         id="text100">take first 63 values; skip 1</text>
+    </switch>
+    <switch
+       id="switch110"
+       transform="translate(-0.5,-0.5)">
+      <foreignObject
+         style="overflow: visible; text-align: left;"
+         pointer-events="none"
+         width="100%"
+         height="100%"
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+        <xhtml:div
+           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 140px; margin-left: 361px;">
+          <xhtml:div
+             style="box-sizing: border-box; font-size: 0; text-align: center; ">
+            <xhtml:div
+               style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">take first 63 values; skip 2</xhtml:div>
+          </xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         x="460"
+         y="144"
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="12px"
+         text-anchor="middle"
+         id="text108">take first 63 values; skip 2</text>
+    </switch>
+    <switch
+       id="switch118"
+       transform="translate(-0.5,-0.5)">
+      <foreignObject
+         style="overflow: visible; text-align: left;"
+         pointer-events="none"
+         width="100%"
+         height="100%"
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+        <xhtml:div
+           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 197px; height: 1px; padding-top: 180px; margin-left: 362px;">
+          <xhtml:div
+             style="box-sizing: border-box; font-size: 0; text-align: center; ">
+            <xhtml:div
+               style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">take first 63 values; skip 3</xhtml:div>
+          </xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         x="460"
+         y="184"
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="12px"
+         text-anchor="middle"
+         id="text116">take first 63 values; skip 3</text>
     </switch>
     <rect
        x="0"
@@ -602,7 +608,8 @@
        stroke="#666666"
        stroke-opacity="0.6"
        pointer-events="all"
-       id="rect138" />
+       id="rect138"
+       style="stroke:#666666;stroke-opacity:0.98406291" />
     <switch
        id="switch142"
        transform="translate(-0.5,-0.5)">
@@ -617,7 +624,7 @@
           <xhtml:div
              style="box-sizing: border-box; font-size: 0; text-align: center; ">
             <xhtml:div
-               style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #333333; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">u64</xhtml:div>
+               style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #333333; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">u64</xhtml:div>
           </xhtml:div>
         </xhtml:div>
       </foreignObject>
@@ -625,7 +632,7 @@
          x="40"
          y="24"
          fill="#333333"
-         font-family="ubuntu"
+         font-family="sans-serif"
          font-size="12px"
          text-anchor="middle"
          id="text140">u64</text>
@@ -640,7 +647,8 @@
        stroke="#666666"
        stroke-opacity="0.6"
        pointer-events="all"
-       id="rect146" />
+       id="rect146"
+       style="stroke:#666666;stroke-opacity:0.98406291" />
     <switch
        id="switch150"
        transform="translate(-0.5,-0.5)">
@@ -655,7 +663,7 @@
           <xhtml:div
              style="box-sizing: border-box; font-size: 0; text-align: center; ">
             <xhtml:div
-               style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #333333; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">binary</xhtml:div>
+               style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #333333; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">binary</xhtml:div>
           </xhtml:div>
         </xhtml:div>
       </foreignObject>
@@ -663,7 +671,7 @@
          x="220"
          y="24"
          fill="#333333"
-         font-family="ubuntu"
+         font-family="sans-serif"
          font-size="12px"
          text-anchor="middle"
          id="text148">binary</text>
@@ -678,7 +686,8 @@
        stroke="#666666"
        stroke-opacity="0.6"
        pointer-events="all"
-       id="rect154" />
+       id="rect154"
+       style="stroke:#666666;stroke-opacity:0.98406291" />
     <switch
        id="switch158"
        transform="translate(-0.5,-0.5)">
@@ -693,7 +702,7 @@
           <xhtml:div
              style="box-sizing: border-box; font-size: 0; text-align: center; ">
             <xhtml:div
-               style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #333333; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">interpretation</xhtml:div>
+               style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #333333; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">interpretation</xhtml:div>
           </xhtml:div>
         </xhtml:div>
       </foreignObject>
@@ -701,7 +710,7 @@
          x="460"
          y="24"
          fill="#333333"
-         font-family="ubuntu"
+         font-family="sans-serif"
          font-size="12px"
          text-anchor="middle"
          id="text156">interpretation</text>
