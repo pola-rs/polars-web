@@ -186,8 +186,15 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
         # update meta tags
         metatags["title"] = title
         metatags["blurb"] = blurb
-        metatags["img"] = None if image is None else f"https://www.pola.rs{image}"
         metatags["url"] = f"https://www.pola.rs{endpoint}"
+
+        if image is None:
+            metatags["img"] = None
+        else:
+            if image.startswith("https://"):
+                metatags["img"] = image
+            else:
+                metatags["img"] = f"https://www.pola.rs{image}"
 
         # add entry to the meta object
         if listed*config.pop("listed") and p.endswith("index.md") and year is not None:

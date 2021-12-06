@@ -75,7 +75,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">thread 1</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">thread 1</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -116,7 +116,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">thread 0</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">thread 0</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -157,7 +157,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">x</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">x</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -165,7 +165,7 @@
              x="20"
              y="34"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text24">x</text>
@@ -198,7 +198,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">y</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">y</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -206,7 +206,7 @@
              x="60"
              y="34"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text32">y</text>
@@ -239,7 +239,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">1</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">1</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -247,7 +247,7 @@
              x="60"
              y="74"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text40">1</text>
@@ -280,7 +280,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">2</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">2</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -288,7 +288,7 @@
              x="60"
              y="114"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text48">2</text>
@@ -321,7 +321,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">3</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">3</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -329,7 +329,7 @@
              x="60"
              y="154"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text56">3</text>
@@ -362,7 +362,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">5</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">5</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -370,7 +370,7 @@
              x="60"
              y="234"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text64">5</text>
@@ -403,7 +403,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">4</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">4</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -411,7 +411,7 @@
              x="60"
              y="194"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text72">4</text>
@@ -444,7 +444,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">6</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">6</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -452,7 +452,7 @@
              x="60"
              y="274"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text80">6</text>
@@ -485,7 +485,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">a</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">a</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -493,7 +493,7 @@
              x="20"
              y="74"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text88">a</text>
@@ -526,7 +526,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">c</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">c</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -534,7 +534,7 @@
              x="20"
              y="114"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text96">c</text>
@@ -567,7 +567,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">c</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">c</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -575,7 +575,7 @@
              x="20"
              y="154"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text104">c</text>
@@ -608,7 +608,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">a</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">a</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -616,7 +616,7 @@
              x="20"
              y="234"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text112">a</text>
@@ -649,7 +649,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">b</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">b</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -657,7 +657,7 @@
              x="20"
              y="194"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text120">b</text>
@@ -690,7 +690,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">b</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">b</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -698,7 +698,7 @@
              x="20"
              y="274"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text128">b</text>
@@ -731,7 +731,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">[1]</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">[1]</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -739,7 +739,7 @@
              x="280"
              y="74"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text136">[1]</text>
@@ -772,7 +772,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">[2, 3]</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">[2, 3]</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -780,7 +780,7 @@
              x="280"
              y="114"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text144">[2, 3]</text>
@@ -813,7 +813,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">a</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">a</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -821,7 +821,7 @@
              x="220"
              y="74"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text152">a</text>
@@ -854,7 +854,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">c</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">c</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -862,7 +862,7 @@
              x="220"
              y="114"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text160">c</text>
@@ -904,7 +904,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">[5]</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">[5]</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -912,7 +912,7 @@
              x="280"
              y="234"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text170">[5]</text>
@@ -945,7 +945,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">[4, 6]</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">[4, 6]</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -953,7 +953,7 @@
              x="280"
              y="274"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text178">[4, 6]</text>
@@ -986,7 +986,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">a</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">a</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -994,7 +994,7 @@
              x="220"
              y="234"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text186">a</text>
@@ -1027,7 +1027,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">b</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">b</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -1035,7 +1035,7 @@
              x="220"
              y="274"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text194">b</text>
@@ -1101,7 +1101,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">HASH</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">HASH</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -1142,7 +1142,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">main thread</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">main thread</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -1183,7 +1183,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">[1, 5]</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">[1, 5]</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -1191,7 +1191,7 @@
              x="520"
              y="134"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text226">[1, 5]</text>
@@ -1224,7 +1224,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">[4, 6]</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">[4, 6]</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -1232,7 +1232,7 @@
              x="520"
              y="174"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text234">[4, 6]</text>
@@ -1265,7 +1265,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">a</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">a</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -1273,7 +1273,7 @@
              x="460"
              y="134"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text242">a</text>
@@ -1306,7 +1306,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">b</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">b</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -1314,7 +1314,7 @@
              x="460"
              y="174"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text250">b</text>
@@ -1347,7 +1347,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">[2, 3]</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">[2, 3]</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -1355,7 +1355,7 @@
              x="520"
              y="214"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text258">[2, 3]</text>
@@ -1388,7 +1388,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: ubuntu; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">c</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">c</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
@@ -1396,7 +1396,7 @@
              x="460"
              y="214"
              fill="#000000"
-             font-family="ubuntu"
+             font-family="sans-serif"
              font-size="12px"
              text-anchor="middle"
              id="text266">c</text>
@@ -1453,7 +1453,7 @@
               <xhtml:div
                  style="box-sizing: border-box; font-size: 0; text-align: center; ">
                 <xhtml:div
-                   style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">SYNC + REBUILD HASHTABLE</xhtml:div>
+                   style="display: inline-block; font-size: 12px; font-family: sans-serif; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">SYNC + REBUILD HASHTABLE</xhtml:div>
               </xhtml:div>
             </xhtml:div>
           </foreignObject>
