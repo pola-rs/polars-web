@@ -105,6 +105,15 @@ span.katex-display:after {
   padding: 0 0 0 2rem;
 }
 
+/* iframes */
+
+iframe {
+  display: block;
+  margin: 0 auto;
+  max-width: 560px;
+  width: 100%;
+}
+
 /* links */
 
 a {
@@ -142,7 +151,7 @@ table tbody tr:nth-child(odd) {
 }
 
 div.table {
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 /* titles */
