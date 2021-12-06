@@ -66,7 +66,7 @@ This is clearly seen in database systems.
 The previous generation of these latter, PostgreSQL or MySQL for instance, are all row-based volcano models[^1], an excellent design decision in that era when disks were much slower and RAM was very limited.
 Nowadays we have fast SSD disks and large amounts of memory available, and wide SIMD registers, we see that columnar databases like CockroachDB or DuckDB are among the best performing DBMS.
 
-[^1]: Goetz Graefe: *Volcano: an extensible and parallel query evaluation system* (1994, [IEEE Trans. Knowl. Data Eng.](https://paperhub.s3.amazonaws.com/dace52a42c07f7f8348b08dc2b186061.pdf)).
+[^1]: Goetz Graefe, "_Volcano: an extensible and parallel query evaluation system_" (1994, [IEEE Trans. Knowl. Data Eng.](https://paperhub.s3.amazonaws.com/dace52a42c07f7f8348b08dc2b186061.pdf)).
 
 ### Cache hierarchies
 
@@ -196,7 +196,7 @@ To mitigate this, almost all hardware nowadays has multiple cores.
 My laptop has 12 logical cores, so there is a tremendous potential for parallelization.
 Polars is written to exploit parallelism as much as possible. 
 
-[^2]: Herb Sutter: *The Free Lunch Is Over: A Fundamental Turn Toward Concurrency in Software* (2005, [weblog](http://www.gotw.ca/publications/concurrency-ddj.htm)).
+[^2]: Herb Sutter, "_The Free Lunch Is Over: A Fundamental Turn Toward Concurrency in Software_" (2005, [weblog](http://www.gotw.ca/publications/concurrency-ddj.htm)).
 
 ### Embarrasingly parallel
 
@@ -263,4 +263,4 @@ I may highlight those other subjects in later posts.
 
 But for now check out [Polars on GitHub](https://github.com/ritchie46/polars), and if you have any remarks, feature requests, _etc._ let me know!
 
-[^3]: Angela Chang: *CockroachDB - 40x faster hash joiner with vectorized execution* (2019, [weblog](https://www.cockroachlabs.com/blog/vectorized-hash-joiner/)).
+[^3]: Angela Chang, "_CockroachDB - 40x faster hash joiner with vectorized execution_" (2019, [weblog](https://www.cockroachlabs.com/blog/vectorized-hash-joiner/)).

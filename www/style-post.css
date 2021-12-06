@@ -110,6 +110,13 @@ main article span.katex-display:after {
   padding: 0 0 0 2rem;
 }
 
+/* footnotes */
+
+main article .footnote {
+  font-size: 80%;
+  line-height: 1rem;
+}
+
 /* iframes */
 
 main article iframe {
