@@ -78,7 +78,7 @@ main article {
 }
 
 .error {
-  font-size: 2000%;
+  font-size: 1000%;
   margin-top: 100px;
   opacity: 0.1;
   position: absolute;
@@ -87,11 +87,12 @@ main article {
 }
 
 .game {
+  display: none;
   height: 250px;
   margin: auto;
-  max-width: 1000px;
   overflow: hidden;
   position: relative;
+  width: 1000px;
 }
 
 .game .ground {
@@ -242,6 +243,21 @@ main article {
 }
 
 .caption {
+  display: none;
   margin: 3rem auto 0 auto;
   text-align: center;
+}
+
+@media (min-width: 1000px) {
+  .error {
+    font-size: 2000%;
+  }
+
+  .game {
+    display: block;
+  }
+
+  .caption {
+    display: block;
+  }
 }

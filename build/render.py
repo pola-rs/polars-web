@@ -106,13 +106,13 @@ def _image(value: typing.List[str], root: str) -> str:
 
         return image
 
-def _tables(html: str) -> str:
-    """Wrap tables in `<div>` to allow for `overflow: scroll` on mobile."""
-    return (
-        html
-        .replace("<table>", '<div class="table">\n<table>')
-        .replace("</table>", "</table>\n</div>")
-    )
+def _overflow(html: str) -> str:
+    """Wrap tables and images in `<div>` to allow for `overflow: scroll` on mobile."""
+    html = re.sub("<table>", '<div class="overflow-x">\n<table>', html)
+    html = re.sub("</table>", "</table>\n</div>", html)
+    html = re.sub("<img (.*?) />", r'<div class="overflow-x">\n<img \1 />\n</div>', html)
+
+    return html
 
 
 def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
@@ -155,7 +155,7 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
             html = md.convert(f.read())
 
         # post-processing
-        html = _tables(html)
+        html = _overflow(html)
 
         # parse the mandatory front matter
         try:
