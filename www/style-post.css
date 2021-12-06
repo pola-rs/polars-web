@@ -8,7 +8,7 @@ body {
   counter-reset: eqn;
 }
 
-hr {
+main article hr {
   border-color: var(--background-color-alt);
   border-style: solid;
   border-width: 1px 0 0 0;
@@ -16,9 +16,18 @@ hr {
   width: 50%;
 }
 
+main article img {
+  display: block;
+  margin: 0 auto;
+}
+
+main article .overflow-x {
+  overflow-x: auto;
+}
+
 /* blockquotes */
 
-blockquote {
+main article blockquote {
   border-color: var(--link-color);
   border-style: solid;
   border-width: 0 0 0 3px;
@@ -26,43 +35,43 @@ blockquote {
   padding: 0 1rem;
 }
 
-blockquote > p {
+main article blockquote > p {
   display: inline-block;
   font-style: italic;
   margin: 0;
   padding: 0;
 }
 
-blockquote > p:after,
-blockquote > p:before {
+main article blockquote > p:after,
+main article blockquote > p:before {
   color: var(--link-color);
   font-weight: bold;
 }
 
-blockquote > p:after {
+main article blockquote > p:after {
   content: ' "';
 }
 
-blockquote > p:before {
+main article blockquote > p:before {
   content: '" ';
 }
 
 /* code */
 
-code,
-pre {
+main article code,
+main article pre {
   border-radius: 0.3rem;
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
     "Liberation Mono", monospace;
   font-size: 90%;
 }
 
-code {
+main article code {
   background-color: var(--background-color-alt);
   padding: 0.2rem 0.4rem;
 }
 
-pre {
+main article pre {
   border-color: var(--background-color-alt);
   border-style: solid;
   border-width: 1px;
@@ -73,32 +82,28 @@ pre {
   padding: 0.2rem 0.6rem;
 }
 
-pre > code {
+main article pre > code {
   padding: 0;
-}
-
-.hljs {
-  background: none; /* due to some weird decisions in the official stylesheet */
 }
 
 /* details */
 
-summary {
+main article summary {
   cursor: pointer;
 }
 
 /* equations */
 
-.katex {
+main article .katex {
   width: 100%;
 }
 
-span.katex-display {
+main article span.katex-display {
   align-items: center;
   display: flex;
 }
 
-span.katex-display:after {
+main article span.katex-display:after {
   color: var(--font-color);
   content: "[" counter(eqn) "]";
   counter-increment: eqn;
@@ -107,75 +112,58 @@ span.katex-display:after {
 
 /* iframes */
 
-iframe {
+main article iframe {
   display: block;
   margin: 0 auto;
   max-width: 560px;
   width: 100%;
 }
 
-/* links */
-
-a {
-  color: var(--link-color);
-  cursor: pointer;
-  text-decoration: none;
-}
-
-a:focus,
-a:hover {
-  text-decoration: underline;
-}
-
 /* tables */
 
-table {
+main article table {
   border-collapse: collapse;
   margin: 0 auto;
 }
 
-table thead tr th,
-table tbody tr td {
+main article table thead tr th,
+main article table tbody tr td {
   padding: 0 1rem;
 }
 
-table thead tr th,
-table tbody tr:last-child td {
+main article table thead tr th,
+main article table tbody tr:last-child td {
   border-color: var(--font-color);
   border-style: solid;
   border-width: 0 0 1px 0;
 }
 
-table tbody tr:nth-child(odd) {
+main article table tbody tr:nth-child(odd) {
   background-color: var(--background-color-alt);
-}
-
-div.table {
-  overflow-x: auto;
 }
 
 /* titles */
 
-h1 {
+main article h1 {
   font-size: 200%;
   padding: 4rem 0 1rem 0;
 }
 
-h2 {
+main article h2 {
   font-size: 150%;
   padding: 2rem 0 0 0;
 }
 
-h3,
-h4 {
+main article h3,
+main article h4 {
   font-size: 130%;
 }
 
-h5,
-h6 {
+main article h5,
+main article h6 {
   font-size: 100%;
 }
 
-h6 {
+main article h6 {
   font-weight: normal;
 }
