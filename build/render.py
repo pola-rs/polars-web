@@ -23,7 +23,7 @@ from pymdownx.tilde import DeleteSubExtension
 
 exts: typing.List[Extension] = [
     DeleteSubExtension(),
-    FootnoteExtension(BACKLINK_TEXT="↩"),
+    FootnoteExtension(BACKLINK_TEXT='<i class="far fa-caret-square-up"></i>'),
     HighlightExtension(use_pygments=False),
     InsertSupExtension(),
     MarkdownInHtmlExtension(),
@@ -44,26 +44,10 @@ jenv: Environment = Environment(
 meta: typing.Dict[typing.Union[int, str], typing.List[typing.Any]] = {}
 
 
-def _date(dirname: str) -> typing.Tuple[datetime, str]:
-    """Fetch publication date from dirname."""
-    try:
-        date = datetime.strptime(dirname.split("/")[0], "%Y%m%d")
-        year = date.year
-    except ValueError:
-        date = None
-        year = None
-
-    return date, year
-
-
-def _symlink(title: str, titles: typing.List[str] = []) -> str:
-    """Generate the endpoint used for a post from its title."""
-    symlink = re.sub(r"\W+", "-", title).lower()
-
-    if symlink in titles:
-        symlink = f"{symlink}-{urls.count(symlink) + 1}"
-
-    return symlink
+def _canonical(value: typing.List[str]) -> str:
+    """Specify if the page is canonical via `<link>` tag in the headers."""
+    if value is not None:
+        return value[0]
 
 
 def _config(value: typing.List[str]) -> typing.Dict[str, str]:
@@ -88,10 +72,16 @@ def _config(value: typing.List[str]) -> typing.Dict[str, str]:
     return {"listed": listed, "theme": theme}
 
 
-def _link(value: typing.List[str]) -> str:
-    """Process the link provided for the author(s)."""
-    if value is not None:
-        return value[0]
+def _date(dirname: str) -> typing.Tuple[datetime, str]:
+    """Fetch publication date from dirname."""
+    try:
+        date = datetime.strptime(dirname.split("/")[0], "%Y%m%d")
+        year = date.year
+    except ValueError:
+        date = None
+        year = None
+
+    return date, year
 
 
 def _image(value: typing.List[str], root: str) -> str:
@@ -106,6 +96,13 @@ def _image(value: typing.List[str], root: str) -> str:
 
         return image
 
+
+def _link(value: typing.List[str]) -> str:
+    """Process the link provided for the author(s)."""
+    if value is not None:
+        return value[0]
+
+
 def _overflow(html: str) -> str:
     """Wrap tables and images in `<div>` to allow for `overflow: scroll` on mobile."""
     html = re.sub("<table>", '<div class="overflow-x">\n<table>', html)
@@ -113,6 +110,16 @@ def _overflow(html: str) -> str:
     html = re.sub("<img (.*?) />", r'<div class="overflow-x">\n<img \1 />\n</div>', html)
 
     return html
+
+
+def _symlink(title: str, titles: typing.List[str] = []) -> str:
+    """Generate the endpoint used for a post from its title."""
+    symlink = re.sub(r"\W+", "-", title).lower()
+
+    if symlink in titles:
+        symlink = f"{symlink}-{urls.count(symlink) + 1}"
+
+    return symlink
 
 
 def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
@@ -179,9 +186,15 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
             endpoint = f"/posts/{symlink}/"
 
         # parse the optional front matter
+        canonical = _canonical(md.Meta.get("canonical", None))
         config = _config(md.Meta.get("config", None))
         authurl = _link(md.Meta.get("link", None))
         image = _image(md.Meta.get("image", None), endpoint)
+
+        if canonical == "":
+            config["canonical"] = f"https://www.pola.rs{endpoint}"
+        else:
+            config["canonical"] = canonical
 
         # update meta tags
         metatags["title"] = title
@@ -207,6 +220,7 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
                 {
                     "authors": auths,
                     "authurl": authurl,
+                    "canonical": canonical,
                     "blurb": blurb,
                     "date": None if date is None else {
                         "year": date.year,

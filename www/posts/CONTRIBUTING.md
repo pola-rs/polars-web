@@ -38,6 +38,9 @@ accessible for (y)our readers!
 
 ### Optional
 
+* `canonical`: if provided without a link, the current post will receive the
+  `rel="canonical"` flag; if a link is provided (a string really, beware what you
+  provide), this latter will be used as `href` for the `<link>` tag.
 * `link`: target of the link the `authors` text will be pointing to.
 * `config`, supporting the following:
     - A post can be removed from the list of posts by adding the `not-listed` keyword to

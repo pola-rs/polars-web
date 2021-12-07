@@ -4,6 +4,7 @@ link: https://github.com/ritchie46
 title: I wrote one of the fastest DataFrame libraries
 summary: Some design decisions around the Polars DataFrame library.
 image: https://raw.githubusercontent.com/pola-rs/polars-static/master/web/splash.png
+canonical: https://www.ritchievink.com/blog/2021/02/28/i-wrote-one-of-the-fastest-dataframe-libraries/
 config: light-theme
 ---
 
