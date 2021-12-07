@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% include "meta.tpl" %}
     <title>Polars</title>
+    {% if canonical is not none %}
+    <link rel="canonical" href="{{ canonical }}" />
+    {% endif %}
     {% if theme is undefined or theme is none %}
     <script>
       function setTheme(name) {
