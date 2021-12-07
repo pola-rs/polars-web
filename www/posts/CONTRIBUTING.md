@@ -1,11 +1,3 @@
----
-authors: maintainers
-link: https://www.pola.rs/
-title: Contribution guide and sample ground
-summary: Contribution guide for posts, and Markdown-to-HTML rendering.
-config: not-listed
----
-
 # Contribution guide
 
 ## Location
