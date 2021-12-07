@@ -23,7 +23,7 @@ from pymdownx.tilde import DeleteSubExtension
 
 exts: typing.List[Extension] = [
     DeleteSubExtension(),
-    FootnoteExtension(BACKLINK_TEXT="&hookleftarrow;"),
+    FootnoteExtension(BACKLINK_TEXT="↩"),
     HighlightExtension(use_pygments=False),
     InsertSupExtension(),
     MarkdownInHtmlExtension(),
