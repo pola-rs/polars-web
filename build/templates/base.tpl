@@ -116,7 +116,7 @@
          
               <li class="icon">
                 <a
-                  href="https://discord.com/channels/908022250106667068/"
+                  href="https://discord.com/invite/4UfP5cfBE7"
                 ><i class="fab fa-discord"></i></a>
               </li>
          
