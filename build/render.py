@@ -243,7 +243,11 @@ def render_all_posts(path: str = ".", tmpl_name: str = "post.tpl"):
         # (effectively keeping github repo structure) and move all extra content
         if year is not None:
             os.chdir(f"{path}/posts")
-            os.symlink(dirname, symlink, target_is_directory=True)
+            try:
+                os.symlink(dirname, symlink, target_is_directory=True)
+            except FileExistsError as e:
+                print("could not make symlink:", e)
+                pass
             os.chdir(wd)
 
         sys.stderr.write(f"{newp}\n")
