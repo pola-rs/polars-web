@@ -15,7 +15,7 @@
         localStorage.setItem("theme", name);
         document.documentElement.className = name;
       }
-    
+
       function toggleTheme() {
         if (localStorage.getItem("theme") === "light") {
           setTheme("dark_dimmed");
@@ -23,7 +23,7 @@
           setTheme("light");
         }
       }
-    
+
       if (
         localStorage.getItem("theme") === "dark_dimmed" ||
         (!("theme" in localStorage) &&
@@ -87,7 +87,7 @@
 
           <div class="pl-buttons">
             <ul>
-           
+
               <li class="text">
                 <a>API</a>
                 <ul>
@@ -101,25 +101,25 @@
                   </li>
                 </ul>
               </li>
-           
+
               <li class="text">
-                <a href="https://pola-rs.github.io/polars-book/user-guide/">Cookbook</a>
+                <a href="https://pola-rs.github.io/polars-book/user-guide/">User Guide</a>
               </li>
-           
+
               <li class="text"><a href="/posts">Posts</a></li>
-           
+
               <li class="icon">
                 <a
                   href="https://github.com/pola-rs/polars/"
                 ><i class="fab fa-github"></i></a>
               </li>
-         
+
               <li class="icon">
                 <a
                   href="https://discord.com/invite/4UfP5cfBE7"
                 ><i class="fab fa-discord"></i></a>
               </li>
-         
+
               {% if theme is undefined or theme is none %}
               <li class="icon">
                 <a
@@ -129,7 +129,7 @@
               {% else %}
               <li class="icon"><a><i class="far fa-circle"></i></a></li>
               {% endif %}
-         
+
             </ul>
           </div>
 
