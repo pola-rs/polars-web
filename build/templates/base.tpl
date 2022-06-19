@@ -105,6 +105,9 @@
               <li class="text">
                 <a href="https://pola-rs.github.io/polars-book/user-guide/">User Guide</a>
               </li>
+            <li class="text">
+                <a href="/benchmarks.html">TPCH Benchmarks</a>
+            </li>
 
               <li class="text"><a href="/posts">Posts</a></li>
 

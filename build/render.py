@@ -320,7 +320,7 @@ def render_game_page(
         sys.stderr.write(f"{path}\n")
 
 
-def render_home_page(path: str = "index.html", tmpl_name: str = "home.tpl"):
+def render_page(path: str = "index.html", tmpl_name: str = "home.tpl"):
     """Render the landing page using the associated template.
 
     Parameters
@@ -346,5 +346,6 @@ def render_home_page(path: str = "index.html", tmpl_name: str = "home.tpl"):
 if __name__ == "__main__":
     render_all_posts(sys.argv[1])
     render_post_list(f"{sys.argv[1]}/posts/index.html")
-    render_home_page(f"{sys.argv[1]}/index.html")
+    render_page(f"{sys.argv[1]}/index.html")
+    render_page(f"{sys.argv[1]}/benchmarks.html", "benchmarks.tpl")
     render_game_page(f"{sys.argv[1]}/game.html", [404])
