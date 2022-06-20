@@ -19,7 +19,11 @@
                         href="https://cloud.google.com/compute/docs/general-purpose-machines#n2-high-mem">GCP
                     n2-highmem-16</a>.
 
-                    This is still a work in progress and more questions will be coming soon.
+                    This is still a work in progress and more queries will be coming soon.
+                </p>
+                <p>
+                    Note that vaex was not able to finish all queries due to internal errors or unsupported functionality
+                    (e.g. joining on multiple columns).
                 </p>
 
             </div>
