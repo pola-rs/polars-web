@@ -163,9 +163,10 @@
         <p>Below a quick demonstration of Polars API in Rust.</p>
         <pre><code class="language-rust">use polars::prelude::*;
 
-fn example() -&gt; Result&lt;DataFrame&gt; {
-    LazyCsvReader::new("foo.csv".into())
-        .finish()
+fn example() -&gt; Result&lt;DataFrame, PolarsError&gt; {
+    LazyCsvReader::new("foo.csv".to_string())
+        .has_header(true)
+        .finish()?
         .filter(col("bar").gt(lit(100)))
         .groupby(vec![col("ham")])
         .agg(vec![col("spam").sum(), col("ham").sort(false).first()])
