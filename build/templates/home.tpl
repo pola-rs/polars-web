@@ -164,7 +164,7 @@
         <pre><code class="language-rust">use polars::prelude::*;
 
 fn example() -&gt; Result&lt;DataFrame, PolarsError&gt; {
-    LazyCsvReader::new("foo.csv".to_string())
+    LazyCsvReader::new("foo.csv")
         .has_header(true)
         .finish()?
         .filter(col("bar").gt(lit(100)))
