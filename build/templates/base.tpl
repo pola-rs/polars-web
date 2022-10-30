@@ -114,19 +114,29 @@
               <li class="icon">
                 <a
                   href="https://github.com/pola-rs/polars/"
+                  title="GitHub"
                 ><i class="fab fa-github"></i></a>
               </li>
 
               <li class="icon">
                 <a
                   href="https://discord.com/invite/4UfP5cfBE7"
+                  title="Discord"
                 ><i class="fab fa-discord"></i></a>
+              </li>
+
+              <li class="icon">
+                <a
+                  href="https://twitter.com/DataPolars"
+                  title="Twitter"
+                ><i class="fab fa-twitter"></i></a>
               </li>
 
               {% if theme is undefined or theme is none %}
               <li class="icon">
                 <a
                   class="theme-switcher" onclick="toggleTheme()"
+                  title="Dark/Light Theme"
                 ><i class="fas fa-adjust"></i></a>
               </li>
               {% else %}
