@@ -220,6 +220,7 @@ header .pl-splash {
   flex-direction: column;
   height: 80vh;
   justify-content: center;
+  max-height: 650px;
   min-height: 400px;
   text-align: center;
 }
