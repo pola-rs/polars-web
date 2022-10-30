@@ -201,6 +201,7 @@ df = q.collect()</code></pre>
       <div class="pl-contribs">
         <h3><i class="fas fa-user-astronaut"></i>Contributors</h3>
         <div id="contributors"></div>
+        <a href="https://github.com/pola-rs/polars/graphs/contributors">and more...</>
       </div>
      
       <div class="pl-sponsors">
@@ -223,7 +224,7 @@ df = q.collect()</code></pre>
 
     axios
       .get(
-        "https://api.github.com/repos/pola-rs/polars/contributors?per_page=1000"
+        "https://api.github.com/repos/pola-rs/polars/contributors?per_page=40"
       )
       .then((resp) => {
         resp.data.forEach((c) => {
@@ -234,7 +235,7 @@ df = q.collect()</code></pre>
             c.login +
             '"><img src="' +
             c.avatar_url +
-            '" /></a>';
+            '&s=80" /></a>';
         });
       });
   </script>
