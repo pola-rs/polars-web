@@ -234,7 +234,7 @@ df = q.collect()</code></pre>
             c.login +
             '"><img src="' +
             c.avatar_url +
-            '" /></a>';
+            '&s=80" /></a>';
         });
       });
   </script>
