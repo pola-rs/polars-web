@@ -120,7 +120,7 @@
 
               <li class="icon">
                 <a
-                  href="https://discord.com/invite/4UfP5cfBE7"
+                  href="https://discord.gg/JBcUvkdXsZ"
                   title="Discord"
                 ><i class="fab fa-discord"></i></a>
               </li>
