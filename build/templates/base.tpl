@@ -88,7 +88,7 @@
           <div class="pl-buttons">
             <ul>
 
-              <li class="text">
+              <li class="text" onclick="this.classList.toggle('selected');">
                 <a>API</a>
                 <ul>
                   <li class="text">

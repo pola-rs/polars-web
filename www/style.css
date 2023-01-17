@@ -190,7 +190,8 @@ nav .menu .pl-buttons > ul li > ul {
   position: absolute;
 }
 
-nav .menu .pl-buttons > ul li:hover > ul {
+nav .menu .pl-buttons > ul li:hover > ul,
+nav .menu .pl-buttons > ul li.selected > ul {
   display: block;
 }
 
