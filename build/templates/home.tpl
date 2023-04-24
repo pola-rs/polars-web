@@ -213,6 +213,12 @@ df = q.collect()</code></pre>
             src="https://raw.githubusercontent.com/pola-rs/polars-static/master/sponsors/xomnia.png"
             title="Xomnia"
           /></a>
+          <a
+            href="https://ponte.energy"
+          ><img
+            src="https://raw.githubusercontent.com/pola-rs/polars-static/master/sponsors/ponte_energy_partners.png"
+            title="Ponte Energy Partners"
+          /></a>
         </p>
       </div>
  
