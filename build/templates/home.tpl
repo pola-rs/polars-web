@@ -219,6 +219,12 @@ df = q.collect()</code></pre>
             src="https://raw.githubusercontent.com/pola-rs/polars-static/master/sponsors/ponte_energy_partners.png"
             title="Ponte Energy Partners"
           /></a>
+          <a
+            href="https://databento.com/"
+          ><img
+            src="https://raw.githubusercontent.com/pola-rs/polars-static/master/sponsors/databento-sponsorship-logo.png"
+            title="databento"
+          /></a>
         </p>
       </div>
  
