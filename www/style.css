@@ -337,6 +337,12 @@ main section .pl-sponsors {
   text-align: center;
 }
 
+main section .pl-sponsors img {
+  display: block;
+  max-width: 200px;
+  margin: 10px auto;
+}
+
 footer {
   background-color: var(--background-color-alt);
   bottom: 0;
