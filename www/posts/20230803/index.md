@@ -63,7 +63,7 @@ You can be a part of this. If you are an experienced Rust developer with interes
 
 ## We are looking for design partners
 
-We hope to find companies that want to be a part of this. By being our development partner, you can give your input and steer our product and we can learn and iterate much faster. Is your company using Polars and interesting in being our partner, please contact us at info@polars.tech.
+We hope to find companies that want to be a part of this. By being our development partner, you can give your input and steer our product and we can learn and iterate much faster. If your company is using Polars and interested in being our partner, please contact us at info@polars.tech.
 
 > ### A: Appendix
 >
