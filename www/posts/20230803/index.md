@@ -43,7 +43,7 @@ We are aiming to deliver a Rust-based compute platform that will efficiently run
 We believe that the Polars API can be used for both local and cloud/distributed environments. Our API is designed to work well on multiple cores, this design also makes it well poised for a distributed environment. We also believe that a Rust based columnar OLAP engine (Polars), is perfectly suited for efficient distributed computing. The (closed source) development of DataBricks' photon engine is proof that those environments are no longer IO bound. They concluded they need C/C++ level performance and columnar memory to unblock their CPU limits.
 
 To accelerate towards this goal, we started a company. I have asked Chiel Peters to join me as a co-founder to start a company.
-Chiel and I have been working at the same company the past 5 years and I really trust his insights and him as a person. We successfully closes a seed round of approximately 4M$, which was lead by Bain Capital Ventures. Together we will launch Polars into its new phase and we are really excited to get started.
+Chiel and I have been working at the same company (Xomnia) the past 5 years and I really trust his insights and him as a person. We successfully closed a seed round of approximately 4M$, which was lead by Bain Capital Ventures. Together we will launch Polars into its new phase and we are really excited to get started.
 
 ### Polars the OSS project
 
