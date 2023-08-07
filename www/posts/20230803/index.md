@@ -59,7 +59,7 @@ We cannot do this alone, and we need both great hires and great companies to wor
 
 ## We are hiring
 
-You can be a part of this. If you are an experienced Rust developer with interest/knowledge in building databases, or writing fast software, please contact us on hr@polars.tech. We are looking for +- 4 CET.
+You can be a part of this. If you are an experienced Rust developer with interest/knowledge in building databases, or writing fast software, please go to https://hiring.pola.rs. We are looking for +- 4 CET.
 
 ## We are looking for design partners
 
