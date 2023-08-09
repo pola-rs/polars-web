@@ -32,13 +32,7 @@
                 To do this we adhere to the following rules:
                 <ul>
                     <li>
-                        Operations (like joins, projections and filters) may not be reordered.
-                    </li>
-                    <li>
                         It is not allowed to insert new operations, e.g. no pruning a table before a join.
-                    </li>
-                    <li>
-                        Every solution must provide 1 query per question independent of the data source.
                     </li>
                     <li>
                         Every solution must provide 1 query per question independent of the data source.
@@ -47,12 +41,15 @@
                         The solution must call its own API.
                     </li>
                     <li>
-                        It is allowed to declare the type of join as this fits semantical reasoning in DataFrame API's
+                        It is allowed to declare the type of joins as this fits semantical reasoning in DataFrame API's.
                     </li>
                     <li>
                         A solution must choose a single engine/mode for all the queries.
-                        It is allowed to propose different solutions of the same vendor, e.g. polars-sql, polars-default, polars-streaming.
+                        It is allowed to propose different solutions from the same vendor, e.g. (sparks-sql, pyspark, polars-sql, polars-default, polars-streaming).
                         However these solutions should run all the queries, showing their strengths and weaknesses, no cherry picking.
+                    </li>
+                    <li>
+                        Joins may not be reordered.
                     </li>
                 </ul>
 
