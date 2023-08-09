@@ -13,7 +13,7 @@ config: light-theme
 At the time of writing this, the coronavirus has been in our country for a year, which means I have been sitting at home for a very long time.
 At the start of the pandemic, I had a few pet projects in Rust under my belt and I noticed that the _are we DataFrame yet_ wasn't anywhere near my satisfaction.
 So I wondered if I could make a minimalistic crate that solved a specific use case of mine.
-But boy, did that get out of hand. 
+But boy, did that get out of hand.
 
 A year later, and with lots of programming, comes one of the fastest DataFrame libraries available out there.
 This is my first official `hello world` from [Polars](https://github.com/pola-rs/polars) (copied over from my [personal blog](https://www.ritchievink.com/)).
@@ -28,32 +28,32 @@ At the time of writing this blog, Polars is the fastest DataFrame library in the
 
 Below are shown the summaries of the 5GB dataset test, and you can see the whole updated benchmark [here](https://h2oai.github.io/db-benchmark/).
 
-* **Join** on 100k rows, 7 columns:
+- **Join** on 100k rows, 7 columns:
 
-| Package | Version | Release date | Time [s] |
-| :-- | :-- | :-- | --: |
-| data.table | 1.14.1 | 2021/02/21 | 86 |
-| Polars | 0.6.5 | 2021/02/25 | 125 |
-| Spark | 3.0.2 | 2021/02/21 | 509 |
-| Pandas | 1.1.5 | 2021/01/02 | 746 |
+| Package    | Version | Release date | Time [s] |
+| :--------- | :------ | :----------- | -------: |
+| data.table | 1.14.1  | 2021/02/21   |       86 |
+| Polars     | 0.6.5   | 2021/02/25   |      125 |
+| Spark      | 3.0.2   | 2021/02/21   |      509 |
+| Pandas     | 1.1.5   | 2021/01/02   |      746 |
 
-* **Basic groupdby** on 100k rows, 9 columns:
+- **Basic groupdby** on 100k rows, 9 columns:
 
-| Package | Version | Release date | Time [s] |
-| :-- | :-- | :-- | --: |
-| data.table | 1.14.1 | 2021/02/21 | 16 |
-| Polars | 0.6.5 | 2021/02/25 | 29 |
-| Spark | 3.0.2 | 2021/02/21 | 35 |
-| Pandas | 1.1.5 | 2021/01/02 | 87 |
+| Package    | Version | Release date | Time [s] |
+| :--------- | :------ | :----------- | -------: |
+| data.table | 1.14.1  | 2021/02/21   |       16 |
+| Polars     | 0.6.5   | 2021/02/25   |       29 |
+| Spark      | 3.0.2   | 2021/02/21   |       35 |
+| Pandas     | 1.1.5   | 2021/01/02   |       87 |
 
-* **Advanced groupdby** on 100k rows, 9 columns:
+- **Advanced groupdby** on 100k rows, 9 columns:
 
-| Package | Version | Release date | Time [s] |
-| :-- | :-- | :-- | --: |
-| data.table | 1.14.1 | 2021/02/21 | 110 |
-| Polars | 0.6.5 | 2021/02/25 | 153 |
-| Spark | 3.0.2 | 2021/02/21 | - |
-| Pandas | 1.1.5 | 2021/01/02 | 780 |
+| Package    | Version | Release date | Time [s] |
+| :--------- | :------ | :----------- | -------: |
+| data.table | 1.14.1  | 2021/02/21   |      110 |
+| Polars     | 0.6.5   | 2021/02/25   |      153 |
+| Spark      | 3.0.2   | 2021/02/21   |        - |
+| Pandas     | 1.1.5   | 2021/01/02   |      780 |
 
 **Update 2021/03/14:** benchmarks age poorly, Polars now has the fastest join algorithm in the benchmark!
 
@@ -61,7 +61,7 @@ Below are shown the summaries of the 5GB dataset test, and you can see the whole
 
 If you want to design for optimal performance you cannot ignore hardware.
 There are cases where algorithmic complexity doesn't give you a good intuition of the real performance due to hardware-related issues like cache hierarchies and branch prediction.
-For instance, up to a certain number of elements (a few hundreds, depending on the datatype), it is faster to lookup a given element in an array than to look it up in hashmap, whereas the time complexity of those data structures are $\mathcal{O}(n)$, and $\mathcal{O}(1)$ respectively. 
+For instance, up to a certain number of elements (a few hundreds, depending on the datatype), it is faster to lookup a given element in an array than to look it up in hashmap, whereas the time complexity of those data structures are $\mathcal{O}(n)$, and $\mathcal{O}(1)$ respectively.
 This makes design decisions also very temporal, what is a bottleneck today may not be in the future.
 This is clearly seen in database systems.
 The previous generation of these latter, PostgreSQL or MySQL for instance, are all row-based volcano models[^1], an excellent design decision in that era when disks were much slower and RAM was very limited.
@@ -77,11 +77,11 @@ You've got main memory that is large and slow.
 And memory you've used last is stored in L1, L2, L3 cache with more latency respectively.
 The summation below gives you an idea of the relative latencyi (access time in CPU cycles) of the different cache levels:
 
-* CPU register: 1 cycle
-* L1 cache: ~1-3 cycles
-* L2 cache: ~10 cycles
-* L3 cache: ~40 cycles
-* Main memory: ~100-300 cycles
+- CPU register: 1 cycle
+- L1 cache: ~1-3 cycles
+- L2 cache: ~10 cycles
+- L3 cache: ~40 cycles
+- Main memory: ~100-300 cycles
 
 When accessing data sequentially we want to make sure that data is in cache as much as possible, or we could easily have a ~100x performance penalty.
 Caches are loaded and deleted in cache lines.
@@ -91,7 +91,7 @@ They are typically 64, or 128 bytes long and aligned on 64 bytes memory adresses
 ### Prefetching and branch predictions
 
 CPUs prefetch data and instructions to a local cache to reduce the high penalty of memory latency.
-If you have a tight loop without any branches (if-else-then structures) the CPU has no problem knowing which data to prefetch and can fully utilize [instruction pipelines](https://en.wikipedia.org/wiki/Instruction_pipelining). 
+If you have a tight loop without any branches (if-else-then structures) the CPU has no problem knowing which data to prefetch and can fully utilize [instruction pipelines](https://en.wikipedia.org/wiki/Instruction_pipelining).
 
 Instruction pipelines hide latency by doing work in parallel.
 Every CPU instruction goes through a fetch-decode-execute-write-back sequence.
@@ -102,7 +102,7 @@ Below a visual of instruction pipelines:
 
 ![Four stages instruction pipeline](four-stage-pipeline.svg)
 
-The CPU does its best to predict which conditional jump is taken and speculatively execute that code in advance (_i.e._, keep the pipelines filled), but if it has mispredicted it must clear that work and we pay the latency price until the pipelines are full again. 
+The CPU does its best to predict which conditional jump is taken and speculatively execute that code in advance (_i.e._, keep the pipelines filled), but if it has mispredicted it must clear that work and we pay the latency price until the pipelines are full again.
 
 ### SIMD instructions
 
@@ -129,7 +129,7 @@ Besides the value data, an Arrow array always has a validity buffer.
 This buffer is a bit array where the bits indicate missing data.
 Because the missing data is represented by bits there is minimal memory overhead.
 
-This directly shows a clear advantage over [Pandas](https://pandas.pydata.org/) for instance, where there is no clear distinction between a float `NaN` and missing data, where they really should represent different things. 
+This directly shows a clear advantage over [Pandas](https://pandas.pydata.org/) for instance, where there is no clear distinction between a float `NaN` and missing data, where they really should represent different things.
 
 ![Arrow numeric array](arrow-primitive.svg)
 
@@ -144,7 +144,7 @@ To be able to find the starting and ending position of a string value there is a
 
 Let's compare this with a pandas string array.
 Pandas strings are actually Python objects, therefore they are boxed (which means there is also memory overhead to encode the type next to the data).
-Sequential string access in pandas will lead to cache miss after cache miss, because every string value may point to a completely different memory location. 
+Sequential string access in pandas will lead to cache miss after cache miss, because every string value may point to a completely different memory location.
 
 ![Pandas string array](pandas-string.svg)
 
@@ -153,7 +153,7 @@ However, there is a price.
 If we want to filter this array or we want to take values based on some index array we need to copy a lot more data around.
 The pandas string array only holds pointers to the data and can cheaply create a new array with pointers.
 Arrow string arrays have to copy all the string data, especially when you have large string values this can become a very large overhead.
-It is also harder to estimate the size of the string data buffer, as this comprises the length of all string values. 
+It is also harder to estimate the size of the string data buffer, as this comprises the length of all string values.
 
 Polars also has a `Categorical` type which helps you mitigate this problem.
 Arrow has a solution for this problem, called the `Dictionary` type, which is similar to Polars `Categorical` type.
@@ -177,7 +177,7 @@ An operation that has to be done often in a DBMS is filtering.
 Based on some predicate (boolean mask) we filter rows.
 Arrow null-bit buffer allow for very fast filtering using a **filter-trick** (unofficially coined by yours truly; _credits for the filter-trick go the Apache Arrow implementation_).
 Note this filter-trick often leads to faster filters, but it may not always be the case.
-If your predicate consists of alternating boolean values, _e.g._, `[true, false, true, false, ... , true, false]` this trick has a slight overhead. 
+If your predicate consists of alternating boolean values, _e.g._, `[true, false, true, false, ... , true, false]` this trick has a slight overhead.
 
 The core idea of the filter-trick is that we can load the bit array from memory as any integer type we want.
 Let's say that we load the bit array as an unsigned integer `u64` then we know that the maximum encoded value is $2^{64}$ (64 consecutive one value in binary), and the minimum encoded value is 0 (64 consecutive 0 values in binary).
@@ -195,14 +195,14 @@ With the plateauing of CPU clock speeds and the end of Moore's law in sight, the
 Single-threaded performance isn't going to increase much anymore.
 To mitigate this, almost all hardware nowadays has multiple cores.
 My laptop has 12 logical cores, so there is a tremendous potential for parallelization.
-Polars is written to exploit parallelism as much as possible. 
+Polars is written to exploit parallelism as much as possible.
 
 [^2]: Herb Sutter, "_The Free Lunch Is Over: A Fundamental Turn Toward Concurrency in Software_" (2005, [weblog](http://www.gotw.ca/publications/concurrency-ddj.htm)).
 
 ### Embarrasingly parallel
 
 The best parallelization is of course where is no need for communication and there are no data dependencies.
-Polars utilizes this kind of parallelism as much as possible. 
+Polars utilizes this kind of parallelism as much as possible.
 This is for instance the case if we do an aggregation on the columns in a DataFrame.
 All columns can be aggregated on in parallel.
 Another embarrassingly parallel algorithm in Polars in the apply phase in a groupby operation.
@@ -211,7 +211,7 @@ Another embarrassingly parallel algorithm in Polars in the apply phase in a grou
 
 ### Parallel hashing
 
-Hashing is the core of many operations in a DataFrame library, a groupby operation creates a hash table with the group index pointers, and a join operation needs a hash table to find the tuples mapping the rows of the left to the right DataFrame. 
+Hashing is the core of many operations in a DataFrame library, a groupby operation creates a hash table with the group index pointers, and a join operation needs a hash table to find the tuples mapping the rows of the left to the right DataFrame.
 
 #### Expensive synchronization
 
@@ -243,7 +243,7 @@ Due to this simple trick, we know that every threaded hash table has unique keys
 
 The best performance gains are simply not doing any work at all.
 Polars consists of two public APIs, one that is eager, procedural programming, and one that is lazy declarative programming.
-I would recommend using the lazy API as much as possible when dealing with performance-critical code. 
+I would recommend using the lazy API as much as possible when dealing with performance-critical code.
 
 The declarative DSL allows Polars to analyze a logical plan of your query and it can apply several optimization/heuristics such that your query can be executed by just doing less work.
 
@@ -254,10 +254,10 @@ If you want to read more about the optimizations that are done to the query plan
 This post only highlighted a few of the performance related designs in the Polars and Arrow library.
 Other things that are implemented are for instance:
 
-* Ad-hoc partitioning (map-reduce like `groupby`s).
-* [Vectorized hashing](https://www.cockroachlabs.com/blog/vectorized-hash-joiner/)[^3] (tipped by [Daniël Heres](https://github.com/Dandandan)).
-* Using table statistics to choose fast paths.
-* And so much more...
+- Ad-hoc partitioning (map-reduce like `groupby`s).
+- [Vectorized hashing](https://www.cockroachlabs.com/blog/vectorized-hash-joiner/)[^3] (tipped by [Daniël Heres](https://github.com/Dandandan)).
+- Using table statistics to choose fast paths.
+- And so much more...
 
 Now, the `hello world` is officially out there.
 I may highlight those other subjects in later posts.
