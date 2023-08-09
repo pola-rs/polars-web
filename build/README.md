@@ -4,10 +4,10 @@ Script to render the Polars landing page(s). Limited fanciness included.
 
 **Functions:**
 
-* [`render_all_posts()`](#renderrender_all_posts): Render each post using the associated template.
-* [`render_post_list()`](#renderrender_post_list): Render the list of posts using the associated template.
-* [`render_game_page()`](#renderrender_game_page): Render the little stupid game using the associated template.
-* [`render_home_page()`](#renderrender_home_page): Render the landing page using the associated template.
+- [`render_all_posts()`](#renderrender_all_posts): Render each post using the associated template.
+- [`render_post_list()`](#renderrender_post_list): Render the list of posts using the associated template.
+- [`render_game_page()`](#renderrender_game_page): Render the little stupid game using the associated template.
+- [`render_home_page()`](#renderrender_home_page): Render the landing page using the associated template.
 
 ## Functions
 
@@ -26,8 +26,8 @@ whichever convention. On the way fills in the `meta` object describing the post.
 
 **Parameters:**
 
-* `path` [`str`]: Root folder to [recursively] fetch the files to process from. Defaults to `.`.
-* `tmpl_name` [`str`]: Name of the template to use. Defaults to `post.html`.
+- `path` [`str`]: Root folder to [recursively] fetch the files to process from. Defaults to `.`.
+- `tmpl_name` [`str`]: Name of the template to use. Defaults to `post.html`.
 
 **Notes:**
 
@@ -43,9 +43,9 @@ Render the list of posts using the associated template.
 
 **Parameters:**
 
-* `path` [`str`]: Target path the list will be rendered and outputted to. Defaults to
-    `posts/index.html`.
-* `tmpl_name` [`str`]: Name of the template to use. Defaults to `post.html`.
+- `path` [`str`]: Target path the list will be rendered and outputted to. Defaults to
+  `posts/index.html`.
+- `tmpl_name` [`str`]: Name of the template to use. Defaults to `post.html`.
 
 **Notes:**
 
@@ -61,9 +61,9 @@ Render the little stupid game using the associated template.
 
 **Parameters:**
 
-* `path` [`str`]: Target path the game page will be rendered and outputted to. Defaults to
-    `game.html`.
-* `tmpl_name` [`str`]: Name of the template to use. Defaults to `game.html`.
+- `path` [`str`]: Target path the game page will be rendered and outputted to. Defaults to
+  `game.html`.
+- `tmpl_name` [`str`]: Name of the template to use. Defaults to `game.html`.
 
 **Notes:**
 
@@ -79,9 +79,9 @@ Render the landing page using the associated template.
 
 **Parameters:**
 
-* `path` [`str`]: Target path the landing page will be rendered and outputted to. Defaults to
-    `index.html`.
-* `tmpl_name` [`str`]: Name of the template to use. Defaults to `home.html`.
+- `path` [`str`]: Target path the landing page will be rendered and outputted to. Defaults to
+  `index.html`.
+- `tmpl_name` [`str`]: Name of the template to use. Defaults to `home.html`.
 
 **Notes:**
 

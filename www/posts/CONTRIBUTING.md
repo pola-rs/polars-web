@@ -28,7 +28,7 @@ summary: A quick description of the post that can span multiple lines (note the
 # Polars is breathtaking, the story of my realisation
 ```
 
-The content of the `title` field will be used to redirect to the post itself, and the 
+The content of the `title` field will be used to redirect to the post itself, and the
 `summary` spiel will be used as "motivational blurb" for readers to get interested. The
 [meta tags](https://metatags.io/) associated with the post are also generated from those
 values.
@@ -38,19 +38,19 @@ accessible for (y)our readers!
 
 ### Optional
 
-* `canonical`: if provided without a link, the current post will receive the
+- `canonical`: if provided without a link, the current post will receive the
   `rel="canonical"` flag; if a link is provided (a string really, beware what you
   provide), this latter will be used as `href` for the `<link>` tag.
-* `link`: target of the link the `authors` text will be pointing to.
-* `config`, supporting the following:
-    - A post can be removed from the list of posts by adding the `not-listed` keyword to
-      the `config` key. Note it will stil be rendered to handle broken links (although
-      we like our [easter egg](/game.html)).
-    - ~~Decision has been made to keep a **light theme** for all posts to accomodate for
-      contributed content with white background.~~ One can **force a theme** by adding a
-      `dark-theme` or `light-theme` value to the `config` key. Not specifying -or
-      providing both- allows toggling between both themes.
-* `image`: a thumbnail for the list of post. The image is expected to be in the same
+- `link`: target of the link the `authors` text will be pointing to.
+- `config`, supporting the following:
+  - A post can be removed from the list of posts by adding the `not-listed` keyword to
+    the `config` key. Note it will stil be rendered to handle broken links (although
+    we like our [easter egg](/game.html)).
+  - ~~Decision has been made to keep a **light theme** for all posts to accomodate for
+    contributed content with white background.~~ One can **force a theme** by adding a
+    `dark-theme` or `light-theme` value to the `config` key. Not specifying -or
+    providing both- allows toggling between both themes.
+- `image`: a thumbnail for the list of post. The image is expected to be in the same
   folder as the post itself, unless starting with `https://`; its height will be limited
   to 160 pixels.
 
@@ -73,32 +73,32 @@ the final look and feel (better to read it
 itself is done via [`Python-Markdown`](https://python-markdown.github.io/), with plenty
 added extensions to deal with the fancy stuff:
 
-* [`DeleteSubExtension`](https://facelessuser.github.io/pymdown-extensions/extensions/tilde/)
+- [`DeleteSubExtension`](https://facelessuser.github.io/pymdown-extensions/extensions/tilde/)
   to introduce crossed out and subscript text.
-* [`FootnoteExtension`](https://python-markdown.github.io/extensions/footnotes/) to
+- [`FootnoteExtension`](https://python-markdown.github.io/extensions/footnotes/) to
   handle, well, footnotes.
-* [`HighlightExtension`](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/)
+- [`HighlightExtension`](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/)
   to single out code blocks.
-* [`InsertSupExtension`](https://facelessuser.github.io/pymdown-extensions/extensions/caret/)
+- [`InsertSupExtension`](https://facelessuser.github.io/pymdown-extensions/extensions/caret/)
   to introduce underlined and superscript text.
-* [`MarkdownInHtmlExtension`](https://python-markdown.github.io/extensions/md_in_html/)
-  to parse and render Markdown located *within* HTML blocks.
-* [`MetaExtension`](https://python-markdown.github.io/extensions/meta/) to parse front
+- [`MarkdownInHtmlExtension`](https://python-markdown.github.io/extensions/md_in_html/)
+  to parse and render Markdown located _within_ HTML blocks.
+- [`MetaExtension`](https://python-markdown.github.io/extensions/meta/) to parse front
   matter content (metadata).
-* [`SuperFencesCodeExtension`](https://facelessuser.github.io/pymdown-extensions/extensions/superfences/)
+- [`SuperFencesCodeExtension`](https://facelessuser.github.io/pymdown-extensions/extensions/superfences/)
   to enhance the processing of fenced blocks.
-* [`TableExtension`](https://python-markdown.github.io/extensions/tables/) to render
+- [`TableExtension`](https://python-markdown.github.io/extensions/tables/) to render
   tables.
-* [`TocExtension`](https://python-markdown.github.io/extensions/toc/) to generate the
+- [`TocExtension`](https://python-markdown.github.io/extensions/toc/) to generate the
   table of contents and anchor the titles.
 
 If you need something extra let's discuss it in your PR. Once generated, some further
-rendering is done in the browser -*i.e.*, on the client- via a couple `JavaScript`
+rendering is done in the browser -_i.e._, on the client- via a couple `JavaScript`
 libraries:
 
-* [`highlight.js`](https://highlightjs.org/) for syntax highlighting.
-* [`KaTeX`](https://katex.org/) to render equations written in LaTeX.
-* [`Mermaid`](https://mermaidjs.github.io/) to render diagrams and flowcharts.
+- [`highlight.js`](https://highlightjs.org/) for syntax highlighting.
+- [`KaTeX`](https://katex.org/) to render equations written in LaTeX.
+- [`Mermaid`](https://mermaidjs.github.io/) to render diagrams and flowcharts.
 
 The styling is stored in the [`style-post.css`](/style-post.css) file. It is however
 **allowed to custom** them styles by adding a `style.css` file in the folder containing
@@ -123,9 +123,9 @@ Napoleon alledgedly said:
 ### General
 
 ```markdown
-*This text should be italic.* _This should also be italic._
+_This text should be italic._ _This should also be italic._
 
-**This text should be bold.** __This should also be bold.__
+**This text should be bold.** **This should also be bold.**
 
 ^^This text should be underlined.^^
 
@@ -134,9 +134,9 @@ Napoleon alledgedly said:
 _One **can** ^^combine^^ all ~~those~~._
 ```
 
-*This text should be italic.* _This should also be italic._
+_This text should be italic._ _This should also be italic._
 
-**This text should be bold.** __This should also be bold.__
+**This text should be bold.** **This should also be bold.**
 
 ^^This text should be underlined.^^
 
@@ -223,30 +223,30 @@ Inline code blocks such as `import polars as pl` are not highlighted.
 ### Unordered list
 
 ```markdown
-* Item
-* Item
-    * Subitem
-    * Subitem
+- Item
+- Item
+  - Subitem
+  - Subitem
 ```
 
-* Item
-* Item
-    * Subitem
-    * Subitem
+- Item
+- Item
+  - Subitem
+  - Subitem
 
 ### Ordered list
 
 ```markdown
 1. Item 1
 1. Item 2
-    1. Item 2a
-    1. Item 2b
+   1. Item 2a
+   1. Item 2b
 ```
 
 1. Item 1
 1. Item 2
-    1. Item 2a
-    1. Item 2b
+   1. Item 2a
+   1. Item 2b
 
 ## Markdown in HTML
 
@@ -263,11 +263,11 @@ import polars as pl
 </details>
 ````
 
-* Note the `markdown="1"` attribute to make sure the content inside those tags is being parsed
+- Note the `markdown="1"` attribute to make sure the content inside those tags is being parsed
   and converted properly.
-* Mind the necessary spaces:
-    - After the `<summary>...</summary>` line.
-    - Before the closing `</details>` tag.
+- Mind the necessary spaces:
+  - After the `<summary>...</summary>` line.
+  - Before the closing `</details>` tag.
 
 <details markdown="1">
 <summary markdown="1">Test with `code`.</summary>
@@ -351,18 +351,18 @@ df = q.collect()
 ## Tables
 
 ```markdown
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
-$2 \pi r^{2}$ | With inline equation
+| First Header                | Second Header                |
+| --------------------------- | ---------------------------- |
+| Content from cell 1         | Content from cell 2          |
+| Content in the first column | Content in the second column |
+| $2 \pi r^{2}$               | With inline equation         |
 ```
 
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
-$2 \pi r^{2}$ | With inline equation
+| First Header                | Second Header                |
+| --------------------------- | ---------------------------- |
+| Content from cell 1         | Content from cell 2          |
+| Content in the first column | Content in the second column |
+| $2 \pi r^{2}$               | With inline equation         |
 
 ## Titles
 
