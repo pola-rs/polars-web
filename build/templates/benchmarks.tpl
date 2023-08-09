@@ -21,6 +21,44 @@
 
                     This is still a work in progress and more queries will be coming soon.
                 </p>
+
+                <h2>Rules</h2>
+                <p>
+                The original TPCH benchmark is intended for SQL databases and doesn't allow any modification on the SQL
+                of that question. We are trying to benchmark of SQL front-ends and DataFrame front-ends, so the original
+                rules have to be modified a little.
+
+                We believe that the SQL queries should be translated semantically to the idiomatic query of the host tool.
+                To do this we adhere to the following rules:
+                <ul>
+                    <li>
+                        Operations (like joins, projections and filters) may not be reordered.
+                    </li>
+                    <li>
+                        It is not allowed to insert new operations, e.g. no pruning a table before a join.
+                    </li>
+                    <li>
+                        Every solution must provide 1 query per question independent of the data source.
+                    </li>
+                    <li>
+                        Every solution must provide 1 query per question independent of the data source.
+                    </li>
+                    <li>
+                        The solution must call its own API.
+                    </li>
+                    <li>
+                        It is allowed to declare the type of join as this fits semantical reasoning in DataFrame API's
+                    </li>
+                    <li>
+                        A solution must choose a single engine/mode for all the queries.
+                        It is allowed to propose different solutions of the same vendor, e.g. polars-sql, polars-default, polars-streaming.
+                        However these solutions should run all the queries, showing their strengths and weaknesses, no cherry picking.
+                    </li>
+                </ul>
+
+                </p>
+
+                <h2>Notes</h2>
                 <p>
                     Note that vaex was not able to finish all queries due to internal errors or unsupported functionality
                     (e.g. joining on multiple columns).
