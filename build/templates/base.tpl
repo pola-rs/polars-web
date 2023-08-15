@@ -92,7 +92,7 @@
                 <a>API</a>
                 <ul>
                   <li class="text">
-                    <a href="https://pola-rs.github.io/polars/polars/">Rust</a>
+                    <a href="https://docs.rs/polars/latest/polars/">Rust</a>
                   </li>
                   <li class="text">
                     <a
