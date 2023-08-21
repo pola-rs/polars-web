@@ -3,11 +3,11 @@
 {% block header %}
 <header>
   <div class="pl-splash">
-  
+
     <h1>Pola<span class="rust-color">rs</span></h1>
-  
+
     <h2>Lightning-fast DataFrame library for Rust and Python</h2>
-  
+
     <div>
       <div class="github-button">
         <a href="https://github.com/pola-rs/polars/"><i class="far fa-star"></i>Star</a>
@@ -22,13 +22,13 @@
         <a href="https://github.com/pola-rs/polars/fork" id="forks"><i class="fas fa-sync"></i></a>
       </div>
     </div>
-  
+
   </div>
-  
+
   <script>
     let s = document.getElementById("stargazers"),
         f = document.getElementById("forks");
-  
+
     axios
       .get("https://api.github.com/repos/pola-rs/polars")
       .then((resp) => {
@@ -45,7 +45,7 @@
 <section>
   <div class="container">
     <div class="columns">
- 
+
       <div class="pl-details">
         <div>
           <h3><i class="fab fa-python"></i>Familiar from the start</h3>
@@ -72,7 +72,7 @@
           </div>
         </div>
       </div>
-  
+
       <div class="pl-details">
         <div>
           <h3><i class="fab fa-rust"></i>DataFrames to the Rust ecosystem</h3>
@@ -93,11 +93,11 @@
           <div>
             <a href="https://pola-rs.github.io/polars-book/user-guide/">User Guide</a>
             &amp;
-            <a href="https://pola-rs.github.io/polars/polars/">API Reference</a>
+            <a href="https://docs.rs/polars/latest/polars/">API Reference</a>
           </div>
         </div>
       </div>
-  
+
       <div class="pl-details">
         <div>
           <h3><i class="fas fa-award"></i>On the shoulders of a giant</h3>
@@ -127,7 +127,7 @@
           </div>
         </div>
       </div>
- 
+
     </div>
   </div>
 </section>
@@ -143,7 +143,7 @@
         and expressive API makes it perfect for efficient data wrangling,
         data pipelines, snappy APIs and so much more.
       </p>
-     
+
       <p>
         Polars is about as fast as it gets, see the results in the H2O.ai
         <a href="https://h2oai.github.io/db-benchmark/">benchmark</a>.
@@ -157,7 +157,7 @@
   <div class="container">
 
     <div class="columns">
- 
+
       <div class="pl-code">
         <h3><i class="fab fa-rust"></i>Rust</h3>
         <p>Below a quick demonstration of Polars API in Rust.</p>
@@ -173,7 +173,7 @@ fn example() -&gt; Result&lt;DataFrame, PolarsError&gt; {
         .collect()
 }</code></pre>
       </div>
-      
+
       <div class="pl-code">
         <h3><i class="fab fa-python"></i>Python</h3>
         <p>Below a quick demonstration of Polars API in Python.</p>
@@ -188,7 +188,7 @@ q = (
 
 df = q.collect()</code></pre>
       </div>
- 
+
     </div>
 
   </div>
@@ -197,13 +197,13 @@ df = q.collect()</code></pre>
 <section>
   <div class="container">
     <div class="columns">
- 
+
       <div class="pl-contribs">
         <h3><i class="fas fa-user-astronaut"></i>Contributors</h3>
         <div id="contributors"></div>
         <a href="https://github.com/pola-rs/polars/graphs/contributors">and more...</>
       </div>
-     
+
       <div class="pl-sponsors">
         <h3><i class="fas fa-life-ring"></i>Sponsors</h3>
         <p>
@@ -227,7 +227,7 @@ df = q.collect()</code></pre>
           /></a>
         </p>
       </div>
- 
+
     </div>
   </div>
 
