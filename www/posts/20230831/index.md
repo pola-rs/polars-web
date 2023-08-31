@@ -67,7 +67,7 @@ shape: (1, 2)
 
 `all` will now ignore null values by default, rather than treat them as `False`.
 
-The `drop_nulls` parameter has been renamed to `ignore_nulls` and is now keyword-only.
+For both `any` and `all`, the `drop_nulls` parameter has been renamed to `ignore_nulls` and is now keyword-only.
 Also fixed an issue when setting this parameter to `False` would erroneously result in `None` output in some cases.
 
 To restore the old behavior, set `ignore_nulls` to `False` and check for `None` output.
