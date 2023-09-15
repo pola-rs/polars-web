@@ -216,7 +216,7 @@ Typically want to cluster as many expressions as possible in a single `with_colu
 
 ### Adding Other Features
 
-Here comes the part where polars really shines. Instead of writing a combination of `groupby` and `join` queries, we just use the expression API to declare that we want to calculate statistics over some partition.
+Here comes the part where polars really shines. Instead of writing a combination of `group_by` and `join` queries, we just use the expression API to declare that we want to calculate statistics over some partition.
 
 ```python
 def add_features(dataf):
@@ -232,7 +232,7 @@ Here's what we calculate.
 1. The first expression in `.with_columns` calculates a count on the character column, which is just counting the number of rows. But the expression adds a `.over("session")` in the expression chain. This ensures that we calculate the number of rows for each session.
 2. The second expression in `.with_columns` calculates the number of unique session ids per character. This is again achieved by adding `.over("char")` to the chain.
 
-I don't know about you. But this is 'friggin elegant! We're able to do _so much_ from a single `.with_columns` call. No need to worry about `groupby`/`join` command. Just add expressions to calculate what you need.
+I don't know about you. But this is 'friggin elegant! We're able to do *so much* from a single `.with_columns` call. No need to worry about `group_by`/`join` command. Just add expressions to calculate what you need.
 
 ### Removing the Bots
 

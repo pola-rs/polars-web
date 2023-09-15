@@ -168,7 +168,7 @@ fn example() -&gt; Result&lt;DataFrame, PolarsError&gt; {
         .has_header(true)
         .finish()?
         .filter(col("bar").gt(lit(100)))
-        .groupby(vec![col("ham")])
+        .group_by(vec![col("ham")])
         .agg(vec![col("spam").sum(), col("ham").sort(false).first()])
         .collect()
 }</code></pre>
@@ -182,7 +182,7 @@ fn example() -&gt; Result&lt;DataFrame, PolarsError&gt; {
 q = (
     pl.scan_csv("iris.csv")
     .filter(pl.col("sepal_length") &gt; 5)
-    .groupby("species")
+    .group_by("species")
     .agg(pl.all().sum())
 )
 
