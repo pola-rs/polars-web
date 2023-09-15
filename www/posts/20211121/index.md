@@ -232,7 +232,7 @@ Here's what we calculate.
 1. The first expression in `.with_columns` calculates a count on the character column, which is just counting the number of rows. But the expression adds a `.over("session")` in the expression chain. This ensures that we calculate the number of rows for each session.
 2. The second expression in `.with_columns` calculates the number of unique session ids per character. This is again achieved by adding `.over("char")` to the chain.
 
-I don't know about you. But this is 'friggin elegant! We're able to do *so much* from a single `.with_columns` call. No need to worry about `group_by`/`join` command. Just add expressions to calculate what you need. 
+I don't know about you. But this is 'friggin elegant! We're able to do *so much* from a single `.with_columns` call. No need to worry about `group_by`/`join` command. Just add expressions to calculate what you need.
 
 ### Removing the Bots
 
