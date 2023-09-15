@@ -216,7 +216,7 @@ Typically want to cluster as many expressions as possible in a single `with_colu
 
 ### Adding Other Features
 
-Here comes the part where polars really shines. Instead of writing a combination of `group_by` and `join` queries, we just use the expression API to declare that we want to calculate statistics over some partition. 
+Here comes the part where polars really shines. Instead of writing a combination of `group_by` and `join` queries, we just use the expression API to declare that we want to calculate statistics over some partition.
 
 ```python
 def add_features(dataf):
