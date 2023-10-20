@@ -24,20 +24,6 @@
     </div>
 
   </div>
-
-  <script>
-    let s = document.getElementById("stargazers"),
-        f = document.getElementById("forks");
-
-    axios
-      .get("https://api.github.com/repos/pola-rs/polars")
-      .then((resp) => {
-        s.innerHTML =
-          (resp.data.stargazers_count / 1000).toFixed(1) + "k";
-        f.innerHTML = resp.data.forks_count;
-      });
-  </script>
-
 </header>
 {% endblock %}
 
@@ -86,7 +72,7 @@
         <div>
           <div>
             <img
-              height="80px"
+              height="80"
               src="https://raw.githubusercontent.com/pola-rs/polars-static/master/web/polars-logo-rust.svg"
             />
           </div>
@@ -201,7 +187,7 @@ df = q.collect()</code></pre>
       <div class="pl-contribs">
         <h3><i class="fas fa-user-astronaut"></i>Contributors</h3>
         <div id="contributors"></div>
-        <a href="https://github.com/pola-rs/polars/graphs/contributors">and more...</>
+        <a href="https://github.com/pola-rs/polars/graphs/contributors">and more...</a>
       </div>
 
       <div class="pl-sponsors">
@@ -212,18 +198,21 @@ df = q.collect()</code></pre>
           ><img
             src="https://raw.githubusercontent.com/pola-rs/polars-static/master/sponsors/xomnia.png"
             title="Xomnia"
+            alt="Xomnia logo"
           /></a>
           <a
             href="https://ponte.energy"
           ><img
             src="https://raw.githubusercontent.com/pola-rs/polars-static/master/sponsors/ponte_energy_partners.png"
             title="Ponte Energy Partners"
+            alt="Ponte Energy Partners logo"
           /></a>
           <a
             href="https://databento.com/"
           ><img
             src="https://raw.githubusercontent.com/pola-rs/polars-static/master/sponsors/databento-sponsorship-logo.png"
             title="databento"
+            alt="databento logo"
           /></a>
         </p>
       </div>
@@ -231,26 +220,30 @@ df = q.collect()</code></pre>
     </div>
   </div>
 
-  <script>
-    let e = document.getElementById("contributors");
 
-    axios
-      .get(
-        "https://api.github.com/repos/pola-rs/polars/contributors?per_page=40"
-      )
-      .then((resp) => {
-        resp.data.forEach((c) => {
-          e.innerHTML +=
-            '<a href="' +
-            c.html_url +
-            '" title="' +
-            c.login +
-            '"><img src="' +
-            c.avatar_url +
-            '&s=80" /></a>';
-        });
-      });
-  </script>
 
 </section>
+{% endblock %}
+
+{% block footer_scripts %}
+<script>
+  let s = document.getElementById("stargazers"),
+    f = document.getElementById("forks");
+
+    fetch("https://api.github.com/repos/pola-rs/polars")
+            .then(r => r.json())
+            .then((data) => {
+          s.innerHTML = (data.stargazers_count / 1000).toFixed(1) + "k";
+          f.innerHTML = data.forks_count;
+  });
+
+  let e = document.getElementById("contributors");
+  fetch("https://api.github.com/repos/pola-rs/polars/contributors?per_page=40")
+    .then(r => r.json())
+    .then(data => {
+      e.innerHTML = data.map((c) => {
+         return '<a href="' + c.html_url + '" title="'+ c.login +'"><img src="'+ c.avatar_url +'" alt="' + c.login + '" /></a>';
+      }).join('');
+    });
+</script>
 {% endblock %}
