@@ -242,7 +242,7 @@ df = q.collect()</code></pre>
     .then(r => r.json())
     .then(data => {
       e.innerHTML = data.map((c) => {
-         return '<a href="' + c.html_url + '" title="'+ c.login +'"><img src="'+ c.avatar_url +'" alt="' + c.login + '" /></a>';
+         return '<a href="' + c.html_url + '" title="'+ c.login +'"><img src="'+ c.avatar_url +'&s=80" alt="' + c.login + '" /></a>';
       }).join('');
     });
 </script>
