@@ -2,7 +2,6 @@
 
 {% block head %}
 <link rel="stylesheet" href="/style-post.css" />
-<link rel="stylesheet" href="style.css" />
 {% endblock %}
 
 {% block main %}

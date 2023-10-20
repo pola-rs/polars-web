@@ -1,8 +1,7 @@
 {% extends "base.tpl" %}
 
 {% block head %}
-    <link rel="stylesheet" href="style.css"/>
-    <link rel="stylesheet" href="style-benchmark.css"/>
+    <link rel="stylesheet" href="/style-benchmark.css"/>
 {% endblock %}
 
 {% block main %}

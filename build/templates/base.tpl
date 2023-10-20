@@ -40,7 +40,6 @@
       document.documentElement.className = {{ theme }};
     </script>
     {% endif %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"></script>
     <script
       defer
       src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"
@@ -63,9 +62,9 @@
       );"
     ></script>
     <script
-      defer
-      src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.13.3/mermaid.min.js"
-      onload="mermaid.initialize();"
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.13.3/mermaid.min.js"
+            onload="mermaid.initialize();"
     ></script>
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="stylesheet" href="/style.css" />
@@ -166,6 +165,6 @@
 
       </div>
     </footer>
-
+  {% block footer_scripts %}{% endblock %}
   </body>
 </html>
