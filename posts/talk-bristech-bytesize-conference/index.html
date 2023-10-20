@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Bristech Bytesize #17: Polars, the fastest DataFrame library you never heard of... Panel with Joris van den Bossche (software engineer at Voltron Data) & Jorge C. Leitão (co-founder and data scientist at Munin Data)." />
+<meta name="title" content="Talk @ Bristech Bytesize Conference" />
+
+<meta property="og:description" content="Bristech Bytesize #17: Polars, the fastest DataFrame library you never heard of... Panel with Joris van den Bossche (software engineer at Voltron Data) & Jorge C. Leitão (co-founder and data scientist at Munin Data)." />
+<meta property="og:image" content="https://www.pola.rs/posts/talk-bristech-bytesize-conference/bristech.png" />
+<meta property="og:title" content="Talk @ Bristech Bytesize Conference" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.pola.rs/posts/talk-bristech-bytesize-conference/" />
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:description" content="Bristech Bytesize #17: Polars, the fastest DataFrame library you never heard of... Panel with Joris van den Bossche (software engineer at Voltron Data) & Jorge C. Leitão (co-founder and data scientist at Munin Data)." />
+<meta property="twitter:image" content="https://www.pola.rs/posts/talk-bristech-bytesize-conference/bristech.png" />
+<meta property="twitter:title" content="Talk @ Bristech Bytesize Conference" />
+<meta property="twitter:url" content="https://www.pola.rs/posts/talk-bristech-bytesize-conference/" />
+    <title>Polars</title>
+    
+    
+    <script>
+      function setTheme(name) {
+        localStorage.setItem("theme", name);
+        document.documentElement.className = name;
+      }
+
+      function toggleTheme() {
+        if (localStorage.getItem("theme") === "light") {
+          setTheme("dark_dimmed");
+        } else {
+          setTheme("light");
+        }
+      }
+
+      if (
+        localStorage.getItem("theme") === "dark_dimmed" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        setTheme("dark_dimmed");
+      } else {
+        setTheme("light");
+      }
+    </script>
+    
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"
+      onload="hljs.highlightAll();"
+    ></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.0/katex.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.0/contrib/auto-render.min.js"
+      onload="renderMathInElement(
+        document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ]
+        }
+      );"
+    ></script>
+    <script
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.13.3/mermaid.min.js"
+            onload="mermaid.initialize();"
+    ></script>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    
+<link rel="stylesheet" href="/style-post.css" />
+
+  </head>
+
+  <body>
+
+    <nav>
+      <div class="container">
+
+        <div class="menu">
+
+          <img
+            class="pl-logo"
+            onclick="window.location='/';"
+            src="https://raw.githubusercontent.com/carnarez/polars-static/master/logos/polars-logo-dimmed.svg"
+          />
+
+          <div class="pl-buttons">
+            <ul>
+
+              <li class="text" onclick="this.classList.toggle('selected');">
+                <a>API</a>
+                <ul>
+                  <li class="text">
+                    <a href="https://docs.rs/polars/latest/polars/">Rust</a>
+                  </li>
+                  <li class="text">
+                    <a
+                      href="https://pola-rs.github.io/polars/py-polars/html/reference/"
+                    >Python</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="text">
+                <a href="https://pola-rs.github.io/polars-book/user-guide/">User Guide</a>
+              </li>
+            <li class="text">
+                <a href="/benchmarks.html">TPCH Benchmarks</a>
+            </li>
+
+              <li class="text"><a href="/posts">Posts</a></li>
+
+              <li class="icon">
+                <a
+                  href="https://github.com/pola-rs/polars/"
+                  title="GitHub"
+                ><i class="fab fa-github"></i></a>
+              </li>
+
+              <li class="icon">
+                <a
+                  href="https://discord.com/invite/4UfP5cfBE7"
+                  title="Discord"
+                ><i class="fab fa-discord"></i></a>
+              </li>
+
+              <li class="icon">
+                <a
+                  href="https://twitter.com/DataPolars"
+                  title="Twitter"
+                ><i class="fab fa-twitter"></i></a>
+              </li>
+
+              
+              <li class="icon">
+                <a
+                  class="theme-switcher" onclick="toggleTheme()"
+                  title="Dark/Light Theme"
+                ><i class="fas fa-adjust"></i></a>
+              </li>
+              
+
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </nav>
+
+    
+
+    <main>
+      
+<article>
+  <div class="container">
+    <div class="pl-post"><h1 id="polars-dataframe-library-built-on-apache-arrow">Polars DataFrame library built on Apache Arrow</h1>
+<p><iframe
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+  frameborder="0"
+  height="315"
+  src="https://www.youtube-nocookie.com/embed/XAU3dUjaX38"
+  width="560"
+>
+</iframe>
+</p>
+<p>Polars, the fastest DataFrame library you never heard of...</p>
+<p>This talk will introduce Polars, a blazingly fast DataFrame library written in Rust on
+top of Apache Arrow. Its a DataFrame library that brings exploratory data analysis
+closer to the lessons learned in database research.</p>
+<p>CPU's today's come with many cores and with their superscalar designs and SIMD
+registers allow for even more parallelism. Polars is written from the ground up to
+fully utilize the CPU's of this generation.</p>
+<p>Besides blazingly fast algorithms, cache efficient memory layout and multi-threading,
+it consists of a lazy query engine, allowing Polars to do several optimizations that
+may improve query time and memory usage.</p>
+<p><em>Talk organized by <a href="https://bris.tech/">Bristech</a> as part of their monthly
+<a href="https://www.meetup.com/bristech/events/279653542/">Meetup</a> sessions.</em></p></div>
+  </div>
+</article>
+
+    </main>
+
+    <footer>
+      <div class="container">
+
+        <div class="pl-links">
+          Visit the <a href="https://github.com/pola-rs">Pola-rs GitHub Organization</a>
+        </div>
+
+      </div>
+    </footer>
+  
+  </body>
+</html>

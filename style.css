@@ -1,0 +1,405 @@
+@import "style-github-button.css";
+@import "style-highlight.css";
+@import "style-themes.css";
+
+:root {
+  --nav-height: 50px;
+  --footer-height: 50px;
+}
+
+:root,
+.light {
+  --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dark.svg");
+}
+
+.dark_dimmed {
+  --polars-logo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/logos/polars-logo-dimmed.svg");
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:focus,
+a:hover {
+  text-decoration: underline;
+}
+
+body {
+  background: var(--background-color);
+  color: var(--font-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 1.1rem;
+  line-height: 1.75em;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--font-color);
+  font-weight: normal;
+}
+
+h1 i,
+h2 i,
+h3 i,
+h4 i,
+h5 i,
+h6 i {
+  margin-right: 0.5rem;
+}
+
+pre {
+  border: 1px solid var(--background-color-alt);
+  border-radius: 5px;
+  overflow: auto;
+  padding: 1em;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+.columns {
+  display: block;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: calc(1600px - 2rem);
+  height: 100%;
+}
+
+.ribbon {
+  background-color: var(--background-color-alt);
+}
+
+.rust-color {
+  color: var(--rust-color);
+}
+
+.theme-switcher {
+  cursor: pointer;
+}
+
+.hljs {
+  background: none; /* due to some weird decisions in the official stylesheet */
+}
+
+nav {
+  background-color: var(--background-color-alt);
+  border-color: var(--background-color);
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  height: var(--nav-height);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+}
+
+nav .menu {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+nav .menu img.pl-logo {
+  background-image: var(--polars-logo);
+  background-repeat: no-repeat;
+  background-size: auto 25px;
+  cursor: pointer;
+  display: block;
+  height: 25px;
+  padding-left: 50px;
+  width: 50px;
+}
+
+nav .menu .pl-buttons i {
+  font-size: 1.4rem;
+}
+
+nav .menu .pl-buttons i:not(:last-child) {
+  margin-right: 1rem;
+}
+
+nav .menu .pl-buttons ul {
+  background-color: var(--background-color-alt);
+  border-radius: 5px;
+  list-style: none;
+  padding: 0;
+}
+
+nav .menu .pl-buttons ul li {
+  cursor: pointer;
+}
+
+nav .menu .pl-buttons ul li a:focus,
+nav .menu .pl-buttons ul li a:hover {
+  text-decoration: none;
+}
+
+nav .menu .pl-buttons ul li.icon {
+  margin-left: 0.25rem;
+}
+
+nav .menu .pl-buttons ul li.text {
+  margin-right: 1rem;
+}
+
+nav .menu .pl-buttons > ul {
+  display: flex;
+  height: 100%;
+}
+
+nav .menu .pl-buttons > ul li > ul {
+  display: none;
+  line-height: 2rem;
+  margin-left: -1rem;
+  padding: 0.5rem 0 0.5rem 1rem;
+  position: absolute;
+}
+
+nav .menu .pl-buttons > ul li:hover > ul,
+nav .menu .pl-buttons > ul li.selected > ul {
+  display: block;
+}
+
+nav .menu .pl-buttons > ul li > ul li {
+  padding-top: 0.5rem;
+}
+
+nav .menu .pl-buttons > ul li > ul li::before {
+  color: var(--rust-color);
+  content: "> ";
+}
+
+header {
+  margin-top: var(--nav-height);
+  margin-bottom: -var(--nav-height);
+  width: 100%;
+}
+
+header .pl-splash {
+  align-items: center;
+  background-color: var(--background-color);
+  background-image: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/ice-ice-baby.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 80%;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  justify-content: center;
+  max-height: 650px;
+  min-height: 400px;
+  text-align: center;
+}
+
+header .pl-splash h1 {
+  font-size: 300%;
+}
+
+main {
+  margin-top: var(--nav-height);
+  min-height: calc(100vh - var(--nav-height) - var(--footer-height));
+  width: 100%;
+}
+
+main article h1:first-child {
+  padding-top: 0;
+}
+
+main article .pl-year {
+  border-color: var(--background-color-alt);
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  font-size: 90%;
+  padding: 1rem;
+  text-transform: uppercase;
+}
+
+main article .pl-excerpt {
+  margin: 1rem 0;
+}
+
+main article .pl-excerpt:first-child {
+  margin-top: calc(var(--nav-height) + 2rem);
+}
+
+main article .pl-excerpt:last-child {
+  margin-bottom: 2rem;
+}
+
+main article .pl-excerpt h2 {
+  color: var(--link-color);
+}
+
+main article .pl-excerpt img {
+  border-radius: 5px;
+  max-height: 160px;
+}
+
+main article .pl-excerpt > div {
+  border-color: var(--background-color);
+  border-style: solid;
+  border-width: 0 0 0 3px;
+  padding: 1rem;
+}
+
+main article .pl-excerpt > div:focus,
+main article .pl-excerpt > div:hover {
+  border-color: var(--rust-color);
+}
+
+main article .pl-excerpt > div > div:not(:first-child) {
+  text-align: center;
+}
+
+main article .pl-post {
+  padding: 1rem 1rem;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+main section .pl-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+}
+
+main section .pl-details > div {
+  padding: 0 1rem;
+}
+
+main section .pl-details > div:last-child {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+main section .pl-intro {
+  padding: 1rem 1rem;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+main section .pl-code {
+  padding: 1rem;
+  width: 100%;
+}
+
+main section .pl-contribs {
+  flex-grow: 1;
+  padding: 1rem;
+  text-align: center;
+}
+
+main section .pl-contribs img {
+  border-radius: 20px;
+  margin: 0 5px;
+  width: 40px;
+}
+
+main section .pl-sponsors {
+  min-width: 33%;
+  padding: 1rem;
+  text-align: center;
+}
+
+main section .pl-sponsors img {
+  display: block;
+  max-width: 200px;
+  margin: 10px auto;
+}
+
+footer {
+  background-color: var(--background-color-alt);
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+}
+
+footer .pl-links {
+  align-items: center;
+  display: flex;
+  font-size: 90%;
+  gap: 0.3rem;
+  height: 100%;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* tablet (and larger) */
+
+@media (min-width: 58em) {
+  :root {
+    --nav-height: 65px;
+  }
+
+  .columns {
+    display: flex;
+  }
+
+  nav .menu img.pl-logo {
+    background-size: auto 45px;
+    height: 45px;
+    padding-left: 90px;
+    width: 90px;
+  }
+
+  nav .menu .pl-buttons ul li.icon {
+    margin-left: 0.5rem;
+  }
+
+  nav .menu .pl-buttons ul li.text {
+    margin-right: 2rem;
+  }
+
+  header .pl-splash h1 {
+    font-size: 400%;
+  }
+
+  main article .pl-excerpt > div {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+
+  main section .pl-code {
+    width: 50%;
+  }
+}
+
+/* desktop (and larger) */
+
+@media (min-width: 78em) {
+  header .pl-splash h1 {
+    font-size: 600%;
+  }
+}

@@ -1,0 +1,263 @@
+:root,
+.light {
+  --bear-sliding: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-sliding-light.png");
+  --bear-leaping: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-leaping-light.png");
+  --bear-running-frame-0: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-0-light.png");
+  --bear-running-frame-1: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-1-light.png");
+  --bear-running-frame-2: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-2-light.png");
+  --bear-running-frame-3: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-3-light.png");
+  --bear-running-frame-4: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-4-light.png");
+  --bear-running-frame-5: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-5-light.png");
+  --bear-running-frame-6: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-6-light.png");
+  --bear-running-frame-7: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-7-light.png");
+  --hurdle-snowman: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/hurdle-snowman-light.png");
+  --hurdle-snowmen: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/hurdle-snowmen-light.png");
+  --arctic-bear: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-bear-light.png");
+  --arctic-igloo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-igloo-light.png");
+  --arctic-igloos: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-igloos-light.png");
+  --arctic-penguin: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-penguin-light.png");
+  --arctic-penguins: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-penguins-light.png");
+  --arctic-pups: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-pups-light.png");
+  --arctic-seal: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-seal-light.png");
+  --arctic-seals: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-seals-light.png");
+  --arctic-sky: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-sky-light.png");
+  --ground-gradient: linear-gradient(
+    180deg,
+    rgba(112, 176, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+}
+
+.dark_dimmed {
+  --bear-sliding: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-sliding-dark_dimmed.png");
+  --bear-leaping: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-leaping-dark_dimmed.png");
+  --bear-running-frame-0: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-0-dark_dimmed.png");
+  --bear-running-frame-1: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-1-dark_dimmed.png");
+  --bear-running-frame-2: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-2-dark_dimmed.png");
+  --bear-running-frame-3: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-3-dark_dimmed.png");
+  --bear-running-frame-4: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-4-dark_dimmed.png");
+  --bear-running-frame-5: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-5-dark_dimmed.png");
+  --bear-running-frame-6: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-6-dark_dimmed.png");
+  --bear-running-frame-7: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/bear-running-frame-7-dark_dimmed.png");
+  --hurdle-snowman: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/hurdle-snowman-dark_dimmed.png");
+  --hurdle-snowmen: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/hurdle-snowmen-dark_dimmed.png");
+  --arctic-bear: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-bear-dark_dimmed.png");
+  --arctic-igloo: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-igloo-dark_dimmed.png");
+  --arctic-igloos: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-igloos-dark_dimmed.png");
+  --arctic-penguin: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-penguin-dark_dimmed.png");
+  --arctic-penguins: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-penguins-dark_dimmed.png");
+  --arctic-pups: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-pups-dark_dimmed.png");
+  --arctic-seal: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-seal-dark_dimmed.png");
+  --arctic-seals: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-seals-dark_dimmed.png");
+  --arctic-sky: url("https://raw.githubusercontent.com/pola-rs/polars-static/master/web/game/arctic-sky-dark_dimmed.png");
+  --ground-gradient: linear-gradient(
+    180deg,
+    rgba(112, 176, 255, 0.25) 0%,
+    rgba(34, 39, 46, 0.25) 100%
+  );
+}
+
+body::before {
+  content: var(--bear-sliding) var(--bear-leaping) var(--bear-running-frame-0)
+    var(--bear-running-frame-1) var(--bear-running-frame-2)
+    var(--bear-running-frame-3) var(--bear-running-frame-4)
+    var(--bear-running-frame-5) var(--bear-running-frame-6)
+    var(--bear-running-frame-7) var(--hurdle-snowman) var(--hurdle-snowmen)
+    var(--arctic-bear) var(--arctic-igloo) var(--arctic-igloos)
+    var(--arctic-penguin) var(--arctic-penguins) var(--arctic-pups)
+    var(--arctic-seal) var(--arctic-seals) var(--arctic-sky);
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 0;
+  z-index: -1;
+}
+
+main article {
+  padding-top: 100px;
+}
+
+.error {
+  font-size: 1000%;
+  margin-top: 100px;
+  opacity: 0.1;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.game {
+  display: none;
+  height: 250px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  width: 1000px;
+}
+
+.game .ground {
+  background: var(--ground-gradient);
+  border-color: #70b0ff77;
+  border-style: solid;
+  border-width: 1px 0 0 0;
+  height: 30px;
+  top: 185px;
+  position: absolute;
+  width: 100%;
+}
+
+.game #sky {
+  animation: slide 120s infinite linear;
+  background-image: var(--arctic-sky);
+  background-repeat: no-repeat;
+  height: 65px;
+  left: 90%;
+  position: absolute;
+  top: 10px;
+  width: 150px;
+}
+
+.game #bear {
+  animation: bear 0.8s linear infinite;
+  background-repeat: no-repeat;
+  height: 50px;
+  left: 30px;
+  position: relative;
+  top: 150px;
+}
+
+@keyframes bear {
+  0% {
+    background-image: var(--bear-running-frame-0);
+  }
+  14% {
+    background-image: var(--bear-running-frame-1);
+  }
+  29% {
+    background-image: var(--bear-running-frame-2);
+  }
+  49% {
+    background-image: var(--bear-running-frame-3);
+  }
+  57% {
+    background-image: var(--bear-running-frame-4);
+  }
+  72% {
+    background-image: var(--bear-running-frame-5);
+  }
+  86% {
+    background-image: var(--bear-running-frame-6);
+  }
+  100% {
+    background-image: var(--bear-running-frame-7);
+  }
+}
+
+.game #bear.jump {
+  animation: jump 0.8s linear;
+  background-image: var(--bear-leaping);
+  height: 50px;
+}
+
+@keyframes jump {
+  0% {
+    top: 150px;
+  }
+  20% {
+    top: 100px;
+  }
+  40% {
+    top: 50px;
+  }
+  50% {
+    top: 0px;
+  }
+  60% {
+    top: 0px;
+  }
+  70% {
+    top: 33px;
+  }
+  80% {
+    top: 66px;
+  }
+  90% {
+    top: 100px;
+  }
+  100% {
+    top: 150px;
+  }
+}
+
+.game #hurdle {
+  animation: slide 4s infinite linear;
+  background-image: var(--hurdle-snowman);
+  background-repeat: no-repeat;
+  height: 60px;
+  left: 100%;
+  position: relative;
+  top: 90px;
+  width: 100px;
+}
+
+.game #stuff1 {
+  animation: slide 3.8s 1.25s infinite linear;
+  background-image: var(--arctic-igloo);
+  background-repeat: no-repeat;
+  height: 60px;
+  left: 100%;
+  position: absolute;
+  top: 180px;
+  width: 40%;
+}
+
+.game #stuff2 {
+  animation: slide 3.8s 2.5s infinite linear;
+  background-image: var(--arctic-seal);
+  background-repeat: no-repeat;
+  height: 60px;
+  left: 100%;
+  position: absolute;
+  top: 180px;
+  width: 40%;
+}
+
+.game #stuff3 {
+  animation: slide 3.8s 3.75s infinite linear;
+  background-image: var(--arctic-penguins);
+  background-repeat: no-repeat;
+  height: 60px;
+  left: 100%;
+  position: absolute;
+  top: 180px;
+  width: 40%;
+}
+
+@keyframes slide {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: -100px;
+  }
+}
+
+.caption {
+  display: none;
+  margin: 3rem auto 0 auto;
+  text-align: center;
+}
+
+@media (min-width: 1000px) {
+  .error {
+    font-size: 2000%;
+  }
+
+  .game {
+    display: block;
+  }
+
+  .caption {
+    display: block;
+  }
+}

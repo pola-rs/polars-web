@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="An overview of breaking changes and deprecations in the latest Polars release." />
+<meta name="title" content="Polars 0.19 upgrade guide" />
+
+<meta property="og:description" content="An overview of breaking changes and deprecations in the latest Polars release." />
+<meta property="og:image" content="https://raw.githubusercontent.com/pola-rs/polars-static/master/web/splash.png" />
+<meta property="og:title" content="Polars 0.19 upgrade guide" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.pola.rs/posts/polars-0-19-upgrade-guide/" />
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:description" content="An overview of breaking changes and deprecations in the latest Polars release." />
+<meta property="twitter:image" content="https://raw.githubusercontent.com/pola-rs/polars-static/master/web/splash.png" />
+<meta property="twitter:title" content="Polars 0.19 upgrade guide" />
+<meta property="twitter:url" content="https://www.pola.rs/posts/polars-0-19-upgrade-guide/" />
+    <title>Polars</title>
+    
+    
+    <script>
+      function setTheme(name) {
+        localStorage.setItem("theme", name);
+        document.documentElement.className = name;
+      }
+
+      function toggleTheme() {
+        if (localStorage.getItem("theme") === "light") {
+          setTheme("dark_dimmed");
+        } else {
+          setTheme("light");
+        }
+      }
+
+      if (
+        localStorage.getItem("theme") === "dark_dimmed" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        setTheme("dark_dimmed");
+      } else {
+        setTheme("light");
+      }
+    </script>
+    
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"
+      onload="hljs.highlightAll();"
+    ></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.0/katex.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.0/contrib/auto-render.min.js"
+      onload="renderMathInElement(
+        document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ]
+        }
+      );"
+    ></script>
+    <script
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.13.3/mermaid.min.js"
+            onload="mermaid.initialize();"
+    ></script>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    
+<link rel="stylesheet" href="/style-post.css" />
+
+  </head>
+
+  <body>
+
+    <nav>
+      <div class="container">
+
+        <div class="menu">
+
+          <img
+            class="pl-logo"
+            onclick="window.location='/';"
+            src="https://raw.githubusercontent.com/carnarez/polars-static/master/logos/polars-logo-dimmed.svg"
+          />
+
+          <div class="pl-buttons">
+            <ul>
+
+              <li class="text" onclick="this.classList.toggle('selected');">
+                <a>API</a>
+                <ul>
+                  <li class="text">
+                    <a href="https://docs.rs/polars/latest/polars/">Rust</a>
+                  </li>
+                  <li class="text">
+                    <a
+                      href="https://pola-rs.github.io/polars/py-polars/html/reference/"
+                    >Python</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="text">
+                <a href="https://pola-rs.github.io/polars-book/user-guide/">User Guide</a>
+              </li>
+            <li class="text">
+                <a href="/benchmarks.html">TPCH Benchmarks</a>
+            </li>
+
+              <li class="text"><a href="/posts">Posts</a></li>
+
+              <li class="icon">
+                <a
+                  href="https://github.com/pola-rs/polars/"
+                  title="GitHub"
+                ><i class="fab fa-github"></i></a>
+              </li>
+
+              <li class="icon">
+                <a
+                  href="https://discord.com/invite/4UfP5cfBE7"
+                  title="Discord"
+                ><i class="fab fa-discord"></i></a>
+              </li>
+
+              <li class="icon">
+                <a
+                  href="https://twitter.com/DataPolars"
+                  title="Twitter"
+                ><i class="fab fa-twitter"></i></a>
+              </li>
+
+              
+              <li class="icon">
+                <a
+                  class="theme-switcher" onclick="toggleTheme()"
+                  title="Dark/Light Theme"
+                ><i class="fas fa-adjust"></i></a>
+              </li>
+              
+
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </nav>
+
+    
+
+    <main>
+      
+<article>
+  <div class="container">
+    <div class="pl-post"><h1 id="polars-019-upgrade-guide">Polars 0.19 upgrade guide</h1>
+<p>Yesterday, we published a new breaking Polars release to PyPI.
+The new version includes quite a few breaking changes.
+Most of these changes have been announced through deprecation warnings, but we did include some surprises.
+This document should help you navigate the upgrade to Polars <code>0.19</code>.</p>
+<p>For the full list of changes, please see our <a href="https://github.com/pola-rs/polars/releases/tag/py-0.19.0">changelog</a>.</p>
+<h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li><a href="#breaking-changes">Breaking changes</a></li>
+<li><a href="#deprecations">Deprecations</a></li>
+</ul>
+<h2 id="breaking-changes">Breaking changes</h2>
+<p>While this section does not contain an exhaustive list of all breaking changes, we think these are most likely to impact your code.</p>
+<h3 id="aggregation-functions-no-longer-support-horizontal-computation">Aggregation functions no longer support horizontal computation</h3>
+<p>This impacts aggregation functions like <code>sum</code>, <code>min</code>, and <code>max</code>.
+These functions were overloaded to support both vertical and horizontal computation.
+Recently, new dedicated functionality for horizontal computation was released, and horizontal computation was deprecated.</p>
+<p>Restore the old behavior by using the horizontal variant, e.g. <code>sum_horizontal</code>.</p>
+<h4 id="example">Example</h4>
+<p>Before:</p>
+<pre class="highlight"><code class="language-shell">&gt;&gt;&gt; df = pl.DataFrame({'a': [1, 2], 'b': [11, 12]})
+&gt;&gt;&gt; df.select(pl.sum('a', 'b'))  # horizontal computation
+shape: (2, 1)
+┌─────┐
+│ sum │
+│ --- │
+│ i64 │
+╞═════╡
+│ 12  │
+│ 14  │
+└─────┘</code></pre>
+<p>After:</p>
+<pre class="highlight"><code class="language-shell">&gt;&gt;&gt; df = pl.DataFrame({'a': [1, 2], 'b': [11, 12]})
+&gt;&gt;&gt; df.select(pl.sum('a', 'b'))  # vertical computation
+shape: (1, 2)
+┌─────┬─────┐
+│ a   ┆ b   │
+│ --- ┆ --- │
+│ i64 ┆ i64 │
+╞═════╪═════╡
+│ 3   ┆ 23  │
+└─────┴─────┘</code></pre>
+<h3 id="update-to-all-any">Update to <code>all</code> / <code>any</code></h3>
+<p><code>all</code> will now ignore null values by default, rather than treat them as <code>False</code>.</p>
+<p>For both <code>any</code> and <code>all</code>, the <code>drop_nulls</code> parameter has been renamed to <code>ignore_nulls</code> and is now keyword-only.
+Also fixed an issue when setting this parameter to <code>False</code> would erroneously result in <code>None</code> output in some cases.</p>
+<p>To restore the old behavior, set <code>ignore_nulls</code> to <code>False</code> and check for <code>None</code> output.</p>
+<h4 id="example_1">Example</h4>
+<p>Before:</p>
+<pre class="highlight"><code class="language-shell">&gt;&gt;&gt; pl.Series([True, None]).all()
+False</code></pre>
+<p>After:</p>
+<pre class="highlight"><code class="language-shell">&gt;&gt;&gt; pl.Series([True, None]).all()
+True</code></pre>
+<h3 id="improved-error-types-for-many-methods">Improved error types for many methods</h3>
+<p>Improving our error messages is an ongoing effort.
+We did a sweep of our Python code base and made many improvements to error messages and error types.
+Most notably, many <code>ValueError</code>s were changed to <code>TypeError</code>s.</p>
+<p>If your code relies on handling Polars exceptions, you may have to make some adjustments.</p>
+<h4 id="example_2">Example</h4>
+<p>Before:</p>
+<pre class="highlight"><code class="language-shell">&gt;&gt;&gt; pl.Series(values=15)
+...
+ValueError: Series constructor called with unsupported type; got 'int'</code></pre>
+<p>After:</p>
+<pre class="highlight"><code class="language-shell">&gt;&gt;&gt; pl.Series(values=15)
+...
+TypeError: Series constructor called with unsupported type 'int' for the `values` parameter</code></pre>
+<h3 id="updates-to-expression-input-parsing">Updates to expression input parsing</h3>
+<p>Methods like <code>select</code> and <code>with_columns</code> accept one or more expressions.
+But they also accept strings, integers, lists, and other inputs that we try to interpret as expressions.
+We updated our internal logic to parse inputs more consistently.</p>
+<h4 id="example_3">Example</h4>
+<p>Before:</p>
+<pre class="highlight"><code class="language-shell">&gt;&gt;&gt; pl.DataFrame({'a': [1, 2]}).with_columns(None)
+shape: (2, 1)
+┌─────┐
+│ a   │
+│ --- │
+│ i64 │
+╞═════╡
+│ 1   │
+│ 2   │
+└─────┘</code></pre>
+<p>After:</p>
+<pre class="highlight"><code class="language-shell">&gt;&gt;&gt; pl.DataFrame({'a': [1, 2]}).with_columns(None)
+shape: (2, 2)
+┌─────┬─────────┐
+│ a   ┆ literal │
+│ --- ┆ ---     │
+│ i64 ┆ null    │
+╞═════╪═════════╡
+│ 1   ┆ null    │
+│ 2   ┆ null    │
+└─────┴─────────┘</code></pre>
+<h3 id="shuffle-sample-now-use-an-internal-polars-seed"><code>shuffle</code> / <code>sample</code> now use an internal Polars seed</h3>
+<p>If you used the built-in Python <code>random.seed</code> function to control the randomness of Polars expressions, this will no longer work.
+Instead, use the new <code>set_random_seed</code> function.</p>
+<h4 id="example_4">Example</h4>
+<p>Before:</p>
+<pre class="highlight"><code class="language-python">import random
+
+random.seed(1)</code></pre>
+<p>After:</p>
+<pre class="highlight"><code class="language-python">import polars as pl
+
+pl.set_random_seed(1)</code></pre>
+<h2 id="deprecations">Deprecations</h2>
+<p>Creating a consistent and intuitive API is hard, finding the right name for each function, method, and parameter might be the hardest part.
+The new version comes with quite some naming changes, and you will most likely run into deprecation warnings when upgrading to <code>0.19</code>.</p>
+<p>If you want to upgrade without worrying about deprecation warnings right now, you can add the following snippet to your code:</p>
+<pre class="highlight"><code class="language-python">import warnings
+
+warnings.filterwarnings("ignore", category=DeprecationWarning)</code></pre>
+<h3 id="groupby-renamed-to-group_by"><code>groupby</code> renamed to <code>group_by</code></h3>
+<p>This is not a change we make lightly, as it will impact almost all our users. But "group by" are really two different words, and our naming strategy dictates that these should be separated by an underscore.</p>
+<p>Most likely, a simple search and replace will be enough to take care of this update:</p>
+<ul>
+<li>Search: <code>.groupby(</code></li>
+<li>Replace: <code>.group_by(</code></li>
+</ul>
+<h3 id="apply-renamed-to-map_"><code>apply</code> renamed to <code>map_*</code></h3>
+<p><code>apply</code> is probably the most misused part of our API. Many Polars users come from pandas, where <code>apply</code> has a completely different meaning.</p>
+<p>We now consolidate all our functionality for user-defined functions under the name <code>map</code>. This results in the following renaming:</p>
+<div class="overflow-x">
+<table>
+<thead>
+<tr>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Series/Expr.apply</code></td>
+<td><code>map_elements</code></td>
+</tr>
+<tr>
+<td><code>Series/Expr.rolling_apply</code></td>
+<td><code>rolling_map</code></td>
+</tr>
+<tr>
+<td><code>DataFrame.apply</code></td>
+<td><code>map_rows</code></td>
+</tr>
+<tr>
+<td><code>GroupBy.apply</code></td>
+<td><code>map_groups</code></td>
+</tr>
+<tr>
+<td><code>pl.apply</code></td>
+<td><code>map_groups</code></td>
+</tr>
+<tr>
+<td><code>map</code></td>
+<td><code>map_batches</code></td>
+</tr>
+</tbody>
+</table>
+</div></div>
+  </div>
+</article>
+
+    </main>
+
+    <footer>
+      <div class="container">
+
+        <div class="pl-links">
+          Visit the <a href="https://github.com/pola-rs">Pola-rs GitHub Organization</a>
+        </div>
+
+      </div>
+    </footer>
+  
+  </body>
+</html>

@@ -1,0 +1,180 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.0/katex.min.css");
+
+@import "style-mermaid.css";
+
+/* general */
+
+body {
+  counter-reset: eqn;
+}
+
+main article hr {
+  border-color: var(--background-color-alt);
+  border-style: solid;
+  border-width: 1px 0 0 0;
+  margin: 0;
+  width: 50%;
+}
+
+main article img {
+  display: block;
+  margin: 0 auto;
+}
+
+main article .overflow-x {
+  overflow-x: auto;
+}
+
+/* blockquotes */
+
+main article blockquote {
+  border-color: var(--link-color);
+  border-style: solid;
+  border-width: 0 0 0 3px;
+  margin: 0;
+  padding: 0 1rem;
+}
+
+main article blockquote > p {
+  display: inline-block;
+  font-style: italic;
+  margin: 0;
+  padding: 0;
+}
+
+main article blockquote > p:after,
+main article blockquote > p:before {
+  color: var(--link-color);
+  font-weight: bold;
+}
+
+main article blockquote > p:after {
+  content: ' "';
+}
+
+main article blockquote > p:before {
+  content: '" ';
+}
+
+/* code */
+
+main article code,
+main article pre {
+  border-radius: 0.3rem;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 90%;
+}
+
+main article code {
+  background-color: var(--background-color-alt);
+  padding: 0.2rem 0.4rem;
+}
+
+main article pre {
+  border-color: var(--background-color-alt);
+  border-style: solid;
+  border-width: 1px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 90%;
+  line-height: 1.5rem;
+  padding: 0.2rem 0.6rem;
+}
+
+main article pre > code {
+  padding: 0;
+}
+
+/* details */
+
+main article summary {
+  cursor: pointer;
+}
+
+/* equations */
+
+main article .katex {
+  width: 100%;
+}
+
+main article span.katex-display {
+  align-items: center;
+  display: flex;
+}
+
+main article span.katex-display:after {
+  color: var(--font-color);
+  content: "[" counter(eqn) "]";
+  counter-increment: eqn;
+  padding: 0 0 0 2rem;
+}
+
+/* footnotes */
+
+main article .footnote {
+  font-size: 80%;
+  line-height: 1rem;
+}
+
+.footnote li:first-child {
+  margin-top: 1.5rem;
+}
+
+/* iframes */
+
+main article iframe {
+  display: block;
+  margin: 0 auto;
+  max-width: 560px;
+  width: 100%;
+}
+
+/* tables */
+
+main article table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+main article table thead tr th,
+main article table tbody tr td {
+  padding: 0 1rem;
+}
+
+main article table thead tr th,
+main article table tbody tr:last-child td {
+  border-color: var(--font-color);
+  border-style: solid;
+  border-width: 0 0 1px 0;
+}
+
+main article table tbody tr:nth-child(odd) {
+  background-color: var(--background-color-alt);
+}
+
+/* titles */
+
+main article h1 {
+  font-size: 200%;
+  padding: 4rem 0 1rem 0;
+}
+
+main article h2 {
+  font-size: 150%;
+  padding: 2rem 0 0 0;
+}
+
+main article h3,
+main article h4 {
+  font-size: 130%;
+}
+
+main article h5,
+main article h6 {
+  font-size: 100%;
+}
+
+main article h6 {
+  font-weight: normal;
+}

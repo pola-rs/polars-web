@@ -1,0 +1,163 @@
+/*
+ * source themes downloaded from:
+ * https://github.com/highlightjs/highlight.js/tree/main/src/styles
+ * and merged to account for the theme switch
+ */
+
+:root,
+.light {
+  --color-1: #24292e;
+  --color-2: #ffffff;
+  --color-3: #d73a49;
+  --color-4: #6f42c1;
+  --color-5: #005cc5;
+  --color-6: #032f62;
+  --color-7: #e36209;
+  --color-8: #6a737d;
+  --color-9: #22863a;
+  --color-10: #24292e;
+  --color-11: #005cc5;
+  --color-12: #735c0f;
+  --color-13: #24292e;
+  --color-14: #24292e;
+  --color-15: #22863a;
+  --color-16: #f0fff4;
+  --color-17: #b31d28;
+  --color-18: #ffeef0;
+}
+
+.dark_dimmed {
+  --color-1: #adbac7;
+  --color-2: #22272e;
+  --color-3: #f47067;
+  --color-4: #dcbdfb;
+  --color-5: #6cb6ff;
+  --color-6: #96d0ff;
+  --color-7: #f69d50;
+  --color-8: #768390;
+  --color-9: #8ddb8c;
+  --color-10: #adbac7;
+  --color-11: #316dca;
+  --color-12: #eac55f;
+  --color-13: #adbac7;
+  --color-14: #adbac7;
+  --color-15: #b4f1b4;
+  --color-16: #1b4721;
+  --color-17: #ffd8d3;
+  --color-18: #78191b;
+}
+
+.hljs {
+  color: var(--color-1);
+  background: var(--color-2);
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: var(--color-3);
+}
+
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: var(--color-4);
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: var(--color-5);
+}
+
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: var(--color-6);
+}
+
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: var(--color-7);
+}
+
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: var(--color-8);
+}
+
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: var(--color-9);
+}
+
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: var(--color-1);
+}
+
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: var(--color-11);
+  font-weight: bold;
+}
+
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: var(--color-12);
+}
+
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: var(--color-1);
+  font-style: italic;
+}
+
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: var(--color-1);
+  font-weight: bold;
+}
+
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: var(--color-15);
+  background-color: var(--color-16);
+}
+
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: var(--color-17);
+  background-color: var(--color-18);
+}
+
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+}

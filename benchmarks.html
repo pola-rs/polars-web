@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Polars is a blazingly fast DataFrame library completely written in Rust, using the Apache Arrow memory model. It exposes bindings for the popular Python and soon JavaScript languages. Polars supports a full lazy execution API allowing query optimization." />
+<meta name="title" content="Polars, lightning-fast DataFrame library" />
+
+<meta property="og:description" content="Polars is a blazingly fast DataFrame library completely written in Rust, using the Apache Arrow memory model. It exposes bindings for the popular Python and soon JavaScript languages. Polars supports a full lazy execution API allowing query optimization." />
+<meta property="og:image" content="https://raw.githubusercontent.com/pola-rs/polars-static/master/web/splash.png" />
+<meta property="og:title" content="Polars, lightning-fast DataFrame library" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.pola.rs/" />
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:description" content="Polars is a blazingly fast DataFrame library completely written in Rust, using the Apache Arrow memory model. It exposes bindings for the popular Python and soon JavaScript languages. Polars supports a full lazy execution API allowing query optimization." />
+<meta property="twitter:image" content="https://raw.githubusercontent.com/pola-rs/polars-static/master/web/splash.png" />
+<meta property="twitter:title" content="Polars, lightning-fast DataFrame library" />
+<meta property="twitter:url" content="https://www.pola.rs/" />
+    <title>Polars</title>
+    
+    <link rel="canonical" href="" />
+    
+    
+    <script>
+      function setTheme(name) {
+        localStorage.setItem("theme", name);
+        document.documentElement.className = name;
+      }
+
+      function toggleTheme() {
+        if (localStorage.getItem("theme") === "light") {
+          setTheme("dark_dimmed");
+        } else {
+          setTheme("light");
+        }
+      }
+
+      if (
+        localStorage.getItem("theme") === "dark_dimmed" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        setTheme("dark_dimmed");
+      } else {
+        setTheme("light");
+      }
+    </script>
+    
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"
+      onload="hljs.highlightAll();"
+    ></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.0/katex.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.0/contrib/auto-render.min.js"
+      onload="renderMathInElement(
+        document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ]
+        }
+      );"
+    ></script>
+    <script
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.13.3/mermaid.min.js"
+            onload="mermaid.initialize();"
+    ></script>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    
+    <link rel="stylesheet" href="/style-benchmark.css"/>
+
+  </head>
+
+  <body>
+
+    <nav>
+      <div class="container">
+
+        <div class="menu">
+
+          <img
+            class="pl-logo"
+            onclick="window.location='/';"
+            src="https://raw.githubusercontent.com/carnarez/polars-static/master/logos/polars-logo-dimmed.svg"
+          />
+
+          <div class="pl-buttons">
+            <ul>
+
+              <li class="text" onclick="this.classList.toggle('selected');">
+                <a>API</a>
+                <ul>
+                  <li class="text">
+                    <a href="https://docs.rs/polars/latest/polars/">Rust</a>
+                  </li>
+                  <li class="text">
+                    <a
+                      href="https://pola-rs.github.io/polars/py-polars/html/reference/"
+                    >Python</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="text">
+                <a href="https://pola-rs.github.io/polars-book/user-guide/">User Guide</a>
+              </li>
+            <li class="text">
+                <a href="/benchmarks.html">TPCH Benchmarks</a>
+            </li>
+
+              <li class="text"><a href="/posts">Posts</a></li>
+
+              <li class="icon">
+                <a
+                  href="https://github.com/pola-rs/polars/"
+                  title="GitHub"
+                ><i class="fab fa-github"></i></a>
+              </li>
+
+              <li class="icon">
+                <a
+                  href="https://discord.com/invite/4UfP5cfBE7"
+                  title="Discord"
+                ><i class="fab fa-discord"></i></a>
+              </li>
+
+              <li class="icon">
+                <a
+                  href="https://twitter.com/DataPolars"
+                  title="Twitter"
+                ><i class="fab fa-twitter"></i></a>
+              </li>
+
+              
+              <li class="icon">
+                <a
+                  class="theme-switcher" onclick="toggleTheme()"
+                  title="Dark/Light Theme"
+                ><i class="fas fa-adjust"></i></a>
+              </li>
+              
+
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </nav>
+
+    
+
+    <main>
+      
+
+    <section class="ribbon">
+        <div class="container">
+
+            <div class="pl-intro">
+                <h2>TPCH Benchmark</h2>
+                <p>
+                    Polars was benchmarked against several other solutions on the TPCH benchmark scale factor 10.
+                    All queries are open source and up open for PR's <a href="https://github.com/pola-rs/tpch">here</a>.
+                    The benchmarks ran on a <a
+                        href="https://cloud.google.com/compute/docs/general-purpose-machines#n2-high-mem">GCP
+                    n2-highmem-16</a>.
+
+                    This is still a work in progress and more queries will be coming soon.
+                </p>
+
+                <h2>Rules</h2>
+                <p>
+                The original TPCH benchmark is intended for SQL databases and doesn't allow any modification on the SQL
+                of that question. We are trying to benchmark of SQL front-ends and DataFrame front-ends, so the original
+                rules have to be modified a little.
+
+                We believe that the SQL queries should be translated semantically to the idiomatic query of the host tool.
+                To do this we adhere to the following rules:
+                <ul>
+                    <li>
+                        It is not allowed to insert new operations, e.g. no pruning a table before a join.
+                    </li>
+                    <li>
+                        Every solution must provide 1 query per question independent of the data source.
+                    </li>
+                    <li>
+                        The solution must call its own API.
+                    </li>
+                    <li>
+                        It is allowed to declare the type of joins as this fits semantical reasoning in DataFrame API's.
+                    </li>
+                    <li>
+                        A solution must choose a single engine/mode for all the queries.
+                        It is allowed to propose different solutions from the same vendor, e.g. (sparks-sql, pyspark, polars-sql, polars-default, polars-streaming).
+                        However these solutions should run all the queries, showing their strengths and weaknesses, no cherry picking.
+                    </li>
+                    <li>
+                        Joins may not be reordered.
+                    </li>
+                </ul>
+
+                </p>
+
+                <h2>Notes</h2>
+                <p>
+                    Note that vaex was not able to finish all queries due to internal errors or unsupported functionality
+                    (e.g. joining on multiple columns).
+                </p>
+
+            </div>
+            <div class="result-container">
+                <h2>Results including reading parquet (lower is better)</h2>
+                <img src="https://raw.githubusercontent.com/pola-rs/polars-static/master/benchmarks/tpch/sf_10_and_io.png"
+                     alt="tpch sf 10 and IO" class="center">
+            </div>
+
+            <div class="result-container">
+                <h2>Results starting from in-memory data (lower is better)</h2>
+                <img src="https://raw.githubusercontent.com/pola-rs/polars-static/master/benchmarks/tpch/sf_10.png"
+                     alt="tpch sf 10" class="center">
+            </div>
+        </div>
+    </section>
+
+
+    </main>
+
+    <footer>
+      <div class="container">
+
+        <div class="pl-links">
+          Visit the <a href="https://github.com/pola-rs">Pola-rs GitHub Organization</a>
+        </div>
+
+      </div>
+    </footer>
+  
+  </body>
+</html>

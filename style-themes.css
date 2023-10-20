@@ -1,0 +1,30 @@
+/*
+ * COLORS
+ *
+ * each theme contains:
+ *   - 2 background colors
+ *   - 2 font colors: common and rust orange
+ *   - 1 link color (common to both themes)
+ *
+ * default is the light palette; the dark dimmed is derived from the github theme
+ *
+ * syntax highlighting is taking care of via highlight.js, check the other css
+ *
+ */
+
+:root,
+.light {
+  --background-color: #ffffff;
+  --background-color-alt: #ecf4ff;
+  --font-color: #24292e;
+  --link-color: #70b0ff;
+  --rust-color: #cd792c;
+}
+
+.dark_dimmed {
+  --background-color: #22272e;
+  --background-color-alt: #0d1117;
+  --font-color: #adbac7;
+  --link-color: #70b0ff;
+  --rust-color: #cd792c;
+}

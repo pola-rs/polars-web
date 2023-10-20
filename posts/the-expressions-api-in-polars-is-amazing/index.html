@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Guest post by Vincent D. Warmerdam, research advocate at Rasa, creator of the calmcode.io project and maintainer of many open source projects." />
+<meta name="title" content="The Expressions API in Polars is Amazing" />
+
+<meta property="og:description" content="Guest post by Vincent D. Warmerdam, research advocate at Rasa, creator of the calmcode.io project and maintainer of many open source projects." />
+<meta property="og:image" content="https://raw.githubusercontent.com/pola-rs/polars-static/master/web/splash.png" />
+<meta property="og:title" content="The Expressions API in Polars is Amazing" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.pola.rs/posts/the-expressions-api-in-polars-is-amazing/" />
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:description" content="Guest post by Vincent D. Warmerdam, research advocate at Rasa, creator of the calmcode.io project and maintainer of many open source projects." />
+<meta property="twitter:image" content="https://raw.githubusercontent.com/pola-rs/polars-static/master/web/splash.png" />
+<meta property="twitter:title" content="The Expressions API in Polars is Amazing" />
+<meta property="twitter:url" content="https://www.pola.rs/posts/the-expressions-api-in-polars-is-amazing/" />
+    <title>Polars</title>
+    
+    
+    <script>
+      function setTheme(name) {
+        localStorage.setItem("theme", name);
+        document.documentElement.className = name;
+      }
+
+      function toggleTheme() {
+        if (localStorage.getItem("theme") === "light") {
+          setTheme("dark_dimmed");
+        } else {
+          setTheme("light");
+        }
+      }
+
+      if (
+        localStorage.getItem("theme") === "dark_dimmed" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        setTheme("dark_dimmed");
+      } else {
+        setTheme("light");
+      }
+    </script>
+    
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"
+      onload="hljs.highlightAll();"
+    ></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.0/katex.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.0/contrib/auto-render.min.js"
+      onload="renderMathInElement(
+        document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ]
+        }
+      );"
+    ></script>
+    <script
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.13.3/mermaid.min.js"
+            onload="mermaid.initialize();"
+    ></script>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    
+<link rel="stylesheet" href="/style-post.css" />
+
+  </head>
+
+  <body>
+
+    <nav>
+      <div class="container">
+
+        <div class="menu">
+
+          <img
+            class="pl-logo"
+            onclick="window.location='/';"
+            src="https://raw.githubusercontent.com/carnarez/polars-static/master/logos/polars-logo-dimmed.svg"
+          />
+
+          <div class="pl-buttons">
+            <ul>
+
+              <li class="text" onclick="this.classList.toggle('selected');">
+                <a>API</a>
+                <ul>
+                  <li class="text">
+                    <a href="https://docs.rs/polars/latest/polars/">Rust</a>
+                  </li>
+                  <li class="text">
+                    <a
+                      href="https://pola-rs.github.io/polars/py-polars/html/reference/"
+                    >Python</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="text">
+                <a href="https://pola-rs.github.io/polars-book/user-guide/">User Guide</a>
+              </li>
+            <li class="text">
+                <a href="/benchmarks.html">TPCH Benchmarks</a>
+            </li>
+
+              <li class="text"><a href="/posts">Posts</a></li>
+
+              <li class="icon">
+                <a
+                  href="https://github.com/pola-rs/polars/"
+                  title="GitHub"
+                ><i class="fab fa-github"></i></a>
+              </li>
+
+              <li class="icon">
+                <a
+                  href="https://discord.com/invite/4UfP5cfBE7"
+                  title="Discord"
+                ><i class="fab fa-discord"></i></a>
+              </li>
+
+              <li class="icon">
+                <a
+                  href="https://twitter.com/DataPolars"
+                  title="Twitter"
+                ><i class="fab fa-twitter"></i></a>
+              </li>
+
+              
+              <li class="icon">
+                <a
+                  class="theme-switcher" onclick="toggleTheme()"
+                  title="Dark/Light Theme"
+                ><i class="fas fa-adjust"></i></a>
+              </li>
+              
+
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </nav>
+
+    
+
+    <main>
+      
+<article>
+  <div class="container">
+    <div class="pl-post"><blockquote>
+<p>This is a guest post by Vincent D. Warmerdam. He is a research advocate at <a href="https://rasa.com/">Rasa</a>, creator of the <a href="https://calmcode.io">calmcode.io</a> project and maintainer of <a href="https://github.com/koaning/">many open source projects</a>. He is also the proud contributor of the <a href="https://github.com/pola-rs/polars/pull/82"><code>.pipe()</code> method</a> in the <code>Polars</code> project, and he recently made a <a href="https://calmcode.io/polars/introduction.html"><code>Polars</code> course for beginners</a>.</p>
+</blockquote>
+<h1 id="the-expressions-api-in-polars-is-amazing">The Expressions API in Polars is Amazing</h1>
+<p>One of my favorite datasets out there is the <a href="https://www.kaggle.com/mylesoneill/warcraft-avatar-history">World of Warcraft avatar dataset</a>, hosted on Kaggle.</p>
+<p>It's a dataset that contains logs from a World of Warcraft server from 2008. Every ten minutes the system would log every player from the Horde faction if they were playing the game. It's about 644MB of data. That means it's small enough to handle on a laptop but it's big enough that you will need to slightly mindful if you use python to analyse this dataset.</p>
+<p>Here's a snippet of what the dataset looks like.</p>
+<div class="overflow-x">
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">char</th>
+<th style="text-align: right;">level</th>
+<th style="text-align: left;">race</th>
+<th style="text-align: left;">charclass</th>
+<th style="text-align: left;">zone</th>
+<th style="text-align: left;">timestamp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: left;">Orc</td>
+<td style="text-align: left;">Shaman</td>
+<td style="text-align: left;">The Barrens</td>
+<td style="text-align: left;">2008-12-03 10:41:47</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: left;">Orc</td>
+<td style="text-align: left;">Hunter</td>
+<td style="text-align: left;">The Temple of Atal'Hakkar</td>
+<td style="text-align: left;">2008-01-15 23:37:25</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: left;">Orc</td>
+<td style="text-align: left;">Hunter</td>
+<td style="text-align: left;">The Temple of Atal'Hakkar</td>
+<td style="text-align: left;">2008-01-15 23:47:09</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: left;">Orc</td>
+<td style="text-align: left;">Hunter</td>
+<td style="text-align: left;">Orgrimmar</td>
+<td style="text-align: left;">2008-01-15 23:56:52</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: left;">Orc</td>
+<td style="text-align: left;">Hunter</td>
+<td style="text-align: left;">Orgrimmar</td>
+<td style="text-align: left;">2008-01-16 00:07:28</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: left;">Orc</td>
+<td style="text-align: left;">Hunter</td>
+<td style="text-align: left;">Orgrimmar</td>
+<td style="text-align: left;">2008-01-16 00:17:12</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: left;">Orc</td>
+<td style="text-align: left;">Hunter</td>
+<td style="text-align: left;">Orgrimmar</td>
+<td style="text-align: left;">2008-01-16 00:26:56</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: left;">Orc</td>
+<td style="text-align: left;">Hunter</td>
+<td style="text-align: left;">Orgrimmar</td>
+<td style="text-align: left;">2008-01-16 21:57:02</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: left;">Orc</td>
+<td style="text-align: left;">Hunter</td>
+<td style="text-align: left;">Orgrimmar</td>
+<td style="text-align: left;">2008-01-16 22:07:09</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="the-task">The Task</h2>
+<p>There's a lot of interesting things you could do with this dataset. After all, 2008 was the year where the Frozen Throne expansion came out. So there's plenty of churn-related things you could unravel. The task that I want to explore in this blogpost is related to something else though; bot-detection. This video game was so popular that it attracted many hackers and it's very likely that this dataset includes non-human players and these need to be detected.</p>
+<p>There are many way to detect these bots, but it's good to start with some simple domain rules. A good starting point might be to start looking for users that have a suspiciously long session length. If a character is seen playing for 36 hours without a break, one could argue that there may be a bot. The end goal for us is to remove bots from the dataset as a preprocessing step for other analyses.</p>
+<p>So how might we go about finding these users? Before writing down any code, it'd be good to make an inventory of all the columns that we'll need in our dataset.</p>
+<ol>
+<li>We need to attach a column that represents a <code>session_id</code>. This session needs to uniquely represent an id that refers to a user playing the game uninterruptedly. If the same player was playing in a different session it needs to have another id.</li>
+<li>Given a <code>session_id</code> column we can calculate how long the session took.</li>
+<li>Given the playtime of each session, we can have a look at the longest session for each character. If this ever exceeds a threshold, like 24 hours, then we can remove all activity from the user.</li>
+</ol>
+<h3 id="sessionize">Sessionize</h3>
+<p>It may help to show how a dataset can be sessionized step by step. So let's suppose that we have the following dataset.</p>
+<div class="overflow-x">
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">char</th>
+<th style="text-align: left;">timestamp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2008-12-03 10:51:47</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:37:25</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:56:52</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2008-12-03 10:41:47</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:07:28</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:17:12</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:47:09</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:26:56</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 21:57:02</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 22:07:09</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The first thing that needs to happen is that we sort the dataset. We want it sorted first by character and then by timestamp. That would make the dataset look like below.</p>
+<div class="overflow-x">
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">char</th>
+<th style="text-align: left;">timestamp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2008-12-03 10:41:47</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2008-12-03 10:51:47</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:37:25</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:47:09</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:56:52</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:07:28</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:17:12</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:26:56</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 21:57:02</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 22:07:09</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Next, we're going to add two columns that indicate if there's been a "jump" in either the <code>timestamp</code> of the <code>char</code> column that would warrant a new session.</p>
+<div class="overflow-x">
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">char</th>
+<th style="text-align: left;">timestamp</th>
+<th>diff_char</th>
+<th>diff_ts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2008-12-03 10:41:47</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2008-12-03 10:51:47</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:37:25</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:47:09</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:56:52</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:07:28</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:17:12</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:26:56</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 21:57:02</td>
+<td>false</td>
+<td>true</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 22:07:09</td>
+<td>false</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Next, we could combine these two "diff"-columns together with an or-statement.</p>
+<div class="overflow-x">
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">char</th>
+<th style="text-align: left;">timestamp</th>
+<th>diff_char</th>
+<th>diff_ts</th>
+<th>diff</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2008-12-03 10:41:47</td>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2008-12-03 10:51:47</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:37:25</td>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:47:09</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:56:52</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:07:28</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:17:12</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:26:56</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 21:57:02</td>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 22:07:09</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>To turn this column into a <code>session_id</code> we merely need to call <code>cumsum</code> on the <code>diff</code>-column.</p>
+<div class="overflow-x">
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">char</th>
+<th style="text-align: left;">timestamp</th>
+<th>diff_char</th>
+<th>diff_ts</th>
+<th>diff</th>
+<th>sess</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2008-12-03 10:41:47</td>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2008-12-03 10:51:47</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:37:25</td>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:47:09</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:56:52</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:07:28</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:17:12</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:26:56</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 21:57:02</td>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+<td>3</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 22:07:09</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Depending on how the dataset is partitioned there are also other, potentionally more performant, methods to sessionize the data. But we'll assume this method of sessionisation below. Next, we'd need to calculate the session length, which involves an aggregation per session that we need to attach.</p>
+<div class="overflow-x">
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">char</th>
+<th style="text-align: left;">timestamp</th>
+<th>diff_char</th>
+<th>diff_ts</th>
+<th>diff</th>
+<th>sess</th>
+<th>sess_len</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2008-12-03 10:41:47</td>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2008-12-03 10:51:47</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:37:25</td>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:47:09</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:56:52</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:07:28</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:17:12</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:26:56</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 21:57:02</td>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 22:07:09</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>3</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>After then we'd need to perform another aggregation, but now we'd need to group by the character in order to calculate the maximum session length.</p>
+<div class="overflow-x">
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">char</th>
+<th style="text-align: left;">timestamp</th>
+<th>diff_char</th>
+<th>diff_ts</th>
+<th>diff</th>
+<th>sess</th>
+<th>sess_len</th>
+<th>max_len</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2008-12-03 10:41:47</td>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2008-12-03 10:51:47</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:37:25</td>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+<td>2</td>
+<td>6</td>
+<td>6</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:47:09</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>2</td>
+<td>6</td>
+<td>6</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-15 23:56:52</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>2</td>
+<td>6</td>
+<td>6</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:07:28</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>2</td>
+<td>6</td>
+<td>6</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:17:12</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>2</td>
+<td>6</td>
+<td>6</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 00:26:56</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>2</td>
+<td>6</td>
+<td>6</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 21:57:02</td>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+<td>3</td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2008-01-16 22:07:09</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>3</td>
+<td>2</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="this-is-common">This is Common</h2>
+<p>We're going to write a query that does exactly this, but before we do we should take a moment to recognize that these kinds of queries are pretty common. Calculating sessions and summarising them later over users is very common in web analytics. Not just for bot detection but also for general user analytics.</p>
+<p>Given that this is so common, how would you go about implementing this? Although this kind of query is so common, it's usually suprisingly tricky to implement. You could implement this with a <code>.groupby()</code>-then-<code>.join()</code> kind of operation but that's relatively heavy in terms of compute. Not to mention that it'll be very tedious to write multiple <code>.groupby()</code>-then-<code>.join()</code> statements.</p>
+<p>And <em>this</em> is the moment where polars is about to shine. It's not just that it has a fast implementation written in rust. It's also because it comes with an amazing expressions API that makes it stand out.</p>
+<h2 id="pipelines">Pipelines</h2>
+<p>Back to the task at hand. We're going to sessionize and then we're going to calculate statistics based on these sessions. There's quite a few steps involved in this task, so it'd be best to implement this using <a href="https://www.youtube.com/watch?v=yXGCKqo5cEY&amp;ab_channel=PyData">a pipeline</a>. The idea is to write our code as functions that seperate concerns. These functions would each accept a dataframe as input and would be tasked with transforming the dataframe before returning it. These functions can be chained together to form a pipeline, which might look something like this;</p>
+<pre class="highlight"><code class="language-python">(df
+ .pipe(set_types)
+ .pipe(sessionize, threshold=20 * 60 * 1000)
+ .pipe(add_features)
+ .pipe(remove_bots, threshold=24))</code></pre>
+<p>Making this seperation of concerns is a good first step, but it's typically also the easy bit. We now need to concern ourselves with the implementation of these functions. So let's go by the functions one by one to see how they're implemented.</p>
+<h3 id="setting-the-types">Setting the Types</h3>
+<p>Before doing any analysis it's good to make sure that we set the types right. We're turning the guild-column into a boolean and we're making sure that we have a proper timestamp.</p>
+<pre class="highlight"><code class="language-python">def set_types(dataf):
+    return (dataf
+            .with_columns([
+                 pl.col("timestamp").str.strptime(pl.Datetime, fmt="%m/%d/%y %H:%M:%S"),
+                 pl.col("guild") != -1,
+             ]))</code></pre>
+<h3 id="adding-the-session">Adding the Session</h3>
+<p>Next, we add a session. This involves sorting and adding some columns.</p>
+<pre class="highlight"><code class="language-python">def sessionize(dataf, threshold=20 * 60 * 1_000):
+    return (dataf
+             .sort(["char", "timestamp"])
+             .with_columns([
+                 (pl.col("timestamp").diff().cast(pl.Int64) &gt; threshold).fill_null(True).alias("ts_diff"),
+                 (pl.col("char").diff() != 0).fill_null(True).alias("char_diff"),
+             ])
+             .with_columns([
+                 (pl.col("ts_diff") | pl.col("char_diff")).alias("new_session_mark")
+             ])
+             .with_columns([
+                 pl.col("new_session_mark").cumsum().alias("session")
+             ])
+             .drop(['char_diff', 'ts_diff', 'new_session_mark']))</code></pre>
+<p>This function adds intermediate columns to make it easy to debug later but we drop the columns we don't need at the end.</p>
+<details>
+<summary><b>Why so many <code>with_columns</code> statements?</b></summary>
+<p>You might wonder why we've added three <code>.with_columns</code> statements in sequence. That's because at the time of writing this blogpost the columns need to exist before using expression inside a <code>.with_columns</code>-call. The <code>char</code> and <code>timestamp</code> column exist before the first <code>with_columns()</code>-call. But since <code>ts_diff</code> and <code>char_diff</code> get created inside the first <code>.with_columns</code>, you need to call a new <code>.with_columns</code> again to use these columns.</p>
+<p>Typically want to cluster as many expressions as possible in a single <code>with_columns</code>-statement, because every expression is executed on a separate thread. If you use <code>.with_column</code> sequentially you risk that the optimiser cannot recognize that the command may be run in parallel.</p>
+</details>
+<h3 id="adding-other-features">Adding Other Features</h3>
+<p>Here comes the part where polars really shines. Instead of writing a combination of <code>group_by</code> and <code>join</code> queries, we just use the expression API to declare that we want to calculate statistics over some partition.</p>
+<pre class="highlight"><code class="language-python">def add_features(dataf):
+    return (dataf
+             .with_columns([
+                 pl.col("char").count().over("session").alias("session_length"),
+                 pl.col("session").n_unique().over("char").alias("n_sessions")
+             ]))</code></pre>
+<p>Here's what we calculate.</p>
+<ol>
+<li>The first expression in <code>.with_columns</code> calculates a count on the character column, which is just counting the number of rows. But the expression adds a <code>.over("session")</code> in the expression chain. This ensures that we calculate the number of rows for each session.</li>
+<li>The second expression in <code>.with_columns</code> calculates the number of unique session ids per character. This is again achieved by adding <code>.over("char")</code> to the chain.</li>
+</ol>
+<p>I don't know about you. But this is 'friggin elegant! We're able to do <em>so much</em> from a single <code>.with_columns</code> call. No need to worry about <code>group_by</code>/<code>join</code> command. Just add expressions to calculate what you need.</p>
+<h3 id="removing-the-bots">Removing the Bots</h3>
+<p>You can also use expressions in other statements. This is very convenient when you want to use it to remove rows from a dataset.</p>
+<pre class="highlight"><code class="language-python">def remove_bots(dataf, max_session_hours=24):
+    # We're using some domain knowledge here. The logger of our dataset should
+    # log data every 10 minutes. That's what this line is based on.
+    n_rows = max_session_hours * 6
+    return (dataf
+            .filter(pl.col("session_length").max().over("char") &lt; n_rows))</code></pre>
+<p>Again we're using an expression with an <code>.over()</code> in the chain. This time it's calculating the maximum value of the <code>session_length</code> per character. If it ever exceeds the maximum number of rows, this filter will remove all rows that belong to that character.</p>
+<h3 id="cherry-on-top-clever-caching">Cherry on Top: Clever Caching</h3>
+<p>Let's consider our pipeline again.</p>
+<pre class="highlight"><code class="language-python">(df
+ .pipe(set_types)
+ .pipe(sessionize, threshold=20 * 60 * 1000)
+ .pipe(add_features)
+ .pipe(remove_bots, threshold=24))</code></pre>
+<p>What's grand about polars is that this pipeline can run no matter if the dataframe is loaded lazily or in eager-mode. If we're interested in playing around with the <code>remove_bots</code> threshold, we could rewrite the query to make it more interactive.</p>
+<pre class="highlight"><code class="language-python">df_intermediate = (df
+ .pipe(set_types)
+ .pipe(sessionize, threshold=20 * 60 * 1000)
+ .pipe(add_features))
+
+ df_intermediate.pipe(remove_bots, threshold=24)</code></pre>
+<p>Again, this is a <em>nice</em> API.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>This blogpost has shown a use-case for a particular kind of query that involves sessions. Typically these need to be aggregated over partitions in your dataset. It's not just that these queries can become very slow. It's can also be an issue to properly implement them.</p>
+<details>
+<summary><b>The pandas implementation, for comparison.</b></summary>
+<p>Let's consider what it might be like to implement this in <code>pandas</code>. The implementation of <code>set_types</code> and <code>sessionize</code> are relatively straightforward.</p>
+<pre class="highlight"><code class="language-python">def set_types(dataf):
+    return (dataf
+            .assign(timestamp=lambda d: pd.to_datetime(d['timestamp'], format="%m/%d/%y %H:%M:%S"),
+                    guild=lambda d: d['guild'] != -1))
+
+def sessionize(dataf, threshold=60*10):
+    return (dataf
+             .sort_values(["char", "timestamp"])
+             .assign(ts_diff=lambda d: (d['timestamp'] - d['timestamp'].shift()).dt.seconds &gt; threshold,
+                     char_diff=lambda d: (d['char'].diff() != 0),
+                     new_session_mark=lambda d: d['ts_diff'] | d['char_diff'],
+                     session=lambda d: d['new_session_mark'].fillna(0).cumsum())
+             .drop(columns=['char_diff', 'ts_diff', 'new_session_mark']))</code></pre>
+<p>We're using the <code>.assign()</code> method, per recommendation of the <a href="https://tomaugspurger.github.io/method-chaining">modern pandas blogpost</a>, to add the features we're interesed in. This isn't the most performant code, but it is safe and maintainable.</p>
+<p>It's the next part, however, that's the hard part. Not just for the implementation that's tricky, it's also the biggest performance sink.</p>
+<pre class="highlight"><code class="language-python">def add_features(dataf):
+    return (dataf
+              .assign(session_length=lambda d: d.groupby('session')['char'].transform(lambda d: d.count()))
+              .assign(max_sess_len=lambda d: d.groupby('char')['session_length'].transform(lambda d: d.max())))
+
+def remove_bots(dataf, max_session_hours=24):
+    n_rows = max_session_hours*6
+    return (dataf
+            .loc[lambda d: d["max_sess_len"] &lt; n_rows]
+            .drop(columns=["max_sess_len"]))</code></pre>
+<p>It should be stressed: you can certainly write the query we're interested in with pandas. I'd even argue that the <code>.groupby().transform()</code> isn't half bad. But it's nowhere nearly as convient as the polars API.</p>
+</details>
+<p>This is the reason why the expressions API is so value-able. It makes these kinds of common queries so much easier to write. Polars doesn't just make these queries fast, it also makes it very easy to reason about these queries. And that ... is amazing.</p>
+<p>Sure, polars is fast. The pandas variant takes about 10 minutes to run while polars is just 7 seconds. <a href="https://calmcode.io/polars/calm.html">That's an 80x speedup</a>. So yeah, speed is totally a valid reason to consider exploring polars. But to me, that's only a single part of the feature-set. The API is also where it's at.</p></div>
+  </div>
+</article>
+
+    </main>
+
+    <footer>
+      <div class="container">
+
+        <div class="pl-links">
+          Visit the <a href="https://github.com/pola-rs">Pola-rs GitHub Organization</a>
+        </div>
+
+      </div>
+    </footer>
+  
+  </body>
+</html>

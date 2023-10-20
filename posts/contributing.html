@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="An overview of breaking changes and deprecations in the latest Polars release." />
+<meta name="title" content="Polars 0.19 upgrade guide" />
+
+<meta property="og:description" content="An overview of breaking changes and deprecations in the latest Polars release." />
+<meta property="og:image" content="https://raw.githubusercontent.com/pola-rs/polars-static/master/web/splash.png" />
+<meta property="og:title" content="Polars 0.19 upgrade guide" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.pola.rs/posts/CONTRIBUTING.md/" />
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:description" content="An overview of breaking changes and deprecations in the latest Polars release." />
+<meta property="twitter:image" content="https://raw.githubusercontent.com/pola-rs/polars-static/master/web/splash.png" />
+<meta property="twitter:title" content="Polars 0.19 upgrade guide" />
+<meta property="twitter:url" content="https://www.pola.rs/posts/CONTRIBUTING.md/" />
+    <title>Polars</title>
+    
+    
+    <script>
+      function setTheme(name) {
+        localStorage.setItem("theme", name);
+        document.documentElement.className = name;
+      }
+
+      function toggleTheme() {
+        if (localStorage.getItem("theme") === "light") {
+          setTheme("dark_dimmed");
+        } else {
+          setTheme("light");
+        }
+      }
+
+      if (
+        localStorage.getItem("theme") === "dark_dimmed" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        setTheme("dark_dimmed");
+      } else {
+        setTheme("light");
+      }
+    </script>
+    
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"
+      onload="hljs.highlightAll();"
+    ></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.0/katex.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.0/contrib/auto-render.min.js"
+      onload="renderMathInElement(
+        document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ]
+        }
+      );"
+    ></script>
+    <script
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.13.3/mermaid.min.js"
+            onload="mermaid.initialize();"
+    ></script>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    
+<link rel="stylesheet" href="/style-post.css" />
+
+  </head>
+
+  <body>
+
+    <nav>
+      <div class="container">
+
+        <div class="menu">
+
+          <img
+            class="pl-logo"
+            onclick="window.location='/';"
+            src="https://raw.githubusercontent.com/carnarez/polars-static/master/logos/polars-logo-dimmed.svg"
+          />
+
+          <div class="pl-buttons">
+            <ul>
+
+              <li class="text" onclick="this.classList.toggle('selected');">
+                <a>API</a>
+                <ul>
+                  <li class="text">
+                    <a href="https://docs.rs/polars/latest/polars/">Rust</a>
+                  </li>
+                  <li class="text">
+                    <a
+                      href="https://pola-rs.github.io/polars/py-polars/html/reference/"
+                    >Python</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="text">
+                <a href="https://pola-rs.github.io/polars-book/user-guide/">User Guide</a>
+              </li>
+            <li class="text">
+                <a href="/benchmarks.html">TPCH Benchmarks</a>
+            </li>
+
+              <li class="text"><a href="/posts">Posts</a></li>
+
+              <li class="icon">
+                <a
+                  href="https://github.com/pola-rs/polars/"
+                  title="GitHub"
+                ><i class="fab fa-github"></i></a>
+              </li>
+
+              <li class="icon">
+                <a
+                  href="https://discord.com/invite/4UfP5cfBE7"
+                  title="Discord"
+                ><i class="fab fa-discord"></i></a>
+              </li>
+
+              <li class="icon">
+                <a
+                  href="https://twitter.com/DataPolars"
+                  title="Twitter"
+                ><i class="fab fa-twitter"></i></a>
+              </li>
+
+              
+              <li class="icon">
+                <a
+                  class="theme-switcher" onclick="toggleTheme()"
+                  title="Dark/Light Theme"
+                ><i class="fas fa-adjust"></i></a>
+              </li>
+              
+
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </nav>
+
+    
+
+    <main>
+      
+<article>
+  <div class="container">
+    <div class="pl-post"><h1 id="contribution-guide">Contribution guide</h1>
+<h2 id="location">Location</h2>
+<p>To contribute, <strong>create a new folder</strong> named after today's date in the <code>YYYYMMDD/</code> format
+within the <code>www/posts/</code> filetree present in a branch of your own
+<a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo">forked</a> version of the
+<a href="https://github.com/pola-rs/polars-web"><code>polars-web</code></a> repo. Write your post in the
+<strong>Markdown format</strong>, in a file called <code>index.md</code>. Put all the necessary images in the
+same folder (use a relative path when including them). Send us a Pull Request once
+satisfied with your production!</p>
+<h2 id="front-matter">Front matter</h2>
+<h3 id="mandatory">Mandatory</h3>
+<p>When building the list of posts we use the <strong>front matter content</strong> to define title,
+author(s), <em>etc.</em> Start your <code>index.md</code> with:</p>
+<pre class="highlight"><code class="language-text">---
+authors: GitHub nickname, full name, supervillain handle we do not judge
+title: My Polars contribution
+summary: A quick description of the post that can span multiple lines (note the
+         indentation) but cannot include Markdown shenanigans.
+---
+
+# Polars is breathtaking, the story of my realisation</code></pre>
+<p>The content of the <code>title</code> field will be used to redirect to the post itself, and the
+<code>summary</code> spiel will be used as "motivational blurb" for readers to get interested. The
+<a href="https://metatags.io/">meta tags</a> associated with the post are also generated from those
+values.</p>
+<p>Note that without those information the <strong>post will not be listed</strong>, and will not be
+accessible for (y)our readers!</p>
+<h3 id="optional">Optional</h3>
+<ul>
+<li><code>canonical</code>: if provided without a link, the current post will receive the
+  <code>rel="canonical"</code> flag; if a link is provided (a string really, beware what you
+  provide), this latter will be used as <code>href</code> for the <code>&lt;link&gt;</code> tag.</li>
+<li><code>link</code>: target of the link the <code>authors</code> text will be pointing to.</li>
+<li><code>config</code>, supporting the following:</li>
+<li>A post can be removed from the list of posts by adding the <code>not-listed</code> keyword to
+    the <code>config</code> key. Note it will stil be rendered to handle broken links (although
+    we like our <a href="/game.html">easter egg</a>).</li>
+<li><del>Decision has been made to keep a <strong>light theme</strong> for all posts to accomodate for
+    contributed content with white background.</del> One can <strong>force a theme</strong> by adding a
+    <code>dark-theme</code> or <code>light-theme</code> value to the <code>config</code> key. Not specifying -or
+    providing both- allows toggling between both themes.</li>
+<li><code>image</code>: a thumbnail for the list of post. The image is expected to be in the same
+  folder as the post itself, unless starting with <code>https://</code>; its height will be limited
+  to 160 pixels.</li>
+</ul>
+<pre class="highlight"><code class="language-text">---
+[...]
+config: dark-theme not-listed
+link: GitHub page, personal blog, random Rick Astley song
+thumbnail: image.png
+---
+
+# Polars is breathtaking, the story of my realisation</code></pre>
+<h1 id="mardown-sample-ground">Mardown sample ground</h1>
+<p>The rest of this page stands as an example of supported Markdown-to-HTML processing, and
+the final look and feel (better to read it
+<a href="https://www.pola.rs/posts/contributing.html">there</a> than on GitHub). The rendering
+itself is done via <a href="https://python-markdown.github.io/"><code>Python-Markdown</code></a>, with plenty
+added extensions to deal with the fancy stuff:</p>
+<ul>
+<li><a href="https://facelessuser.github.io/pymdown-extensions/extensions/tilde/"><code>DeleteSubExtension</code></a>
+  to introduce crossed out and subscript text.</li>
+<li><a href="https://python-markdown.github.io/extensions/footnotes/"><code>FootnoteExtension</code></a> to
+  handle, well, footnotes.</li>
+<li><a href="https://facelessuser.github.io/pymdown-extensions/extensions/highlight/"><code>HighlightExtension</code></a>
+  to single out code blocks.</li>
+<li><a href="https://facelessuser.github.io/pymdown-extensions/extensions/caret/"><code>InsertSupExtension</code></a>
+  to introduce underlined and superscript text.</li>
+<li><a href="https://python-markdown.github.io/extensions/md_in_html/"><code>MarkdownInHtmlExtension</code></a>
+  to parse and render Markdown located <em>within</em> HTML blocks.</li>
+<li><a href="https://python-markdown.github.io/extensions/meta/"><code>MetaExtension</code></a> to parse front
+  matter content (metadata).</li>
+<li><a href="https://facelessuser.github.io/pymdown-extensions/extensions/superfences/"><code>SuperFencesCodeExtension</code></a>
+  to enhance the processing of fenced blocks.</li>
+<li><a href="https://python-markdown.github.io/extensions/tables/"><code>TableExtension</code></a> to render
+  tables.</li>
+<li><a href="https://python-markdown.github.io/extensions/toc/"><code>TocExtension</code></a> to generate the
+  table of contents and anchor the titles.</li>
+</ul>
+<p>If you need something extra let's discuss it in your PR. Once generated, some further
+rendering is done in the browser -<em>i.e.</em>, on the client- via a couple <code>JavaScript</code>
+libraries:</p>
+<ul>
+<li><a href="https://highlightjs.org/"><code>highlight.js</code></a> for syntax highlighting.</li>
+<li><a href="https://katex.org/"><code>KaTeX</code></a> to render equations written in LaTeX.</li>
+<li><a href="https://mermaidjs.github.io/"><code>Mermaid</code></a> to render diagrams and flowcharts.</li>
+</ul>
+<p>The styling is stored in the <a href="/style-post.css"><code>style-post.css</code></a> file. It is however
+<strong>allowed to custom</strong> them styles by adding a <code>style.css</code> file in the folder containing
+the <code>Markdown</code> post to render.</p>
+<p>Note that if you follow the steps indicated in the main repo, and <code>Docker</code> helping, you
+should be able to render it locally to have a look at your post as it will appear to
+any reader.</p>
+<h2 id="blockquotes">Blockquotes</h2>
+<p>Napoleon alledgedly said:</p>
+<pre class="highlight"><code class="language-markdown">&gt; Un bon croquis vaut mieux qu'un long discours.</code></pre>
+<blockquote>
+<p>Un bon croquis vaut mieux qu'un long discours.</p>
+</blockquote>
+<h2 id="emphasis">Emphasis</h2>
+<h3 id="general">General</h3>
+<pre class="highlight"><code class="language-markdown">_This text should be italic._ _This should also be italic._
+
+**This text should be bold.** **This should also be bold.**
+
+^^This text should be underlined.^^
+
+~~This text should be crossed out.~~
+
+_One **can** ^^combine^^ all ~~those~~._</code></pre>
+<p><em>This text should be italic.</em> <em>This should also be italic.</em></p>
+<p><strong>This text should be bold.</strong> <strong>This should also be bold.</strong></p>
+<p><ins>This text should be underlined.</ins></p>
+<p><del>This text should be crossed out.</del></p>
+<p><em>One <strong>can</strong> <ins>combine</ins> all <del>those</del>.</em></p>
+<h3 id="sub-super-script">Sub-/super-script</h3>
+<pre class="highlight"><code class="language-markdown">H~2~O
+
+Copyright^©^</code></pre>
+<p>H<sub>2</sub>O</p>
+<p>Copyright<sup>©</sup></p>
+<h2 id="equations">Equations</h2>
+<p>Rendered in the browser via <a href="https://katex.org/"><code>KaTeX</code></a>. <code>$$</code> and <code>$</code> notations are supported.</p>
+<h3 id="block">Block</h3>
+<pre class="highlight"><code class="language-markdown">$$E = m \, c^{2}$$
+
+$$f(x) = \int_{-\infty}^{\infty} \hat{f}(\xi) \, e^{2 \pi i \xi x} \, d\xi$$</code></pre>
+<p>$$E = m \, c^{2}$$</p>
+<p>$$f(x) = \int_{-\infty}^{\infty} \hat{f}(\xi) \, e^{2 \pi i \xi x} \, d\xi$$</p>
+<h3 id="inline">Inline</h3>
+<pre class="highlight"><code class="language-markdown">And here is an inline equation: $2 \pi i \xi x$.</code></pre>
+<p>And here is an inline equation: $2 \pi i \xi x$.</p>
+<h2 id="footnotes">Footnotes</h2>
+<p>Napoleon alledgedly said<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>:</p>
+<pre class="highlight"><code class="language-markdown">Napoleon alledgedly said[^1]:
+
+[^1]: Footnote content.</code></pre>
+<blockquote>
+<p>Un bon croquis vaut mieux qu'un long discours.</p>
+</blockquote>
+<h2 id="images">Images</h2>
+<pre class="highlight"><code class="language-markdown">![Favicon](/favicon.png)</code></pre>
+<p><div class="overflow-x">
+<img alt="Favicon" src="/favicon.png" />
+</div></p>
+<h2 id="inline-code">Inline code</h2>
+<pre class="highlight"><code class="language-markdown">Inline code blocks such as `import polars as pl` are not highlighted.</code></pre>
+<p>Inline code blocks such as <code>import polars as pl</code> are not highlighted.</p>
+<h2 id="links">Links</h2>
+<pre class="highlight"><code class="language-markdown">[`Polars` organization](https://github.com/pola-rs)</code></pre>
+<p><a href="https://github.com/pola-rs"><code>Polars</code> organization</a></p>
+<h2 id="lists">Lists</h2>
+<h3 id="unordered-list">Unordered list</h3>
+<pre class="highlight"><code class="language-markdown">- Item
+- Item
+  - Subitem
+  - Subitem</code></pre>
+<ul>
+<li>Item</li>
+<li>Item</li>
+<li>Subitem</li>
+<li>Subitem</li>
+</ul>
+<h3 id="ordered-list">Ordered list</h3>
+<pre class="highlight"><code class="language-markdown">1. Item 1
+1. Item 2
+   1. Item 2a
+   1. Item 2b</code></pre>
+<ol>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 2a</li>
+<li>Item 2b</li>
+</ol>
+<h2 id="markdown-in-html">Markdown in HTML</h2>
+<pre class="highlight"><code class="language-markdown">&lt;details markdown="1"&gt;
+&lt;summary markdown="1"&gt;Test with `code`.&lt;/summary&gt;
+
+**This is bold**, ^^this is underlined^^. [This is a link](https://calmcode.io/).
+
+```python
+import polars as pl
+```
+
+&lt;/details&gt;</code></pre>
+<ul>
+<li>Note the <code>markdown="1"</code> attribute to make sure the content inside those tags is being parsed
+  and converted properly.</li>
+<li>Mind the necessary spaces:</li>
+<li>After the <code>&lt;summary&gt;...&lt;/summary&gt;</code> line.</li>
+<li>Before the closing <code>&lt;/details&gt;</code> tag.</li>
+</ul>
+<details>
+<summary>Test with <code>code</code>.</summary>
+<p><strong>This is bold</strong>, <ins>this is underlined</ins>. <a href="https://calmcode.io/">This is a link</a>.</p>
+<pre class="highlight"><code class="language-python">import polars as pl</code></pre>
+</details>
+<h2 id="mermaid-diagram">Mermaid diagram</h2>
+<p>Rendered in the browser via <a href="https://mermaidjs.github.io/"><code>Mermaid</code></a>.</p>
+<pre class="highlight"><code class="language-markdown">```mermaid
+graph LR
+  A --&gt; B
+  B --&gt; C
+```</code></pre>
+<div class="mermaid">graph LR
+  A --&gt; B
+  B --&gt; C</div>
+<p>And a more complicated one from the official website:</p>
+<div class="mermaid">sequenceDiagram
+  participant Alice
+  participant Bob
+  Alice -&gt;&gt; John: Hello John, how are you?
+  loop Healthcheck
+    John -&gt;&gt; John: Fight against hypochondria
+  end
+  Note right of John: Rational thoughts &lt;br/&gt;prevail!
+  John --&gt;&gt; Alice: Great!
+  John -&gt;&gt; Bob: How about you?
+  Bob --&gt;&gt; John: Jolly good!</div>
+<p>Check <a href="https://mermaid-js.github.io/mermaid/#/theming">this page</a> to style diagrams.</p>
+<h2 id="syntax-highlighting">Syntax highlighting</h2>
+<p>Rendered in the browser via <a href="https://highlightjs.org/"><code>highlight.js</code></a>.</p>
+<pre class="highlight"><code class="language-markdown">```python
+import polars as pl
+
+q = (
+    pl.scan_csv("iris.csv")
+    .filter(pl.col("sepal_length") &gt; 5)
+    .group_by("species")
+    .agg(pl.all().sum())
+)
+
+df = q.collect()
+```</code></pre>
+<pre class="highlight"><code class="language-python">import polars as pl
+
+q = (
+    pl.scan_csv("iris.csv")
+    .filter(pl.col("sepal_length") &gt; 5)
+    .group_by("species")
+    .agg(pl.all().sum())
+)
+
+df = q.collect()</code></pre>
+<h2 id="tables">Tables</h2>
+<pre class="highlight"><code class="language-markdown">| First Header                | Second Header                |
+| --------------------------- | ---------------------------- |
+| Content from cell 1         | Content from cell 2          |
+| Content in the first column | Content in the second column |
+| $2 \pi r^{2}$               | With inline equation         |</code></pre>
+<div class="overflow-x">
+<table>
+<thead>
+<tr>
+<th>First Header</th>
+<th>Second Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content from cell 1</td>
+<td>Content from cell 2</td>
+</tr>
+<tr>
+<td>Content in the first column</td>
+<td>Content in the second column</td>
+</tr>
+<tr>
+<td>$2 \pi r^{2}$</td>
+<td>With inline equation</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="titles">Titles</h2>
+<p>Using the <code>#</code> to <code>######</code> notation. Above is a subtitle. Below everything else.</p>
+<h3 id="section">Section</h3>
+<p>Text</p>
+<h4 id="subsection">Subsection</h4>
+<p>Text</p>
+<h5 id="paragraph">Paragraph</h5>
+<p>Text</p>
+<h6 id="subparagraph">Subparagraph</h6>
+<p>Text</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<pre class="highlight"><code class="language-markdown">[TOC]</code></pre>
+<div class="toc">
+<ul>
+<li><a href="#contribution-guide">Contribution guide</a><ul>
+<li><a href="#location">Location</a></li>
+<li><a href="#front-matter">Front matter</a><ul>
+<li><a href="#mandatory">Mandatory</a></li>
+<li><a href="#optional">Optional</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#mardown-sample-ground">Mardown sample ground</a><ul>
+<li><a href="#blockquotes">Blockquotes</a></li>
+<li><a href="#emphasis">Emphasis</a><ul>
+<li><a href="#general">General</a></li>
+<li><a href="#sub-super-script">Sub-/super-script</a></li>
+</ul>
+</li>
+<li><a href="#equations">Equations</a><ul>
+<li><a href="#block">Block</a></li>
+<li><a href="#inline">Inline</a></li>
+</ul>
+</li>
+<li><a href="#footnotes">Footnotes</a></li>
+<li><a href="#images">Images</a></li>
+<li><a href="#inline-code">Inline code</a></li>
+<li><a href="#links">Links</a></li>
+<li><a href="#lists">Lists</a><ul>
+<li><a href="#unordered-list">Unordered list</a></li>
+<li><a href="#ordered-list">Ordered list</a></li>
+</ul>
+</li>
+<li><a href="#markdown-in-html">Markdown in HTML</a></li>
+<li><a href="#mermaid-diagram">Mermaid diagram</a></li>
+<li><a href="#syntax-highlighting">Syntax highlighting</a></li>
+<li><a href="#tables">Tables</a></li>
+<li><a href="#titles">Titles</a><ul>
+<li><a href="#section">Section</a><ul>
+<li><a href="#subsection">Subsection</a><ul>
+<li><a href="#paragraph">Paragraph</a><ul>
+<li><a href="#subparagraph">Subparagraph</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://en.wikipedia.org/wiki/A_picture_is_worth_a_thousand_words#Equivalents">I did not invent it.</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text"><i class="far fa-caret-square-up"></i></a></p>
+</li>
+</ol>
+</div></div>
+  </div>
+</article>
+
+    </main>
+
+    <footer>
+      <div class="container">
+
+        <div class="pl-links">
+          Visit the <a href="https://github.com/pola-rs">Pola-rs GitHub Organization</a>
+        </div>
+
+      </div>
+    </footer>
+  
+  </body>
+</html>
